@@ -7,7 +7,7 @@ CREATE TABLE people (
   birthdate DATE,
   submit_date DATE NOT NULL,
   bio BLOB
-  );
+);
 
 CREATE TABLE movie (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE movie (
   image_link VARCHAR(50),
   synopsis BLOB,
   FOREIGN KEY (director_id) REFERENCES people(id)
-  );
+);
 
 CREATE TABLE actor (
   movie_id INT,
