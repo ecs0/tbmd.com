@@ -11,17 +11,20 @@ CREATE TABLE people (
 
 CREATE TABLE movie (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  director_id INT REFERENCES people(id),
+  director_id INT,
   title VARCHAR(50),
   release_date DATE,
   submit_date DATE NOT NULL,
   image_link VARCHAR(50),
-  synopsis BLOB
+  synopsis BLOB,
+  FOREIGN KEY (director_id) REFERENCES people(id)
   );
 
 CREATE TABLE actor (
-  movie_id INT REFERENCES movie(id),
-  people_id INT REFERENCES people(id)
+  movie_id INT,
+  people_id INT,
+  FOREIGN KEY (movie_id) REFERENCES movie(id),
+  FOREIGN KEY (people_id) REFERENCES people(id)
 );
 
 CREATE TABLE users (
@@ -34,10 +37,12 @@ CREATE TABLE users (
 
 CREATE TABLE reviews (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  user_id INT REFERENCES users(id),
-  movie_id INT REFERENCES movie(id),
+  user_id INT,
+  movie_id INT,
   submit_date DATE NOT NULL,
   rating INT NOT NULL,
-  review_content BLOB
+  review_content BLOB,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (movie_id) REFERENCES movie(id)
 );
 
