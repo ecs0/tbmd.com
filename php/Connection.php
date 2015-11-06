@@ -1,10 +1,9 @@
 <?php
 
-define(HOST, "localhost");
-define(USER, "tbmd");
-define(PASSWORD, "tbmd");
-define(DATABASE, "tbmd");
-
+define("HOST", "localhost");
+define("USER", "tbmd");
+define("PASSWORD", "tbmd");
+define("DATABASE", "tbmd");
 
 /**
  * Created by PhpStorm.
