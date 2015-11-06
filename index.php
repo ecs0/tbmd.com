@@ -14,7 +14,7 @@
         <a href="html/tim.html">Tim's Page</a>
     </p>
     <p>
-        <a href="html/bryan.html">Bryan's Page</a>
+        <a href="html/bryan.php">Bryan's Page</a>
     </p>
 </body>
 </html>
