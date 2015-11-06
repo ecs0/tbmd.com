@@ -5,6 +5,7 @@ CREATE TABLE people (
   fname VARCHAR (50),
   lname VARCHAR (50),
   birthdate DATE,
+  image_link VARCHAR(50),
   submit_date DATE NOT NULL,
   bio BLOB
 );
@@ -30,8 +31,8 @@ CREATE TABLE actor (
 CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   email VARCHAR(50) UNIQUE,
-  username VARCHAR(50),
-  password VARCHAR(100),
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(100) NOT NULL,
   join_date DATE NOT NULL
 );
 
