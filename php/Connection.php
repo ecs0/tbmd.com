@@ -1,4 +1,9 @@
 <?php
+
+include("Movie.php");
+include("Person.php");
+include("Review.php");
+
 /**
  * Created by PhpStorm.
  * User: bryan

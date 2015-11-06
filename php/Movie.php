@@ -27,7 +27,7 @@ class Movie extends stdClass {
      * @param $submissionDate
      * @param $imageLink
      */
-    public function __construct($id, $directorId, $title, $releaseDate, $synopsis, $submissionDate, $imageLink) {
+    function __construct($id, $directorId, $title, $releaseDate, $synopsis, $submissionDate, $imageLink) {
         $this->id = $id;
         $this->directorId = $directorId;
         $this->title = $title;
@@ -84,5 +84,15 @@ class Movie extends stdClass {
      */
     public function getImageLink() {
         return $this->imageLink;
+    }
+
+    public function asTableRow() {
+        return "<tr><td>$this->id</td><td>$this->directorId</td><td>$this->title</td><td>$this->releaseDate</td>".
+        "<td>$this->synopsis</td><td>$this->submissionDate</td><td>$this->imageLink</td></tr>";
+    }
+
+    public function asSelect() {
+        return "<option>$this->title</option>";
+
     }
 }

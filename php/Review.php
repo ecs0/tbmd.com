@@ -20,10 +20,11 @@ class Review extends stdClass {
      * @param $id
      * @param $userId
      * @param $movieId
+     * @param $submitDate
      * @param $rating
      * @param $reviewContent
      */
-    public function __construct($id, $userId, $movieId, $submitDate, $rating, $reviewContent) {
+    function __construct($id, $userId, $movieId, $submitDate, $rating, $reviewContent) {
         $this->id = $id;
         $this->userId = $userId;
         $this->movieId = $movieId;
@@ -72,6 +73,15 @@ class Review extends stdClass {
      */
     public function getReviewContent() {
         return $this->reviewContent;
+    }
+
+    public function asTableRow() {
+        return "<tr><td>$this->id</td><td>$this->userId</td><td>$this->movieId</td>".
+        "<td>$this->submitDate</td><td>$this->rating</td><td>$this->reviewContent</td></tr>";
+    }
+
+    public function asSelect() {
+        return "<option>$this->movieId - $this->rating by: $this->userId</option>";
     }
 
 }

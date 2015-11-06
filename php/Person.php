@@ -23,9 +23,10 @@ class Person extends stdClass {
      * @param $lastName
      * @param $birthdate
      * @param $imageLink
+     * @param $submitDate
      * @param $bio
      */
-    public function __construct($id, $firstName, $lastName, $birthdate, $imageLink, $submitDate, $bio) {
+    function __construct($id, $firstName, $lastName, $birthdate, $imageLink, $submitDate, $bio) {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -84,4 +85,13 @@ class Person extends stdClass {
         return $this->bio;
     }
 
+    public function asTableRow() {
+        return "<tr><td>$this->id</td><td>$this->firstName</td><td>$this->lastName</td>".
+            "<td>$this->birthdate</td><td>$this->imageLink</td><td>$this->submitDate</td>".
+            "<td>$this->bio</td></tr>";
+    }
+
+    public function asSelect() {
+        return "<option>$this->firstName $this->lastName</option>";
+    }
 }
