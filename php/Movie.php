@@ -24,14 +24,17 @@ class Movie extends stdClass {
      * @param $title
      * @param $releaseDate
      * @param $synopsis
+     * @param $submissionDate
+     * @param $imageLink
      */
-    public function __construct($id, $directorId, $title, $releaseDate, $synopsis) {
+    public function __construct($id, $directorId, $title, $releaseDate, $synopsis, $submissionDate, $imageLink) {
         $this->id = $id;
         $this->directorId = $directorId;
         $this->title = $title;
         $this->releaseDate = $releaseDate;
-        $this->submissionDate = NULL;
+        $this->submissionDate = $submissionDate;
         $this->synopsis = $synopsis;
+        $this->imageLink = $imageLink;
     }
 
     /**

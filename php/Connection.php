@@ -120,6 +120,101 @@ class Connection {
         return -1;
     }
 
+    /**
+     * Fetches all movies from the database
+     *
+     * @return array
+     */
+    public function getMovies() {
+        $this->connect();
+        $sql = "SELECT id, director_id, title, release_date, submit_date, image_link, synopsis FROM movie";
+        $result = mysqli_query($this->link, $sql);
+        $movies = array();
+        if ($result) {
+
+            $i = 0;
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $id = $row['id'];
+                $directorId = $row['director_id'];
+                $title = $row['title'];
+                $releaseDate = $row['release_date'];
+                $submitDate = $row['submit_date'];
+                $imageLink = $row['image_link'];
+                $synopsis = $row['synopsis'];
+
+                $movie = new Movie($id, $directorId, $title, $releaseDate, $synopsis, $submitDate, $imageLink);
+                $movies[$i++] = $movie;
+            }
+            mysqli_free_result($result);
+        }
+        $this->disconnect();
+        return $movies;
+    }
+
+    /**
+     * Fetches all people from the database
+     *
+     * @return array
+     */
+    public function getPeople() {
+        $this->connect();
+        $sql = "SELECT id, fname, lname, birthdate, image_link, submit_date, bio FROM people";
+        $result = mysqli_query($this->link, $sql);
+        $people = array();
+        $i = 0;
+        if ($result) {
+
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $id = $row['id'];
+                $firstName = $row['fname'];
+                $lastName = $row['lname'];
+                $birthdate = $row['birthdate'];
+                $imageLink = $row['image_link'];
+                $submitDate = $row['submit_date'];
+                $bio = $row['bio'];
+
+                $person = new Person($id, $firstName, $lastName, $birthdate, $imageLink, $submitDate, $bio);
+                $people[$i++] = $person;
+            }
+            mysqli_free_result($result);
+        }
+
+        $this->disconnect();
+        return $people;
+    }
+
+    /**
+     * Fetches all reviews from the database
+     *
+     * @return array
+     */
+    public function getReviews() {
+        $this->connect();
+        $sql = "SELECT id, user_id, movie_id, submit_date, rating, review_content FROM reviews";
+        $result = mysqli_query($this->link, $sql);
+        $reviews = array();
+        $i = 0;
+        if ($result) {
+
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $id = $row['id'];
+                $userId = $row['user_id'];
+                $movieId = $row['movie_id'];
+                $submitDate = $row['submit_date'];
+                $rating = $row['rating'];
+                $reviewContent = $row['review_content'];
+
+                $review = new Review($id, $userId, $movieId, $submitDate, $rating, $reviewContent);
+                $reviews[$i++] = $review;
+            }
+
+            mysqli_free_result($result);
+        }
+
+        $this->disconnect();
+        return $reviews;
+    }
+
     public function getImage($movieId) {
         //TODO implement
     }

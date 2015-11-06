@@ -25,13 +25,13 @@ class Person extends stdClass {
      * @param $imageLink
      * @param $bio
      */
-    public function __construct($id, $firstName, $lastName, $birthdate, $imageLink, $bio) {
+    public function __construct($id, $firstName, $lastName, $birthdate, $imageLink, $submitDate, $bio) {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->birthdate = $birthdate;
         $this->imageLink = $imageLink;
-        $this->submitDate = NULL;
+        $this->submitDate = $submitDate;
         $this->bio = $bio;
     }
 

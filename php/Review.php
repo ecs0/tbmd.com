@@ -23,11 +23,11 @@ class Review extends stdClass {
      * @param $rating
      * @param $reviewContent
      */
-    public function __construct($id, $userId, $movieId, $rating, $reviewContent) {
+    public function __construct($id, $userId, $movieId, $submitDate, $rating, $reviewContent) {
         $this->id = $id;
         $this->userId = $userId;
         $this->movieId = $movieId;
-        $this->submitDate = NULL;
+        $this->submitDate = $submitDate;
         $this->rating = $rating;
         $this->reviewContent = $reviewContent;
     }
