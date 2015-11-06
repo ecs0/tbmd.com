@@ -6,7 +6,7 @@
  * Date: 05/11/15
  * Time: 3:29 PM
  */
-class Person {
+class Person extends stdClass {
 
     private $id;
     private $firstName;

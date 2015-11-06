@@ -6,7 +6,7 @@
  * Date: 05/11/15
  * Time: 3:29 PM
  */
-class Movie {
+class Movie extends stdClass {
 
     private $id;
     private $directorId;
@@ -14,6 +14,7 @@ class Movie {
     private $releaseDate;
     private $submissionDate;
     private $synopsis;
+    private $imageLink;
 
 
     /**
@@ -73,5 +74,12 @@ class Movie {
      */
     public function getSynopsis() {
         return $this->synopsis;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageLink() {
+        return $this->imageLink;
     }
 }
