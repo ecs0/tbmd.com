@@ -81,7 +81,7 @@ class Review extends stdClass {
     }
 
     public function asSelect() {
-        return "<option>$this->movieId - $this->rating by: $this->userId</option>";
+        return "<option>$this->movieId, $this->rating by: $this->userId</option>";
     }
 
 }

@@ -27,7 +27,7 @@
             </label>
             <label>Reviews:
                 <select>
-                    <? echo $controller->reviewsAsDropDown() ?>
+                    <?php echo $controller->reviewsAsDropDown() ?>
                 </select>
             </label>
         </p>

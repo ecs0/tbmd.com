@@ -1,5 +1,7 @@
 <?php
 
+include_once("Person.php");
+
 /**
  * Created by PhpStorm.
  * User: bryan
@@ -9,7 +11,7 @@
 class Movie extends stdClass {
 
     private $id;
-    private $directorId;
+    private $director;
     private $title;
     private $releaseDate;
     private $submissionDate;
@@ -20,16 +22,16 @@ class Movie extends stdClass {
     /**
      * Movie constructor.
      * @param $id
-     * @param $directorId
+     * @param $director
      * @param $title
      * @param $releaseDate
      * @param $synopsis
      * @param $submissionDate
      * @param $imageLink
      */
-    function __construct($id, $directorId, $title, $releaseDate, $synopsis, $submissionDate, $imageLink) {
+    function __construct($id, $director, $title, $releaseDate, $synopsis, $submissionDate, $imageLink) {
         $this->id = $id;
-        $this->directorId = $directorId;
+        $this->director = $director;
         $this->title = $title;
         $this->releaseDate = $releaseDate;
         $this->submissionDate = $submissionDate;
@@ -47,8 +49,8 @@ class Movie extends stdClass {
     /**
      * @return mixed
      */
-    public function getDirectorId() {
-        return $this->directorId;
+    public function getDirector() {
+        return $this->director;
     }
 
     /**
@@ -87,7 +89,8 @@ class Movie extends stdClass {
     }
 
     public function asTableRow() {
-        return "<tr><td>$this->id</td><td>$this->directorId</td><td>$this->title</td><td>$this->releaseDate</td>".
+        $director = self::getDirector()->getFirstName()." ".self::getDirector()->getLastName();
+        return "<tr><td>$this->id</td><td>$director</td><td>$this->title</td><td>$this->releaseDate</td>".
         "<td>$this->synopsis</td><td>$this->submissionDate</td><td>$this->imageLink</td></tr>";
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-include("Movie.php");
-include("Person.php");
-include("Review.php");
+include_once("Movie.php");
+include_once("Person.php");
+include_once("Review.php");
 
 /**
  * Created by PhpStorm.
@@ -18,6 +18,10 @@ class Connection {
     const DATABASE = 'tbmd';
 
     private $link;
+
+    function __destruct() {
+        $this->disconnect();
+    }
 
     /**
      * Saves a new user to the database, will check to see if the user already exists
@@ -140,14 +144,14 @@ class Connection {
             $i = 0;
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $id = $row['id'];
-                $directorId = $row['director_id'];
+                $director = $this->getPeople([$row['director_id']]);
                 $title = $row['title'];
                 $releaseDate = $row['release_date'];
                 $submitDate = $row['submit_date'];
                 $imageLink = $row['image_link'];
                 $synopsis = $row['synopsis'];
 
-                $movie = new Movie($id, $directorId, $title, $releaseDate, $synopsis, $submitDate, $imageLink);
+                $movie = new Movie($id, $director[0], $title, $releaseDate, $synopsis, $submitDate, $imageLink);
                 $movies[$i++] = $movie;
             }
             mysqli_free_result($result);
@@ -157,13 +161,19 @@ class Connection {
     }
 
     /**
-     * Fetches all people from the database
+     * Fetch all or some people from the database
      *
+     * @param null $ids - Optional where clause
      * @return array
      */
-    public function getPeople() {
+    public function getPeople($ids = NULL) {
         $this->connect();
         $sql = "SELECT id, fname, lname, birthdate, image_link, submit_date, bio FROM people";
+
+        if ($ids) {
+            $sql .= " WHERE id in (".implode(", ", $ids).")";
+        }
+
         $result = mysqli_query($this->link, $sql);
         $people = array();
         $i = 0;
