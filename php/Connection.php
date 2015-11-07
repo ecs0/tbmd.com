@@ -48,7 +48,7 @@ class Connection {
             $this->connect();
 
             $sql = "INSERT INTO users (email, username, password, join_date) ".
-                    "VALUES ('$email', '$username', PASSWORD($password), CURDATE())";
+                    "VALUES ('$email', '$username', PASSWORD('.$password.'), CURDATE())";
 
             mysqli_query($this->link, $sql);
             $id = mysqli_insert_id($this->link);
