@@ -101,4 +101,32 @@ class Controller {
         return $innerHtml;
     }
 
+    public function usersAsTable() {
+        $innerhtml = "<thead><tr>".
+            "<th>Email</th><th>Username</th>".
+            "<tr></thead>";
+
+        $link = new Connection();
+        $body = "";
+        foreach ($link->getUsers() as $user) {
+            if ($user instanceof User) {
+                $body .= $user->asTableRow();
+            }
+        }
+
+        $innerhtml .= "<tbody>$body</tbody>";
+        return $innerhtml;
+    }
+
+    public function usersAsDropDown() {
+        $innerHtml = "";
+        $link = new Connection();
+
+        foreach ($link->getUsers() as $user) {
+            if ($user instanceof User) {
+                $innerHtml .= $user->asSelect();
+            }
+        }
+        return $innerHtml;
+    }
 }

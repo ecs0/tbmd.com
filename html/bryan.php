@@ -30,6 +30,11 @@
                     <?php echo $controller->reviewsAsDropDown() ?>
                 </select>
             </label>
+            <label>Users:
+                <select>
+                    <?php echo $controller->usersAsDropDown() ?>
+                </select>
+            </label>
         </p>
     </form>
 
@@ -43,6 +48,10 @@
     <hr>
     <table class="fixed" id="reviews">
         <?php echo $controller->reviewsAsTable() ?>
+    </table>
+    <hr>
+    <table class="fized" id="users">
+        <?php echo $controller->usersAsTable() ?>
     </table>
 
 </body>

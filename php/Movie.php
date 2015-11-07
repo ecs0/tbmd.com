@@ -89,7 +89,7 @@ class Movie extends stdClass {
     }
 
     public function asTableRow() {
-        $director = self::getDirector()->getFirstName()." ".self::getDirector()->getLastName();
+        $director = $this->getDirector()->getFirstName()." ".$this->getDirector()->getLastName();
         return "<tr><td>$this->id</td><td>$director</td><td>$this->title</td><td>$this->releaseDate</td>".
         "<td>$this->synopsis</td><td>$this->submissionDate</td><td>$this->imageLink</td></tr>";
     }

@@ -3,6 +3,14 @@
 include_once("Movie.php");
 include_once("Person.php");
 include_once("Review.php");
+include_once("User.php");
+
+class Constants {
+    const HOST = 'localhost';
+    const USER = 'tbmd';
+    const PASSWORD = 'tbmd';
+    const DATABASE = 'tbmd';
+}
 
 /**
  * Created by PhpStorm.
@@ -11,11 +19,6 @@ include_once("Review.php");
  * Time: 3:03 PM
  */
 class Connection {
-
-    const HOST = 'localhost';
-    const USER = 'tbmd';
-    const PASSWORD = 'tbmd';
-    const DATABASE = 'tbmd';
 
     private $link;
 
@@ -62,6 +65,30 @@ class Connection {
         mysqli_free_result($result);
         $this->disconnect();
         return $rows >= 1;
+    }
+
+    public function getUsers($ids = NULL) {
+        $this->connect();
+        $sql = "SELECT email, username FROM users";
+
+        if ($ids) {
+            $sql .= " WHERE id IN (".implode(", ", $ids).")";
+        }
+
+        $result = mysqli_query($this->link, $sql);
+        $users = array();
+        $i = 0;
+        if ($result) {
+
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+               $users[$i++] = new User($row['email'], $row['username']);
+            }
+
+            mysqli_free_result($result);
+        }
+
+        $this->disconnect();
+        return $users;
     }
 
     /**
@@ -171,7 +198,7 @@ class Connection {
         $sql = "SELECT id, fname, lname, birthdate, image_link, submit_date, bio FROM people";
 
         if ($ids) {
-            $sql .= " WHERE id in (".implode(", ", $ids).")";
+            $sql .= " WHERE id IN (".implode(", ", $ids).")";
         }
 
         $result = mysqli_query($this->link, $sql);
@@ -235,7 +262,7 @@ class Connection {
     }
 
     private function connect() {
-        $this->link = mysqli_connect(self::HOST, self::USER, self::PASSWORD, self::DATABASE);
+        $this->link = mysqli_connect(Constants::HOST, Constants::USER, Constants::PASSWORD, Constants::DATABASE);
         if (mysqli_connect_errno()) {
             header("Location: html/error.php?error=".mysqli_connect_error());
             exit();
