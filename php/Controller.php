@@ -7,12 +7,17 @@ include_once("Connection.php");
  * User: bryan
  * Date: 11/6/15
  * Time: 1:49 PM
+ *
+ * This class interfaces with the database layer,
+ * converting data into html segments to be displayed on the page
+ *
  */
 class Controller {
 
     public function moviesAsTable() {
         $innerHtml = "<thead><tr>".
-            "<th>id</th><th>director</th><th>title</th><th>release date</th><th>synopsis</th><th>submitted</th><th>image</th>".
+            "<th>id</th><th>director</th><th>title</th><th>release date</th><th>synopsis</th>".
+            "<th>submitted</th><th>image</th><th>Actors</th>".
             "</tr></thead>";
 
         $link = new Connection();

@@ -5,6 +5,9 @@ include_once("Person.php");
 include_once("Review.php");
 include_once("User.php");
 
+/**
+ * Connection Constants
+ */
 class Constants {
     const HOST = 'localhost';
     const USER = 'tbmd';
@@ -17,6 +20,11 @@ class Constants {
  * User: bryan
  * Date: 05/11/15
  * Time: 3:03 PM
+ *
+ * This class interfaces with the underlying database,
+ * return objects or collections of objects.
+ * It should be used primarily by the controller class for formatted output
+ *
  */
 class Connection {
 
@@ -67,6 +75,10 @@ class Connection {
         return $rows >= 1;
     }
 
+    /**
+     * @param null $ids
+     * @return array
+     */
     public function getUsers($ids = NULL) {
         $this->connect();
         $sql = "SELECT email, username FROM users";
@@ -139,6 +151,10 @@ class Connection {
         return -1;
     }
 
+    /**
+     * @param $movie
+     * @return int|string
+     */
     public function addMovie($movie) {
         //TODO test and fix dates
         if ($movie instanceof Movie) {
@@ -157,13 +173,17 @@ class Connection {
     }
 
     /**
-     * Fetches all movies from the database
-     *
+     * @param null $ids
      * @return array
      */
-    public function getMovies() {
+    public function getMovies($ids = NULL) {
         $this->connect();
         $sql = "SELECT id, director_id, title, release_date, submit_date, image_link, synopsis FROM movie";
+
+        if ($ids) {
+            $sql .= " WHERE id IN (".implode(", ", $ids).")";
+        }
+
         $result = mysqli_query($this->link, $sql);
         $movies = array();
         if ($result) {
@@ -177,8 +197,9 @@ class Connection {
                 $submitDate = $row['submit_date'];
                 $imageLink = $row['image_link'];
                 $synopsis = $row['synopsis'];
+                $actors = $this->getActors($id);
 
-                $movie = new Movie($id, $director[0], $title, $releaseDate, $synopsis, $submitDate, $imageLink);
+                $movie = new Movie($id, $director[0], $title, $releaseDate, $synopsis, $submitDate, $imageLink, $actors);
                 $movies[$i++] = $movie;
             }
             mysqli_free_result($result);
@@ -240,13 +261,13 @@ class Connection {
 
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $id = $row['id'];
-                $userId = $row['user_id'];
-                $movieId = $row['movie_id'];
+                $user = $this->getUsers([$row['user_id']]);
+                $movie = $this->getMovies([$row['movie_id']]);
                 $submitDate = $row['submit_date'];
                 $rating = $row['rating'];
                 $reviewContent = $row['review_content'];
 
-                $review = new Review($id, $userId, $movieId, $submitDate, $rating, $reviewContent);
+                $review = new Review($id, $user[0], $movie[0], $submitDate, $rating, $reviewContent);
                 $reviews[$i++] = $review;
             }
 
@@ -257,10 +278,56 @@ class Connection {
         return $reviews;
     }
 
+    /**
+     * Fetches all people who acted in a particular movie
+     *
+     * @param $movieId
+     * @return array
+     */
+    public function getActors($movieId) {
+        $this->connect();
+
+        $sql = "SELECT people.id, ".
+            "people.fname, ".
+            "people.lname, ".
+            "people.birthdate, ".
+            "people.image_link, ".
+            "people.submit_date, ".
+            "people.bio FROM actor INNER JOIN movie ON actor.movie_id = movie.id ".
+            "INNER JOIN people ON actor.people_id = people.id ".
+            "WHERE movie_id = ".$movieId;
+
+        $result = mysqli_query($this->link, $sql);
+        $actors = array();
+        $i = 0;
+        if ($result) {
+
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $person = new Person($row['id'],
+                    $row['fname'],
+                    $row['lname'],
+                    $row['birthdate'],
+                    $row['image_link'],
+                    $row['submit_date'],
+                    $row['bio']);
+
+                $actors[$i++] = $person;
+            }
+
+            mysqli_free_result($result);
+        }
+
+        $this->disconnect();
+        return $actors;
+    }
+
     public function getImage($movieId) {
         //TODO implement
     }
 
+    /**
+     * Opens a connection to the database using mysqli
+     */
     private function connect() {
         $this->link = mysqli_connect(Constants::HOST, Constants::USER, Constants::PASSWORD, Constants::DATABASE);
         if (mysqli_connect_errno()) {
@@ -269,6 +336,9 @@ class Connection {
         }
     }
 
+    /**
+     * Closes the mysqli database connection if it is open
+     */
     private function disconnect() {
         if ($this->link != NULL) {
             mysqli_close($this->link);

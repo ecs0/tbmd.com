@@ -13,6 +13,9 @@
 </head>
 <body>
 
+    <!--
+        Currently this page will basically dump the contents out onto the page for testing purposes
+    -->
     <form action="#" method="post">
         <p>
             <label>Movies:
@@ -39,18 +42,22 @@
     </form>
 
     <table class="fixed" id="movies">
+        <caption>Movies</caption>
         <?php echo $controller->moviesAsTable() ?>
     </table>
     <hr>
     <table class="fixed" id="people">
+        <caption>People</caption>
         <?php echo $controller->peopleAsTable() ?>
     </table>
     <hr>
     <table class="fixed" id="reviews">
+        <caption>Reviews</caption>
         <?php echo $controller->reviewsAsTable() ?>
     </table>
     <hr>
     <table class="fized" id="users">
+        <caption>Users</caption>
         <?php echo $controller->usersAsTable() ?>
     </table>
 

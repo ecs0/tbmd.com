@@ -1,5 +1,8 @@
 <?php
 
+include_once("User.php");
+include_once("Movie.php");
+
 /**
  * Created by PhpStorm.
  * User: bryan
@@ -9,8 +12,8 @@
 class Review extends stdClass {
 
     private $id;
-    private $userId;
-    private $movieId;
+    private $user;
+    private $movie;
     private $submitDate;
     private $rating;
     private $reviewContent;
@@ -18,16 +21,16 @@ class Review extends stdClass {
     /**
      * Review constructor.
      * @param $id
-     * @param $userId
-     * @param $movieId
+     * @param $user
+     * @param $movie
      * @param $submitDate
      * @param $rating
      * @param $reviewContent
      */
-    function __construct($id, $userId, $movieId, $submitDate, $rating, $reviewContent) {
+    function __construct($id, $user, $movie, $submitDate, $rating, $reviewContent) {
         $this->id = $id;
-        $this->userId = $userId;
-        $this->movieId = $movieId;
+        $this->user = $user;
+        $this->movie = $movie;
         $this->submitDate = $submitDate;
         $this->rating = $rating;
         $this->reviewContent = $reviewContent;
@@ -43,15 +46,15 @@ class Review extends stdClass {
     /**
      * @return mixed
      */
-    public function getUserId() {
-        return $this->userId;
+    public function getUser() {
+        return $this->user;
     }
 
     /**
      * @return mixed
      */
-    public function getMovieId() {
-        return $this->movieId;
+    public function getMovie() {
+        return $this->movie;
     }
 
     /**
@@ -76,12 +79,16 @@ class Review extends stdClass {
     }
 
     public function asTableRow() {
-        return "<tr><td>$this->id</td><td>$this->userId</td><td>$this->movieId</td>".
+        $username = $this->getUser()->getUserName();
+        $movieTitle = $this->getMovie()->getTitle();
+        return "<tr><td>$this->id</td><td>$username</td><td>$movieTitle</td>".
         "<td>$this->submitDate</td><td>$this->rating</td><td>$this->reviewContent</td></tr>";
     }
 
     public function asSelect() {
-        return "<option>$this->movieId, $this->rating by: $this->userId</option>";
+        $username = $this->getUser()->getUserName();
+        $movieTitle = $this->getMovie()->getTitle();
+        return "<option>$movieTitle, $this->rating star(s) by: $username</option>";
     }
 
 }

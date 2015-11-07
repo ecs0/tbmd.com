@@ -17,7 +17,7 @@ class Movie extends stdClass {
     private $submissionDate;
     private $synopsis;
     private $imageLink;
-
+    private $actors;
 
     /**
      * Movie constructor.
@@ -28,8 +28,9 @@ class Movie extends stdClass {
      * @param $synopsis
      * @param $submissionDate
      * @param $imageLink
+     * @param $actors
      */
-    function __construct($id, $director, $title, $releaseDate, $synopsis, $submissionDate, $imageLink) {
+    function __construct($id, $director, $title, $releaseDate, $synopsis, $submissionDate, $imageLink, $actors = []) {
         $this->id = $id;
         $this->director = $director;
         $this->title = $title;
@@ -37,6 +38,7 @@ class Movie extends stdClass {
         $this->submissionDate = $submissionDate;
         $this->synopsis = $synopsis;
         $this->imageLink = $imageLink;
+        $this->actors = $actors;
     }
 
     /**
@@ -90,8 +92,17 @@ class Movie extends stdClass {
 
     public function asTableRow() {
         $director = $this->getDirector()->getFirstName()." ".$this->getDirector()->getLastName();
+        $actorNames = array_map(function($person) {
+            if ($person instanceof Person) {
+                return $person->getFirstName()." ".$person->getLastName();
+            } else {
+                return "";
+            }
+        }, $this->actors);
+        $actorString = implode(", ", $actorNames);
         return "<tr><td>$this->id</td><td>$director</td><td>$this->title</td><td>$this->releaseDate</td>".
-        "<td>$this->synopsis</td><td>$this->submissionDate</td><td>$this->imageLink</td></tr>";
+        "<td>$this->synopsis</td><td>$this->submissionDate</td><td>$this->imageLink</td>".
+        "<td>$actorString</td></tr>";
     }
 
     public function asSelect() {
