@@ -10,9 +10,18 @@
     <meta charset="UTF-8">
     <title>Bryan's Test Page</title>
     <link rel="stylesheet" href="../style/main.css">
+    <script src="../script/overlay.js"></script>
 </head>
 <body>
 
+    <div id="overlay">
+        <div>
+            <input id="add_person_close" class="exit" type="button" value="x">
+            <p>
+                This will be in the overlay
+            </p>
+        </div>
+    </div>
     <!--
         Currently this page will basically dump the contents out onto the page for testing purposes
     -->
@@ -40,6 +49,10 @@
             </label>
         </p>
     </form>
+
+    <div>
+        <input type="button" id="add_person" value="Add Person">
+    </div>
 
     <table class="fixed" id="movies">
         <caption>Movies</caption>
