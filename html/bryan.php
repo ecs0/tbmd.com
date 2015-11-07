@@ -24,6 +24,7 @@
                 <p>
                     <label>Email:
                         <input id="email" type="email" name="email" required>
+                        <span id="duplicate_warning"></span>
                     </label>
                 </p>
                 <p>
@@ -37,7 +38,7 @@
                     </label>
                 </p>
                 <p>
-                    <input type="submit" name="submit" value="Sign Up!">
+                    <input id="btnSubmitUser" type="submit" name="submit" value="Sign Up!">
                 </p>
             </form>
         </div>

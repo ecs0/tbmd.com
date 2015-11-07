@@ -15,8 +15,11 @@ function validateEmail() {
       xmlhttp.onreadystatechange = function() {
          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             if (xmlhttp.responseText == 'duplicate') {
-               window.alert("An account using " + value + " already exists in the database.");
-               email.value = "";
+               document.getElementById('btnSubmitUser').disabled = true;
+               document.getElementById('duplicate_warning').innerHTML = "Email already exists";
+            } else {
+               document.getElementById('btnSubmitUser').disabled = false;
+               document.getElementById('duplicate_warning').innerHTML = "";
             }
          }
       };
