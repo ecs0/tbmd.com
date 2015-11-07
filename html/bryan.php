@@ -10,11 +10,12 @@
     <meta charset="UTF-8">
     <title>Bryan's Test Page</title>
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/overlay.css">
     <script src="../script/overlay.js"></script>
 </head>
 <body>
 
-    <div id="overlay">
+    <div class="overlay" id="overlay">
         <div>
             <input id="add_person_close" class="exit" type="button" value="x">
             <p>
@@ -51,7 +52,10 @@
     </form>
 
     <div>
+        <input type="button" id="add_user" value="Sign Up">
         <input type="button" id="add_person" value="Add Person">
+        <input type="button" id="add_movie" value="Add Movie">
+        <input type="button" id="add_review" value="Add Review">
     </div>
 
     <table class="fixed" id="movies">

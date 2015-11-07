@@ -11,31 +11,3 @@ table.fixed th, table.fixed td {
     width: 200px;
 }
 
-#overlay {
-    visibility: hidden;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    z-index: 1000;
-    background-image: url("../images/overlay_background.png");
-}
-
-#overlay div {
-    width: 300px;
-    margin: 100px auto;
-    background-color: white;
-    padding: 15px;
-    text-align: center;
-    border: 1px solid black;
-    box-shadow: 3px 3px 5px black;
-}
-
-.exit {
-    display: block;
-    float: right;
-    border: none;
-    background-color: white;
-}
