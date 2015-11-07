@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/overlay.css">
     <script src="../script/overlay.js"></script>
+    <script src="../script/signup.js"></script>
 </head>
 <body>
 
@@ -22,17 +23,17 @@
             <form method="post" action="../php/signup_handler.php">
                 <p>
                     <label>Email:
-                        <input type="email" name="email" required>
+                        <input id="email" type="email" name="email" required>
                     </label>
                 </p>
                 <p>
                     <label>Username:
-                        <input type="text" name="username" required>
+                        <input id="username" type="text" name="username" required>
                     </label>
                 </p>
                 <p>
                     <label>Password:
-                        <input type="password" name="password" required>
+                        <input id="password" type="password" name="password" required>
                     </label>
                 </p>
                 <p>

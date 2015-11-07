@@ -14,7 +14,6 @@ window.addEventListener("load", function() {
     }, false);
 
     // register add user
-    //TODO this needs to also validate password strength (maybe) and check for duplicate email/usernames using ajax
     document.getElementById('btnAddUser').addEventListener("click", function() {
         overlay("add_user");
     }, false);

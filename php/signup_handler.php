@@ -8,7 +8,16 @@
 
 include_once('Connection.php');
 
-//TODO we need to validate unique emails and/or usernames, preferably using ajax
+if (isset($_REQUEST['q'])) {
+    $email = $_REQUEST['q'];
+    $connection = new Connection();
+    if ($connection->userExists($email)) {
+        echo "duplicate";
+    } else {
+        echo "";
+    }
+    exit();
+}
 
 if (isset($_POST['submit'])) {
 
