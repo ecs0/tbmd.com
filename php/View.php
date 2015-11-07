@@ -12,7 +12,7 @@ include_once("Connection.php");
  * converting data into html segments to be displayed on the page
  *
  */
-class Controller {
+class View {
 
     public function moviesAsTable() {
         $innerHtml = "<thead><tr>".
@@ -33,13 +33,13 @@ class Controller {
         return $innerHtml;
     }
 
-    public function moviesAsDropDown() {
+    public function moviesAsTag($tag) {
         $innerHtml = "";
         $link = new Connection();
 
         foreach ($link->getMovies() as $movie) {
             if ($movie instanceof Movie) {
-                $innerHtml .= $movie->asSelect();
+                $innerHtml .= $this->tag($tag, $movie);
             }
         }
 
@@ -64,13 +64,13 @@ class Controller {
         return $innerHtml;
     }
 
-    public function peopleAsDropDown() {
+    public function peopleAsTag($tag) {
         $innerHtml = "";
         $link = new Connection();
 
         foreach ($link->getPeople() as $person) {
             if ($person instanceof Person) {
-                $innerHtml .= $person->asSelect();
+                $innerHtml .= $this->tag($tag, $person);
             }
         }
 
@@ -94,13 +94,13 @@ class Controller {
         return $innerHtml;
     }
 
-    public function reviewsAsDropDown() {
+    public function reviewsAsTag($tag) {
         $innerHtml = "";
         $link = new Connection();
 
         foreach ($link->getReviews() as $review) {
             if ($review instanceof Review) {
-                $innerHtml .= $review->asSelect();
+                $innerHtml .= $this->tag($tag, $review);
             }
         }
         return $innerHtml;
@@ -123,15 +123,22 @@ class Controller {
         return $innerhtml;
     }
 
-    public function usersAsDropDown() {
+    public function usersAsTag($tag) {
         $innerHtml = "";
         $link = new Connection();
 
         foreach ($link->getUsers() as $user) {
             if ($user instanceof User) {
-                $innerHtml .= $user->asSelect();
+                $innerHtml .= $this->tag($tag, $user);
             }
         }
         return $innerHtml;
+    }
+
+    public function tag($start, $content, $end = NULL) {
+        if ($end == NULL) {
+            $end = $start;
+        }
+        return "<$start>$content</$end>";
     }
 }

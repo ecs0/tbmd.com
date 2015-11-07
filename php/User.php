@@ -34,7 +34,7 @@ class User {
         return "<tr><td>$this->email</td><td>$this->username</td></tr>";
     }
 
-    public function asSelect() {
-        return "<option>$this->username</option>";
+    public function __toString() {
+        return $this->username;
     }
 }

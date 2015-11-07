@@ -91,7 +91,7 @@ class Person extends stdClass {
             "<td>$this->bio</td></tr>";
     }
 
-    public function asSelect() {
-        return "<option>$this->firstName $this->lastName</option>";
+    public function __toString() {
+        return "$this->firstName $this->lastName";
     }
 }

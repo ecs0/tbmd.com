@@ -85,10 +85,10 @@ class Review extends stdClass {
         "<td>$this->submitDate</td><td>$this->rating</td><td>$this->reviewContent</td></tr>";
     }
 
-    public function asSelect() {
+    public function __toString() {
         $username = $this->getUser()->getUserName();
         $movieTitle = $this->getMovie()->getTitle();
-        return "<option>$movieTitle, $this->rating star(s) by: $username</option>";
+        return "$movieTitle, $this->rating star(s) by: $username";
     }
 
 }

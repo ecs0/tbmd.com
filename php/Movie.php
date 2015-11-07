@@ -105,8 +105,7 @@ class Movie extends stdClass {
         "<td>$actorString</td></tr>";
     }
 
-    public function asSelect() {
-        return "<option>$this->title</option>";
-
+    public function __toString() {
+        return "$this->title";
     }
 }
