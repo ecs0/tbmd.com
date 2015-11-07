@@ -18,9 +18,43 @@
     <div class="overlay" id="overlay">
         <div>
             <input id="add_person_close" class="exit" type="button" value="x">
-            <p>
-                This will be in the overlay
-            </p>
+            <h1>Enter a Person</h1>
+            <form method="post" action="../php/person_handler.php">
+                <p>
+                    <label>
+                        First Name:
+                        <input type="text" name="fname" max="50" maxlength="50" required>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Last Name:
+                        <input type="text" name="lname" max="50" maxlength="50" required>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Birth Date:
+                        <input type="date" name="birthdate" required>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Picture:
+                        <input type="file" name="image_link">
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Biography:
+                        <textarea cols="40" rows="10" name="bio" required></textarea>
+                    </label>
+                </p>
+                <p>
+                    <input name="submit" type="submit" value="Submit">
+                    <input type="reset" value="Clear">
+                </p>
+            </form>
         </div>
     </div>
     <!--

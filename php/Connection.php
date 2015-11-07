@@ -139,9 +139,15 @@ class Connection {
         if ($person instanceof Person) {
             $this->connect();
 
+            $fname = $person->getFirstName();
+            $lname = $person->getLastName();
+            $birthdate = $person->getBirthdate();
+            $imageLink = $person->getImageLink();
+            $bio = $person->getBio();
+
             $sql = "INSERT INTO people (fname, lname, birthdate, image_link, submit_date, bio)".
-                "VALUES ('$person->getFirstName()', '$person->getLastName()', CURDATE(), '$person->getImageLink()', ".
-                "CURDATE(), '$person->getBio()')";
+                "VALUES ('".$fname."', '".$lname."', '".$birthdate."', '".$imageLink."', ".
+                "CURDATE(), '".$bio."')";
 
             mysqli_query($this->link, $sql);
             $id = mysqli_insert_id($this->link);
