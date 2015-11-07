@@ -15,7 +15,33 @@
 </head>
 <body>
 
-    <div class="overlay" id="overlay">
+    <div class="overlay" id="add_user">
+        <div>
+            <input class="exit" id="add_user_close" type="button" value="x">
+            <h1>Sign up for tbmd.com!</h1>
+            <form method="post" action="../php/signup_handler.php">
+                <p>
+                    <label>Email:
+                        <input type="email" name="email" required>
+                    </label>
+                </p>
+                <p>
+                    <label>Username:
+                        <input type="text" name="username" required>
+                    </label>
+                </p>
+                <p>
+                    <label>Password:
+                        <input type="password" name="password" required>
+                    </label>
+                </p>
+                <p>
+                    <input type="submit" name="submit" value="Sign Up!">
+                </p>
+            </form>
+        </div>
+    </div>
+    <div class="overlay" id="add_person">
         <div>
             <input id="add_person_close" class="exit" type="button" value="x">
             <h1>Enter a Person</h1>
@@ -86,10 +112,10 @@
     </form>
 
     <div>
-        <input type="button" id="add_user" value="Sign Up">
-        <input type="button" id="add_person" value="Add Person">
-        <input type="button" id="add_movie" value="Add Movie">
-        <input type="button" id="add_review" value="Add Review">
+        <input type="button" id="btnAddUser" value="Sign Up">
+        <input type="button" id="btnAddPerson" value="Add Person">
+        <input type="button" id="btnAddMovie" value="Add Movie">
+        <input type="button" id="btnAddReview" value="Add Review">
     </div>
 
     <table class="fixed" id="movies">
