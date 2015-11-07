@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
-    <h1>Welcome to Bryan & Tim's Movie Database</h1>
+    <h1>Welcome to Bryan &amp; Tim's Movie Database</h1>
     <p>
         <a href="html/tim.html">Tim's Page</a>
     </p>
