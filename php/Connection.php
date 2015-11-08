@@ -28,8 +28,14 @@ class Constants {
  */
 class Connection {
 
+    /**
+     * @var mysqli
+     */
     private $link;
 
+    /**
+     * Clean up in destructor
+     */
     function __destruct() {
         $this->disconnect();
     }
@@ -76,7 +82,9 @@ class Connection {
     }
 
     /**
-     * @param null $ids
+     * Fetches all users from the database [optionally filtered by ids]
+     *
+     * @param null $ids - optional filter
      * @return array
      */
     public function getUsers($ids = NULL) {
@@ -104,6 +112,8 @@ class Connection {
     }
 
     /**
+     * Insert a new review into the dataabse
+     *
      * @param $userId
      * @param $movieId
      * @param $rating
@@ -131,7 +141,6 @@ class Connection {
      */
     public function addPerson($person) {
 
-        //TODO test and fix dates
         if ($person instanceof Person) {
             $this->connect();
 
@@ -154,6 +163,8 @@ class Connection {
     }
 
     /**
+     * Insert a new movie in to the database, updating the actor bridge table as well
+     *
      * @param $movie
      * @return int|string
      */
@@ -176,6 +187,7 @@ class Connection {
             mysqli_query($this->link, $sql);
             $id = mysqli_insert_id($this->link);
 
+            // update the bridge table
             if ($id > 0) {
 
                 $callback = function($person) use ($id) {
