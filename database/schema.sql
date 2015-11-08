@@ -1,5 +1,19 @@
 -- Schema script for tbmd
 
+-- Remove anything already existing for a clean slate
+GRANT USAGE ON *.* TO 'tbmd'@'localhost';
+DROP USER 'tbmd'@'localhost';
+DROP DATABASE IF EXISTS tbmd;
+
+-- create our database and user
+CREATE DATABASE tbmd;
+CREATE USER 'tbmd'@'localhost' IDENTIFIED BY 'tbmd';
+GRANT ALL PRIVILEGES ON tbmd.* TO 'tbmd'@'localhost';
+FLUSH PRIVILEGES;
+
+USE tbmd;
+
+-- create tables
 CREATE TABLE people (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   fname VARCHAR (50),
