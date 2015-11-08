@@ -16,6 +16,43 @@
 </head>
 <body>
 
+    <div class="overlay" id="add_review">
+        <div>
+            <input class="exit" id="add_review_close" type="button" value="x">
+            <h1>Submit A Review</h1>
+            <form method="post" action="../php/review_handler.php">
+
+                <p>
+                    <label>Movie:
+                        <select name="movie">
+                            <?php echo $view->moviesAsTag("option")?>
+                        </select>
+                    </label>
+                </p>
+                <p>
+                    <label>User:
+                        <select name="user">
+                            <?php echo $view->usersAsTag("option") ?>
+                        </select>
+                    </label>
+                </p>
+                <p>
+                    <label>Rating:
+                        <input name="rating" type="number" min="1" max="5" step="1" value="1" required>
+                    </label>
+                </p>
+                <p>
+                    <label>Review:
+                        <textarea name="content" cols="40" rows="10"></textarea>
+                    </label>
+                </p>
+                <p>
+                    <input type="submit" name="submit" value="Submit">
+                </p>
+            </form>
+        </div>
+    </div>
+
     <div class="overlay" id="add_movie">
         <div>
             <input class="exit" id="add_movie_close" type="button" value="x">
@@ -141,21 +178,25 @@
         <p>
             <label>Movies:
                 <select>
+                    <option>Select a Movie:</option>
                     <?php echo $view->moviesAsTag("option"); ?>
                 </select>
             </label>
             <label>People:
                 <select>
+                    <option>Select a Person:</option>
                     <?php echo $view->peopleAsTag("option"); ?>
                 </select>
             </label>
             <label>Reviews:
                 <select>
+                    <option>Select a Review:</option>
                     <?php echo $view->reviewsAsTag("option"); ?>
                 </select>
             </label>
             <label>Users:
                 <select>
+                    <option>Select a User:</option>
                     <?php echo $view->usersAsTag("option"); ?>
                 </select>
             </label>

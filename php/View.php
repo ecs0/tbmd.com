@@ -139,7 +139,7 @@ class View {
      * Marks up a domain object
      *
      * @param $start - the opening tag, e.g. 'option', 'a' or 'a href="index.html"'
-     * @param $content - the object to be marked up, if it has an id, it will be used as a name attribute
+     * @param $content - the object to be marked up, if it has an id, it will be used as a value attribute
      * @param null $end - closing tag, if different than start, e.g if you wanted to include an attribute like href
      * @return string - a fully marked up domain object based on it's string representation
      */

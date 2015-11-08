@@ -8,12 +8,21 @@
  */
 class User {
 
+    private $id;
     private $email;
     private $username;
 
-    function __construct($email, $username) {
+    function __construct($id, $email, $username) {
+        $this->id = $id;
         $this->email = $email;
         $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
+        return $this->id;
     }
 
     /**

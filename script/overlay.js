@@ -33,6 +33,14 @@ window.addEventListener("load", function() {
         overlay('add_movie');
     }, false);
 
+    // register add review
+    document.getElementById('btnAddReview').addEventListener('click', function() {
+       overlay('add_review');
+    }, false);
+    document.getElementById('add_review_close').addEventListener('click', function() {
+        overlay('add_review');
+    }, false);
+
 }, false);
 
 function overlay(id) {

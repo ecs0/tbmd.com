@@ -81,7 +81,7 @@ class Connection {
      */
     public function getUsers($ids = NULL) {
         $this->connect();
-        $sql = "SELECT email, username FROM users";
+        $sql = "SELECT id, email, username FROM users";
 
         if ($ids) {
             $sql .= " WHERE id IN (".implode(", ", $ids).")";
@@ -93,7 +93,7 @@ class Connection {
         if ($result) {
 
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-               $users[$i++] = new User($row['email'], $row['username']);
+               $users[$i++] = new User($row['id'], $row['email'], $row['username']);
             }
 
             mysqli_free_result($result);
@@ -104,27 +104,23 @@ class Connection {
     }
 
     /**
-     * Enters a new review into the database
-     *
-     * @param $review
-     * @return int|string - id of the review, or -1 if the insert fails
+     * @param $userId
+     * @param $movieId
+     * @param $rating
+     * @param $content
+     * @return int|string
      */
-    public function createReview($review) {
+    public function createReview($userId, $movieId, $rating, $content) {
 
-        //TODO test
-        if ($review instanceof Review) {
-            $this->connect();
+        $this->connect();
+        $content = mysqli_real_escape_string($this->link, $content);
 
-            $sql = "INSERT INTO reviews (user_id, movie_id, submit_date, rating, review_content) ".
-                "VALUES ($review->getUserId(), $review->getMovieId(), CURDATE(), $review->getRating(), ".
-                "'$review->getReviewContent()' )";
+        $sql = "INSERT INTO reviews (user_id, movie_id, submit_date, rating, review_content) ".
+            "VALUES ($userId, $movieId, CURDATE(), $rating, '".$content."')";
 
-            mysqli_query($this->link, $sql);
-            $id = mysqli_insert_id($this->link);
-            $this->disconnect();
-            return $id;
-        }
-        return -1;
+        mysqli_query($this->link, $sql);
+        $this->disconnect();
+        return mysqli_insert_id($this->link);
     }
 
     /**
@@ -143,7 +139,7 @@ class Connection {
             $lname = $person->getLastName();
             $birthdate = $person->getBirthdate();
             $imageLink = $person->getImageLink();
-            $bio = $person->getBio();
+            $bio = mysqli_real_escape_string($this->link, $person->getBio());
 
             $sql = "INSERT INTO people (fname, lname, birthdate, image_link, submit_date, bio)".
                 "VALUES ('".$fname."', '".$lname."', '".$birthdate."', '".$imageLink."', ".
@@ -162,15 +158,14 @@ class Connection {
      * @return int|string
      */
     public function addMovie($movie) {
-        //TODO test and fix dates
         if ($movie instanceof Movie) {
             $this->connect();
 
             $directorId = $movie->getDirector()->getId();
-            $title = $movie->getTitle();
+            $title = mysqli_real_escape_string($this->link, $movie->getTitle());
             $releaseDate = $movie->getReleaseDate();
             $imageLink = $movie->getImageLink();
-            $synopsis = $movie->getSynopsis();
+            $synopsis = mysqli_real_escape_string($this->link, $movie->getSynopsis());
 
 
             $sql = "INSERT INTO movie (director_id, title, release_date, submit_date, image_link, synopsis)".
