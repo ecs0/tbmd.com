@@ -166,12 +166,40 @@ class Connection {
         if ($movie instanceof Movie) {
             $this->connect();
 
+            $directorId = $movie->getDirector()->getId();
+            $title = $movie->getTitle();
+            $releaseDate = $movie->getReleaseDate();
+            $imageLink = $movie->getImageLink();
+            $synopsis = $movie->getSynopsis();
+
+
             $sql = "INSERT INTO movie (director_id, title, release_date, submit_date, image_link, synopsis)".
-                "VALUES ($movie->getDirectorId(), '$movie->getTitle()', CURDATE(), CURDATE(), '$movie->getImageLink()',".
-                " '$movie->getSynopsis()')";
+                "VALUES ($directorId, '".$title."', '".$releaseDate."', CURDATE(), '".$imageLink."',".
+                " '".$synopsis."')";
+
 
             mysqli_query($this->link, $sql);
             $id = mysqli_insert_id($this->link);
+
+            if ($id > 0) {
+
+                $callback = function($person) use ($id) {
+                    if ($person instanceof Person) {
+                        $personId = $person->getId();
+                        return "($id, $personId)";
+                    } else {
+                        return "";
+                    }
+                };
+
+                $bridgePairs = array_map($callback, $movie->getActors());
+                $values = implode(", ", $bridgePairs);
+
+                $bridgeSql = "INSERT INTO actor (movie_id, people_id) VALUES $values";
+
+                mysqli_query($this->link, $bridgeSql);
+            }
+
             $this->disconnect();
             return $id;
         }

@@ -8,6 +8,9 @@
 
 include_once('Connection.php');
 
+/*
+ * Ajax email validation
+ */
 if (isset($_REQUEST['q'])) {
     $email = $_REQUEST['q'];
     $connection = new Connection();

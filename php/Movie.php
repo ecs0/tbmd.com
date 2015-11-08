@@ -90,6 +90,13 @@ class Movie extends stdClass {
         return $this->imageLink;
     }
 
+    /**
+     * @return array
+     */
+    public function getActors() {
+        return $this->actors;
+    }
+
     public function asTableRow() {
         $director = $this->getDirector()->getFirstName()." ".$this->getDirector()->getLastName();
         $actorNames = array_map(function($person) {

@@ -135,10 +135,25 @@ class View {
         return $innerHtml;
     }
 
+    /**
+     * Marks up a domain object
+     *
+     * @param $start - the opening tag, e.g. 'option', 'a' or 'a href="index.html"'
+     * @param $content - the object to be marked up, if it has an id, it will be used as a name attribute
+     * @param null $end - closing tag, if different than start, e.g if you wanted to include an attribute like href
+     * @return string - a fully marked up domain object based on it's string representation
+     */
     public function tag($start, $content, $end = NULL) {
         if ($end == NULL) {
             $end = $start;
         }
-        return "<$start>$content</$end>";
+
+        $element = "<$start";
+        if (method_exists($content, "getId")) {
+            $element .= " value='".$content->getId()."'";
+        }
+        $element .= ">$content</$end>";
+
+        return $element;
     }
 }

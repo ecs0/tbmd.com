@@ -16,6 +16,55 @@
 </head>
 <body>
 
+    <div class="overlay" id="add_movie">
+        <div>
+            <input class="exit" id="add_movie_close" type="button" value="x">
+            <h1>Enter a Movie</h1>
+            <form method="post" action="../php/movie_handler.php">
+
+                <p>
+                    <label>Title
+                        <input type="text" name="title" required>
+                    </label>
+                </p>
+                <p>
+                    <label>Release Date
+                        <input type="date" name="release_date" required>
+                    </label>
+                </p>
+                <p>
+                    <label>Director
+                        <select name="director">
+                            <?php echo $view->peopleAsTag("option") ?>
+                        </select>
+                        <input type="button" id="btnAddDirector" value="New Person">
+                    </label>
+                </p>
+                <p>
+                    <label>Actors
+                        <select name="actors[]" multiple>
+                            <?php echo $view->peopleAsTag("option") ?>
+                        </select>
+                    </label>
+                </p>
+                <p>
+                    <label>Image
+                        <input type="file" name="image_link">
+                    </label>
+                </p>
+                <p>
+                    <label>Synopsis
+                        <textarea cols="40" rows="10" name="synopsis" required></textarea>
+                    </label>
+                </p>
+
+                <p>
+                    <input type="submit" name="submit" value="Submit">
+                    <input type="reset" value="Clear">
+                </p>
+            </form>
+        </div>
+    </div>
     <div class="overlay" id="add_user">
         <div>
             <input class="exit" id="add_user_close" type="button" value="x">
@@ -24,7 +73,7 @@
                 <p>
                     <label>Email:
                         <input id="email" type="email" name="email" required>
-                        <span id="duplicate_warning"></span>
+                        <span class="warning" id="duplicate_warning"></span>
                     </label>
                 </p>
                 <p>
@@ -139,21 +188,5 @@
         <caption>Users</caption>
         <?php echo $view->usersAsTable(); ?>
     </table>
-
-    <div>
-        <ul>
-            <?php echo $view->moviesAsTag("li"); ?>
-        </ul>
-        <ul>
-            <?php echo $view->peopleAsTag("li"); ?>
-        </ul>
-        <ul>
-            <?php echo $view->reviewsAsTag("li"); ?>
-        </ul>
-        <ul>
-            <?php echo $view->usersAsTag("li"); ?>
-        </ul>
-    </div>
-
 </body>
 </html>

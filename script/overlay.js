@@ -12,6 +12,10 @@ window.addEventListener("load", function() {
     document.getElementById("add_person_close").addEventListener("click", function() {
         overlay("add_person");
     }, false);
+    document.getElementById("btnAddDirector").addEventListener("click", function() {
+        overlay('add_movie');
+        overlay('add_person');
+    }, false);
 
     // register add user
     document.getElementById('btnAddUser').addEventListener("click", function() {
@@ -20,6 +24,15 @@ window.addEventListener("load", function() {
     document.getElementById('add_user_close').addEventListener("click", function() {
         overlay("add_user");
     }, false);
+
+    // register add movie
+    document.getElementById('btnAddMovie').addEventListener("click", function() {
+        overlay('add_movie');
+    }, false);
+    document.getElementById('add_movie_close').addEventListener('click', function() {
+        overlay('add_movie');
+    }, false);
+
 }, false);
 
 function overlay(id) {

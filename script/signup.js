@@ -15,16 +15,27 @@ function validateEmail() {
       xmlhttp.onreadystatechange = function() {
          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             if (xmlhttp.responseText == 'duplicate') {
-               document.getElementById('btnSubmitUser').disabled = true;
-               document.getElementById('duplicate_warning').innerHTML = "Email already exists";
+               showEmailWarning();
             } else {
-               document.getElementById('btnSubmitUser').disabled = false;
-               document.getElementById('duplicate_warning').innerHTML = "";
+               hideEmailWarning();
             }
          }
       };
 
       xmlhttp.open("GET", "../php/signup_handler.php?q=" + value, true);
       xmlhttp.send();
+   } else {
+      hideEmailWarning()
    }
 }
+
+function showEmailWarning() {
+   document.getElementById('btnSubmitUser').disabled = true;
+   document.getElementById('duplicate_warning').innerHTML = "Email already exists";
+}
+
+function hideEmailWarning() {
+   document.getElementById('btnSubmitUser').disabled = false;
+   document.getElementById('duplicate_warning').innerHTML = "";
+}
+
