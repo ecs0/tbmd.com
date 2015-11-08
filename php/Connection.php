@@ -201,16 +201,29 @@ class Connection {
         return -1;
     }
 
+
     /**
-     * @param null $ids
+     * Fetches all movies in a list of ids from the database
+     *
+     * @param $ids
      * @return array
      */
-    public function getMovies($ids = NULL) {
-        $this->connect();
-        $sql = "SELECT id, director_id, title, release_date, submit_date, image_link, synopsis FROM movie";
+    public function getMoviesById($ids) {
+        return $this->getMovies("WHERE id IN (".implode(", ", $ids).")");
+    }
 
-        if ($ids) {
-            $sql .= " WHERE id IN (".implode(", ", $ids).")";
+    /**
+     * Fetches all movies from the database [that match the optional parameter if given]
+     *
+     * @param null $where - optional WHERE clause
+     * @return array
+     */
+    public function getMovies($where = NULL) {
+        $this->connect();
+        $sql = "SELECT id, director_id, title, release_date, submit_date, image_link, synopsis FROM movie ";
+
+        if ($where) {
+            $sql .= $where;
         }
 
         $result = mysqli_query($this->link, $sql);
@@ -276,13 +289,29 @@ class Connection {
     }
 
     /**
-     * Fetches all reviews from the database
+     * Fetches all reviews made by a specific user
      *
+     * @param $userId - the id of the user to filter reviews by
      * @return array
      */
-    public function getReviews() {
+    public function getUserReviews($userId) {
+        return $this->getReviews("WHERE user_id = $userId");
+    }
+
+    /**
+     * Fetches all reviews from the database [filtered by the optional where clause]
+     *
+     * @param null $where - optional where clause
+     * @return array
+     */
+    public function getReviews($where = NULL) {
         $this->connect();
-        $sql = "SELECT id, user_id, movie_id, submit_date, rating, review_content FROM reviews";
+        $sql = "SELECT id, user_id, movie_id, submit_date, rating, review_content FROM reviews ";
+
+        if ($where) {
+            $sql .= $where;
+        }
+
         $result = mysqli_query($this->link, $sql);
         $reviews = array();
         $i = 0;
