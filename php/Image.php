@@ -8,11 +8,14 @@
  */
 class Image
 {
+    const IMAGEUPLOADDIR = '/var/www/html/tbmd.com/images/uploads';
+}
+
+function __construct () {
 
 }
 
 
-$imageUploadDir = '/var/www/html/tbmd.com/images/uploads';
 $allowedExtensions = array('gif','jpg','jpeg','png');
 
 if (!is_dir($imageUploadDir)) {
@@ -22,6 +25,10 @@ if (!is_dir($imageUploadDir)) {
     //755 seems to be the acceptable permissions
     //where uploading is involved.
     //TODO: investigate permissions further.
+}
+
+function getImage($imageName) {
+    //TODO: implement
 }
 /**
  * Simple method to generate a hash
@@ -34,10 +41,10 @@ function imageHash($imageName) {
     return hash_file('MD5', $imageName);
 }
 
-function imageCrop ($imageName) {
-
+function imageCrop ($imageName)
+{
+    //TODO: implement
 }
-
 /**
  * Function to check if the image name is
  * longer than 255 chars.
