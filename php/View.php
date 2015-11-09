@@ -33,13 +33,14 @@ class View {
         return $innerHtml;
     }
 
-    public function moviesAsTag($tag) {
+    public function moviesAsTag($tag, $void = false) {
         $innerHtml = "";
         $link = new Connection();
 
         foreach ($link->getMovies() as $movie) {
             if ($movie instanceof Movie) {
-                $innerHtml .= $this->tag($tag, $movie);
+                $element = $void == true ? $this->voidTag($tag, $movie) : $this->tag($tag, $movie);
+                $innerHtml .= $element;
             }
         }
 
@@ -64,13 +65,14 @@ class View {
         return $innerHtml;
     }
 
-    public function peopleAsTag($tag) {
+    public function peopleAsTag($tag, $void = false) {
         $innerHtml = "";
         $link = new Connection();
 
         foreach ($link->getPeople() as $person) {
             if ($person instanceof Person) {
-                $innerHtml .= $this->tag($tag, $person);
+                $element = $void ? $this->voidTag($tag, $person) : $this->tag($tag, $person);
+                $innerHtml .= $element;
             }
         }
 
@@ -133,6 +135,10 @@ class View {
             }
         }
         return $innerHtml;
+    }
+
+    public function voidTag($tag, $value) {
+        return "<$tag value='".$value."'>";
     }
 
     /**

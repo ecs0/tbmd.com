@@ -201,6 +201,21 @@
                 </select>
             </label>
         </p>
+        <p>
+            <!-- search bars -->
+            <label>Search for a Movie:
+                <input type="text" name="search_movie" list="movies">
+                <datalist id="movies">
+                    <?php echo $view->moviesAsTag("option", true); ?>
+                </datalist>
+            </label>
+            <label>Search for a Person:
+                <input type="text" name="search_person" list="people">
+                <datalist id="people">
+                    <?php echo $view->peopleAsTag("option", true); ?>
+                </datalist>
+            </label>
+        </p>
     </form>
 
     <div>
