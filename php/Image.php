@@ -9,6 +9,7 @@
 class Image
 {
     const IMAGEUPLOADDIR = '/var/www/html/tbmd.com/images/uploads';
+    //
 }
 
 function __construct () {
@@ -30,6 +31,7 @@ if (!is_dir($imageUploadDir)) {
 function getImage($imageName) {
     //TODO: implement
 }
+
 /**
  * Simple method to generate a hash
  * for file uploads.
@@ -45,6 +47,7 @@ function imageCrop ($imageName)
 {
     //TODO: implement
 }
+
 /**
  * Function to check if the image name is
  * longer than 255 chars.
@@ -66,6 +69,20 @@ function checkImageName($imageName) {
 }
 
 function checkImageDuplicate ($imageName) {
+    //TODO: implement
+}
+
+/**
+ * Check the image size against a predetermined value.
+ * @param $imageName
+ * @return bool
+ */
+function checkImageSize($imageName) {
+    return ((filesize($imageName) > 100000) ? true : false);
+    //TODO: determine max value for uploads.
+}
+
+function checkMimeType() {
     //TODO: implement
 }
 
