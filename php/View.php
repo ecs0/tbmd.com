@@ -109,9 +109,9 @@ class View {
     }
 
     public function usersAsTable() {
-        $innerhtml = "<thead><tr>".
+        $innerHtml = "<thead><tr>".
             "<th>Email</th><th>Username</th>".
-            "<tr></thead>";
+            "</tr></thead>";
 
         $link = new Connection();
         $body = "";
@@ -121,8 +121,8 @@ class View {
             }
         }
 
-        $innerhtml .= "<tbody>$body</tbody>";
-        return $innerhtml;
+        $innerHtml .= "<tbody>$body</tbody>";
+        return $innerHtml;
     }
 
     public function usersAsTag($tag) {
