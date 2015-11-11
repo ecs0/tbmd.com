@@ -107,6 +107,7 @@
             <input class="exit" id="add_user_close" type="button" value="x">
             <h1>Sign up for tbmd.com!</h1>
             <form method="post" action="../php/signup_handler.php">
+                <input type="hidden" name="return" value="../html/bryan.php">
                 <p>
                     <label>Email:
                         <input id="email" type="email" name="email" required>

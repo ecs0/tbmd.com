@@ -27,11 +27,18 @@ if (isset($_POST['submit'])) {
     $email = filter_input(INPUT_POST, 'email');
     $username = filter_input(INPUT_POST, 'username');
     $password = filter_input(INPUT_POST, 'password');
+    $return = filter_input(INPUT_POST, "return");
 
     $connection = new Connection();
     $connection->createUser($email, $username, $password);
-    header("Location: ../html/bryan.php?creation=success");
+
+    // if the caller forgot to set the return, we'll go back to the front page
+    if (!$return) {
+        $return = "..index.php";
+    }
+
+    header("Location: $return?creation=success");
 } else {
-    header("Location: ../html/bryan.php?creation=failed"); // temp
+    header("Location: ../index.php?creation=failed"); // temp
 }
 
