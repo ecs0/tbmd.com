@@ -17,6 +17,7 @@
 <body>
 
     <!-- Hidden Page Content -->
+    <?php //<editor-fold desc="Hidden Forms for Javascript Popups"> ?>
     <div class="overlay" id="add_user">
         <div>
             <input class="exit" id="add_user_close" type="button" value="x">
@@ -172,6 +173,7 @@
             </form>
         </div>
     </div>
+    <?php //</editor-fold>?>
 
     <!-- Visible Page Content -->
     <header>
