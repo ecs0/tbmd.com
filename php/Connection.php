@@ -332,7 +332,7 @@ class Connection {
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $id = $row['id'];
                 $user = $this->getUsers([$row['user_id']]);
-                $movie = $this->getMovies([$row['movie_id']]);
+                $movie = $this->getMoviesById([$row['movie_id']]);
                 $submitDate = $row['submit_date'];
                 $rating = $row['rating'];
                 $reviewContent = $row['review_content'];
@@ -402,6 +402,45 @@ class Connection {
         $filter = "ORDER BY submit_date DESC ";
         $where = $movieId ? "WHERE movie_id = $movieId" : "";
         return $this->getReviews($where.$filter);
+    }
+
+    public function getMoviesByReviewScore() {
+        $this->connect();
+
+        $sql = "SELECT ".
+            "movie.id, ".
+            "movie.director_id, ".
+            "movie.title, ".
+            "movie.release_date, ".
+            "movie.synopsis, ".
+            "movie.submit_date, ".
+            "movie.image_link, ".
+            "AVG(reviews.rating) average ".
+            " FROM movie INNER JOIN reviews ON movie.id = reviews.movie_id ".
+            "GROUP BY movie.id ORDER BY average DESC ";
+
+        $result = mysqli_query($this->link, $sql);
+
+        $movies = array();
+        $i = 0;
+        if ($result) {
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $rating = $row['average'];
+                $movieId = $row['id'];
+                $movie = new Movie($movieId,
+                    $this->getPeople([$row['director_id']])[0],
+                    $row['title'],
+                    $row['release_date'],
+                    $row['synopsis'],
+                    $row['submit_date'],
+                    $row['image_link'],
+                    $this->getActors($movieId));
+
+                $movies[$i++] = array($movie, $rating);
+            }
+        }
+
+        return $movies;
     }
 
     /**

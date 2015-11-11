@@ -14,6 +14,28 @@ include_once("Connection.php");
  */
 class View {
 
+    public function ratedMoviesAsTable() {
+        $innerHtml = "<thead><tr>".
+            "<th>id</th><th>director</th><th>title</th><th>release date</th><th>synopsis</th>".
+            "<th>submitted</th><th>image</th><th>Actors</th><th>Average Rating</th>".
+            "</tr></thead>";
+
+        $link = new Connection();
+
+        $body = "";
+        foreach ($link->getMoviesByReviewScore() as $tuple) {
+            $movie = $tuple[0];
+            $rating = $tuple[1];
+
+            if ($movie instanceof Movie) {
+                $body .= $movie->asTableRow($rating);
+            }
+        }
+
+        $innerHtml .= "<tbody>$body</tbody>";
+        return $innerHtml;
+    }
+
     public function moviesAsTable() {
         $innerHtml = "<thead><tr>".
             "<th>id</th><th>director</th><th>title</th><th>release date</th><th>synopsis</th>".
@@ -86,7 +108,7 @@ class View {
 
         $link = new Connection();
         $body = "";
-        foreach ($link->getReviewsByDate() as $review) {
+        foreach ($link->getReviews() as $review) {
             if ($review instanceof Review) {
                 $body .= $review->asTableRow();
             }

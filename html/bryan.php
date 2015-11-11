@@ -240,9 +240,14 @@
         <?php echo $view->reviewsAsTable(); ?>
     </table>
     <hr>
-    <table class="fized" id="users">
+    <table class="fixed" id="users">
         <caption>Users</caption>
         <?php echo $view->usersAsTable(); ?>
+    </table>
+    <hr>
+    <table class="fixed">
+        <caption>Highest Rated Movies</caption>
+        <?php echo $view->ratedMoviesAsTable(); ?>
     </table>
 </body>
 </html>

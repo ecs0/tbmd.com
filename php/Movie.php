@@ -97,7 +97,7 @@ class Movie extends stdClass {
         return $this->actors;
     }
 
-    public function asTableRow() {
+    public function asTableRow($rating = null) {
         $director = $this->getDirector()->getFirstName()." ".$this->getDirector()->getLastName();
         $actorNames = array_map(function($person) {
             if ($person instanceof Person) {
@@ -107,9 +107,15 @@ class Movie extends stdClass {
             }
         }, $this->actors);
         $actorString = implode(", ", $actorNames);
-        return "<tr><td>$this->id</td><td>$director</td><td>$this->title</td><td>$this->releaseDate</td>".
+        $row = "<tr><td>$this->id</td><td>$director</td><td>$this->title</td><td>$this->releaseDate</td>".
         "<td>$this->synopsis</td><td>$this->submissionDate</td><td>$this->imageLink</td>".
-        "<td>$actorString</td></tr>";
+        "<td>$actorString</td>";
+
+        if ($rating != null) {
+            $row .= "<td>$rating</td>";
+        }
+
+        return $row."</tr>";
     }
 
     public function __toString() {
