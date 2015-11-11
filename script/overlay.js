@@ -6,42 +6,34 @@
 window.addEventListener("load", function() {
 
     // register add person
-    document.getElementById("btnAddPerson").addEventListener("click", function() {
-        overlay("add_person");
-    }, false);
-    document.getElementById("add_person_close").addEventListener("click", function() {
-        overlay("add_person");
-    }, false);
-    document.getElementById("btnAddDirector").addEventListener("click", function() {
-        overlay('add_movie');
-        overlay('add_person');
-    }, false);
+    registerButton(document.getElementById("btnAddPerson"), "add_person");
+    registerButton(document.getElementById("add_person_close"), "add_person");
+    registerButton(document.getElementById("btnAddDirector"), "add_movie", "add_person");
 
     // register add user
-    document.getElementById('btnAddUser').addEventListener("click", function() {
-        overlay("add_user");
-    }, false);
-    document.getElementById('add_user_close').addEventListener("click", function() {
-        overlay("add_user");
-    }, false);
+    registerButton(document.getElementById("btnAddUser"), "add_user");
+    registerButton(document.getElementById("add_user_close"), "add_user");
 
     // register add movie
-    document.getElementById('btnAddMovie').addEventListener("click", function() {
-        overlay('add_movie');
-    }, false);
-    document.getElementById('add_movie_close').addEventListener('click', function() {
-        overlay('add_movie');
-    }, false);
+    registerButton(document.getElementById("btnAddMovie"), "add_movie");
+    registerButton(document.getElementById("add_movie_close"), "add_movie");
 
     // register add review
-    document.getElementById('btnAddReview').addEventListener('click', function() {
-       overlay('add_review');
-    }, false);
-    document.getElementById('add_review_close').addEventListener('click', function() {
-        overlay('add_review');
-    }, false);
+    registerButton(document.getElementById("btnAddReview"), "add_review");
+    registerButton(document.getElementById("add_review_close"), "add_review");
 
 }, false);
+
+function registerButton(button, id, secondaryId) {
+    if (button != null) {
+        button.addEventListener("click", function() {
+            overlay(id);
+            if (secondaryId != undefined) {
+                overlay(secondaryId);
+            }
+        }, false);
+    }
+}
 
 function overlay(id) {
     var element = document.getElementById(id);
