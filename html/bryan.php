@@ -230,6 +230,11 @@
         <?php echo $view->moviesAsTable(); ?>
     </table>
     <hr>
+    <table class="fixed">
+        <caption>Upcoming Movies</caption>
+        <?php echo $view->moviesAsTable(true); ?>
+    </table>
+    <hr>
     <table class="fixed" id="people">
         <caption>People</caption>
         <?php echo $view->peopleAsTable(); ?>

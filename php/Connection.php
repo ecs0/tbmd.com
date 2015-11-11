@@ -263,6 +263,16 @@ class Connection {
     }
 
     /**
+     * Returns an array of all movies that release after the current date, in ascending order (date order)
+     *
+     * @return array
+     */
+    public function getUpcomingMovies() {
+        $where = "WHERE release_date > CURDATE() ORDER BY release_date ASC";
+        return $this->getMovies($where);
+    }
+
+    /**
      * Fetch all or some people from the database
      *
      * @param null $ids - Optional where clause
@@ -404,6 +414,12 @@ class Connection {
         return $this->getReviews($where.$filter);
     }
 
+    /**
+     * Returns all movies sorted by their average review score (highest first).
+     * Movies with no ratings are not included.
+     *
+     * @return array - Array of tuples (movie, rating)
+     */
     public function getMoviesByReviewScore() {
         $this->connect();
 

@@ -36,7 +36,7 @@ class View {
         return $innerHtml;
     }
 
-    public function moviesAsTable() {
+    public function moviesAsTable($upcoming = false) {
         $innerHtml = "<thead><tr>".
             "<th>id</th><th>director</th><th>title</th><th>release date</th><th>synopsis</th>".
             "<th>submitted</th><th>image</th><th>Actors</th>".
@@ -45,7 +45,8 @@ class View {
         $link = new Connection();
 
         $body = "";
-        foreach ($link->getMovies() as $movie) {
+        $movies = $upcoming ? $link->getUpcomingMovies() : $link->getMovies();
+        foreach ($movies as $movie) {
             if ($movie instanceof Movie) {
                 $body .= $movie->asTableRow();
             }
