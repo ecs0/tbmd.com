@@ -391,8 +391,17 @@ class Connection {
         return $actors;
     }
 
-    public function getImage($movieId) {
-        //TODO implement
+    /**
+     * Returns a list of all reviews sorted by date in descending order (recent first)
+     *
+     * @param null $movieId - optionally filter the reviews by date
+     * @return array
+     */
+    public function getReviewsByDate($movieId = null) {
+        $this->connect();
+        $filter = "ORDER BY submit_date DESC ";
+        $where = $movieId ? "WHERE movie_id = $movieId" : "";
+        return $this->getReviews($where.$filter);
     }
 
     /**

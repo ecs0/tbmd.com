@@ -86,7 +86,7 @@ class View {
 
         $link = new Connection();
         $body = "";
-        foreach ($link->getReviews() as $review) {
+        foreach ($link->getReviewsByDate() as $review) {
             if ($review instanceof Review) {
                 $body .= $review->asTableRow();
             }
