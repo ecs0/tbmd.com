@@ -14,12 +14,17 @@ if (isset($_POST['submit'])) {
     $userId = filter_input(INPUT_POST, 'user');
     $rating = filter_input(INPUT_POST, 'rating');
     $content = filter_input(INPUT_POST, 'content');
+    $return = filter_input(INPUT_POST, 'return');
 
     $connection = new Connection();
 
     $connection->createReview($userId, $movieId, $rating, $content);
 
-    header("Location: ../html/bryan.php?creation=success");
+    if (!$return) {
+        $return = "../index.php";
+    }
+
+    header("Location: $return?creation=success");
 } else {
-    header("Location: ../html/bryan.php?creation=failed");
+    header("Location: ../index.php");
 }

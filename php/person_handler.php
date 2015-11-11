@@ -12,7 +12,7 @@ include_once('Person.php');
 //TODO eventually check for an auth session token or cookie
 
 if (!isset($_POST['submit'])) {
-    header("Location: ../html/bryan.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -23,11 +23,16 @@ $lname = filter_input(INPUT_POST, 'lname');
 $birthdate = filter_input(INPUT_POST, 'birthdate');
 $image_link = filter_input(INPUT_POST, 'image_link');
 $bio = filter_input(INPUT_POST, 'bio');
+$return = filter_input(INPUT_POST, 'return');
 
 $connection = new Connection();
 $person = new Person(NULL, $fname, $lname, $birthdate, $image_link, NULL, $bio);
 
 $connection->addPerson($person);
 
-header("Location: ../html/bryan.php");
+if (!$return) {
+    $return = "../index.php";
+}
+
+header("Location: $return");
 

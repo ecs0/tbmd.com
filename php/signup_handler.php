@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 
     // if the caller forgot to set the return, we'll go back to the front page
     if (!$return) {
-        $return = "..index.php";
+        $return = "../index.php";
     }
 
     header("Location: $return?creation=success");

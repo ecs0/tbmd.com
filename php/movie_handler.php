@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
     $actorIds = filter_input(INPUT_POST, 'actors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
     $imageLink = filter_input(INPUT_POST, 'image_link');
     $synopsis = filter_input(INPUT_POST, 'synopsis');
+    $return = filter_input(INPUT_POST, 'return');
 
     $connection = new Connection();
 
@@ -26,7 +27,11 @@ if (isset($_POST['submit'])) {
 
     $connection->addMovie($movie);
 
-    header("Location: ../html/bryan.php?creation=success");
+    if (!$return) {
+        $return = "../index.php";
+    }
+
+    header("Location: $return?creation=success");
 } else {
-    header("Location: ../html/bryan.php?creation=failed");
+    header("Location: ../index.php");
 }
