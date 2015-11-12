@@ -61,7 +61,7 @@ class Uploader {
      */
     public function upload() {
         $this->save();
-        return $this->filename;
+        return $this->file['full_path'];
     }
 
     /**

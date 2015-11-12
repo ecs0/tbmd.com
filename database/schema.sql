@@ -19,7 +19,7 @@ CREATE TABLE people (
   fname VARCHAR (50),
   lname VARCHAR (50),
   birthdate DATE,
-  image_link VARCHAR(50),
+  image_link VARCHAR(120),
   submit_date DATE NOT NULL,
   bio BLOB
 );
@@ -30,7 +30,7 @@ CREATE TABLE movie (
   title VARCHAR(50),
   release_date DATE,
   submit_date DATE NOT NULL,
-  image_link VARCHAR(50),
+  image_link VARCHAR(120),
   synopsis BLOB,
   FOREIGN KEY (director_id) REFERENCES people(id)
 );
