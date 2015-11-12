@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-    include("php/View.php");
+    include_once("php/View.php");
     $view = new View();
 ?>
 
@@ -50,7 +50,7 @@
         <div>
             <input id="add_person_close" class="exit" type="button" value="x">
             <h1>Enter a Person</h1>
-            <form method="post" action="php/person_handler.php">
+            <form method="post" action="php/person_handler.php" enctype="multipart/form-data">
                 <input type="hidden" name="return" id="../index.php">
                 <p>
                     <label>
@@ -73,7 +73,7 @@
                 <p>
                     <label>
                         Picture:
-                        <input type="file" name="image_link">
+                        <input type="file" name="upload" accept="image/*">
                     </label>
                 </p>
                 <p>
@@ -93,7 +93,7 @@
         <div>
             <input class="exit" id="add_movie_close" type="button" value="x">
             <h1>Enter a Movie</h1>
-            <form method="post" action="php/movie_handler.php">
+            <form method="post" action="php/movie_handler.php" enctype="multipart/form-data">
                 <input type="hidden" name="return" value="../index.php">
                 <p>
                     <label>Title
@@ -122,7 +122,7 @@
                 </p>
                 <p>
                     <label>Image
-                        <input type="file" name="image_link">
+                        <input type="file" name="upload" accept="image/*">
                     </label>
                 </p>
                 <p>

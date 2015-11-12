@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 
 <h1>File upload testing page</h1>
-<?php
-    require_once '../php/Uploader.php';
-
-    if (!empty($_FILES['image'])) {
-
-        $upload = Uploader::factory('uploads/images');
-        $upload->file($_FILES['image']);
-        $result = $upload->upload();
-        var_dump($result);
-
-    }
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
