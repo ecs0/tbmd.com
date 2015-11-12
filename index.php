@@ -17,7 +17,7 @@
 <body>
 
     <!-- Hidden Page Content -->
-    <?php //<editor-fold desc="Hidden Forms for Javascript Popups"> ?>
+    <?php //<editor-fold defaultstate="collapsed" desc="Hidden Forms for Javascript Popups"> ?>
     <div class="overlay" id="add_user">
         <div>
             <input class="exit" id="add_user_close" type="button" value="x">
