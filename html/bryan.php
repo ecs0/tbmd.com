@@ -86,7 +86,7 @@
                 </p>
                 <p>
                     <label>Image
-                        <input type="file" name="upload" accept="iamge/*">
+                        <input type="file" name="upload" accept="image/*">
                     </label>
                 </p>
                 <p>
