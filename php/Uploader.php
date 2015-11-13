@@ -1,7 +1,5 @@
 <?php
 
-define('BASE_DIR', $_SERVER['DOCUMENT_ROOT']."/images/uploads/");
-
 /**
  * Created by PhpStorm.
  * User: tsayler
@@ -33,6 +31,8 @@ class Uploader {
      */
     public function upload() {
         
+        $base_dir = $_SERVER['DOCUMENT_ROOT']."/images/uploads/";
+        
         // create unique file name
         $name = $this->file['name'];
         $extension = pathinfo($name, PATHINFO_EXTENSION);
@@ -47,13 +47,13 @@ class Uploader {
         finfo_close($finfo);
         
         // make dir if needed
-        if (!is_dir(BASE_DIR)) {
-            mkdir(BASE_DIR);
+        if (!is_dir($base_dir)) {
+            mkdir($base_dir);
         }
         
         // finally upload
         if (is_uploaded_file($this->file['tmp_name']) && 
-                move_uploaded_file($this->file['tmp_name'], BASE_DIR.$hashed_name)) {
+                move_uploaded_file($this->file['tmp_name'], $base_dir.$hashed_name)) {
             return $hashed_name;
         }
         
