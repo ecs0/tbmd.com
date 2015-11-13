@@ -40,6 +40,17 @@ class Connection {
         $this->disconnect();
     }
 
+    public function searchMovies($query) {
+        $where = "WHERE title LIKE '%".$query."%'";
+        return $this->getMovies($where);
+    }
+    
+    public function searchPeople($query) {
+        $where = "WHERE fname LIKE '%".$query."%'";
+        $where .= " OR lname LIKE '%".$query."%'";
+        return $this->getPeople($where);
+    }
+    
     /**
      * Saves a new user to the database, will check to see if the user already exists
      *
@@ -246,7 +257,7 @@ class Connection {
             $i = 0;
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $id = $row['id'];
-                $director = $this->getPeople([$row['director_id']]);
+                $director = $this->getPeopleById([$row['director_id']]);
                 $title = $row['title'];
                 $releaseDate = $row['release_date'];
                 $submitDate = $row['submit_date'];
@@ -274,17 +285,28 @@ class Connection {
     }
 
     /**
+     *  Fetch all people from the data base filtered by id
+     * 
+     * @param type $ids - query filter
+     * @return type - array of People
+     */
+    public function getPeopleById($ids) {
+        $where = " WHERE id IN (".implode(", ", $ids).")";
+        return $this->getPeople($where);
+    }
+    
+    /**
      * Fetch all or some people from the database
      *
-     * @param null $ids - Optional where clause
+     * @param null $where - Optional where clause
      * @return array
      */
-    public function getPeople($ids = NULL) {
+    public function getPeople($where = NULL) {
         $this->connect();
-        $sql = "SELECT id, fname, lname, birthdate, image_link, submit_date, bio FROM people";
+        $sql = "SELECT id, fname, lname, birthdate, image_link, submit_date, bio FROM people ";
 
-        if ($ids) {
-            $sql .= " WHERE id IN (".implode(", ", $ids).")";
+        if ($where) {
+            $sql .= $where;
         }
 
         $result = mysqli_query($this->link, $sql);
@@ -445,7 +467,7 @@ class Connection {
                 $rating = $row['average'];
                 $movieId = $row['id'];
                 $movie = new Movie($movieId,
-                    $this->getPeople([$row['director_id']])[0],
+                    $this->getPeopleById([$row['director_id']])[0],
                     $row['title'],
                     $row['release_date'],
                     $row['synopsis'],

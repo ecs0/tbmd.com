@@ -8,11 +8,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Welcome to imdb.com</title>
+    <title>Welcome to tbmd.com</title>
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/overlay.css">
     <script src="script/signup.js"></script>
     <script src="script/overlay.js"></script>
+    <script src="script/search.js"></script>
 </head>
 <body>
 
@@ -200,6 +201,17 @@
             </div>
         </section>
     </header>
+    <section id="search">
+        <div class="search_bar">
+            <p>
+                <label>Search the Site:
+                    <input type="text" name="query" id="query" list="search_results">
+                    <datalist id="search_results"></datalist>
+                    <input type="button" id="btnSearch" value="Search!">
+                </label>
+            </p>
+        </div>
+    </section>
     <section id="add_items">
         <p>
             <input type="button" id="btnAddPerson" value="Add an Actor or Director!">

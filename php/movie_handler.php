@@ -24,8 +24,8 @@ if (isset($_POST['submit'])) {
     
     $connection = new Connection();
 
-    $director = $connection->getPeople([$directorId]);
-    $actors = $connection->getPeople($actorIds);
+    $director = $connection->getPeopleById([$directorId]);
+    $actors = $connection->getPeopleById($actorIds);
 
     $movie = new Movie(NULL, $director[0], $title, $releaseDate, $synopsis, NULL, $imageLink, $actors);
 
