@@ -207,7 +207,10 @@
             <input type="button" id="btnAddReview" value="Review your Favourite Movie!">
         </p>
     </section>
-    <section id="top_rated_movies"></section>
+    <section id="top_rated_movies">
+        <h2>Top Rated Movies</h2>
+        <?php echo $view->highestRatedMoviesAsBlock() ;?>
+    </section>
     <section id="recent_reviews"></section>
     <section id="upcoming_movies"></section>
     <footer>

@@ -14,6 +14,18 @@ include_once("Connection.php");
  */
 class View {
 
+    public function highestRatedMoviesAsBlock() {
+        $connection = new Connection();
+        $body = "";
+        foreach ($connection->getMoviesByReviewScore() as $movie) {
+            if ($movie[0] instanceof Movie) {
+                $body .= $movie[0]->asBlockView();
+                //TODO add the rating ($movie[1])
+            }
+        }
+        return "<div>$body</div>";
+    }
+    
     public function ratedMoviesAsTable() {
         $innerHtml = "<thead><tr>".
             "<th>id</th><th>director</th><th>title</th><th>release date</th><th>synopsis</th>".

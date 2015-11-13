@@ -129,8 +129,9 @@ class Connection {
             "VALUES ($userId, $movieId, CURDATE(), $rating, '".$content."')";
 
         mysqli_query($this->link, $sql);
+        $id = mysqli_insert_id($this->link);
         $this->disconnect();
-        return mysqli_insert_id($this->link);
+        return $id;
     }
 
     /**

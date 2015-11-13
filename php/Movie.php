@@ -118,6 +118,36 @@ class Movie extends stdClass {
         return $row."</tr>";
     }
 
+    public function asBlockView() {
+
+        if (!$this->imageLink) {
+            $imgSrc = "'images/movie_placeholder.jpg'";
+        } else {
+            $imgSrc = "'images/uploads/$this->imageLink"."'";
+        }
+        
+        
+        $title = "<h2>$this->title</h2>";
+        $img = "<img class='movie_image' src=$imgSrc alt='".$this->title."'";
+        $release = "<p><strong>Released: </strong>$this->releaseDate</p>";
+        $director = "<p><strong>Directed By: </strong>$this->director</p>";
+        
+        $actorList = array();
+        $i = 0;
+        foreach ($this->actors as $actor) {
+            $id = $actor->getId();
+            $link = "'person.php?id=$id"."'";
+            $a = "<a href=$link>$actor</a>";
+            $actorList[$i++] = $a;
+        }
+        
+        $actors = "<p><strong>Starring: </strong>".  implode(" | ", $actorList)."</p>";
+        $synopsis = "<p><strong>Synopsis: </strong>$this->synopsis</p>";
+        
+        
+        return "<div id=$this->id class='movie_block'>".$title.$img.$release.$director.$actors.$synopsis."</div>";
+    }
+    
     public function __toString() {
         return "$this->title";
     }
