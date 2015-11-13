@@ -2,32 +2,59 @@
 
 <?php
 include_once('php/Connection.php');
-include_once('php/Person.php');
+include_once('php/PersonView.php');
 
 $connection = new Connection();
 if (isset($_GET['id'])) {
-    $person = $connection->getPeopleById([filter_input(INPUT_GET, 'id')])[0];
-    if ($person instanceof Person) {
-        $title = $person->getFirstName()." ".$person->getLastName();
-    }
+    $person = new PersonView(filter_input(INPUT_GET, 'id'));
 } else {
     header("Location: index.php");
     exit();
 }
 ?>
 
-
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
-        <title><?php echo "$title on tbmd.com"; ?></title>
+        <title><?php echo $person->getTitle(); ?></title>
+        <link rel="stylesheet" href="style/main.css">
+        <script src="script/search.js"></script>
     </head>
     <body>
-        
+        <header>
+            <h1>
+                <?php echo $person->getName();?>
+            </h1>
+        </header>
+        <section id="search">
+            <div class="search_bar">
+                <p>
+                    <label>Search the Site:
+                        <input type="text" name="query" id="query" list="search_results">
+                        <datalist id="search_results"></datalist>
+                        <input type="button" id="btnSearch" value="Search!">
+                    </label>
+                </p>
+            </div>
+        </section>
+        <div>
+            <div>
+                <?php echo $person->getImage(); ?>
+            </div>
+            <div>
+                <h3><?php echo "Movies Directed by ".$person->getName().":"; ?></h3>
+                <?php echo $person->getMoviesAsDirector(); ?>
+            </div>
+            <div>
+                <h3><?php echo "Movies Starring ".$person->getName().":" ?></h3>
+                <?php echo $person->getMoviesAsActor(); ?>
+            </div>
+        </div>
+        <p>
+            <a href="index.php">Back to Front</a>
+        </p>
+        <footer>
+            tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
+        </footer>
     </body>
 </html>

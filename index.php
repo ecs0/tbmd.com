@@ -233,11 +233,6 @@
     </section>
     <footer>
         tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
-        <!-- Remove below once testing is complete -->
-        <br>
-        <a href="html/tim.php">Tim's Test Page</a>
-        &nbsp;|&nbsp;
-        <a href="html/bryan.php">Bryan's Test Page</a>
     </footer>
 </body>
 </html>

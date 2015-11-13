@@ -476,11 +476,56 @@ class Connection {
 
                 $movies[$i++] = array($movie, $rating);
             }
+            mysqli_free_result($result);
         }
-
+        
+        $this->disconnect();
         return $movies;
     }
 
+    public function getMoviesByDirector($directorId) {
+        $where = "WHERE director_id = $directorId";
+        return $this->getMovies($where);
+    }
+    
+    public function getMoviesByActor($actorId) {
+        $this->connect();
+        
+        $sql = "SELECT ".
+            "movie.id, ".
+            "movie.director_id, ".
+            "movie.title, ".
+            "movie.release_date, ".
+            "movie.synopsis, ".
+            "movie.submit_date, ".
+            "movie.image_link ".
+            "FROM movie INNER JOIN actor on actor.movie_id = movie.id ".
+                "WHERE actor.people_id = $actorId";
+        
+        $result = mysqli_query($this->link, $sql);
+        
+        $movies = array();
+        $i = 0;
+        if ($result) {
+            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $movieId = $row['id'];
+                $movie = new Movie($movieId,
+                    $this->getPeopleById([$row['director_id']])[0],
+                    $row['title'],
+                    $row['release_date'],
+                    $row['synopsis'],
+                    $row['submit_date'],
+                    $row['image_link'],
+                    $this->getActors($movieId));
+                $movies[$i++] = $movie;
+            }
+            mysqli_free_result($result);
+        }
+        
+        $this->disconnect();
+        return $movies;
+    }
+    
     /**
      * Opens a connection to the database using mysqli
      */
