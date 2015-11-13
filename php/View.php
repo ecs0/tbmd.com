@@ -14,6 +14,49 @@ include_once("Connection.php");
  */
 class View {
 
+    private $queryMap;
+    
+    /**
+     * Searches the database for the passed query and caches the results 
+     * 
+     * @param type $query
+     */
+    public function search($query) {
+        $connection = new Connection();
+        $movies = $connection->searchMovies($query);
+        $people = $connection->searchPeople($query);
+        $this->queryMap["$query"] = array_merge($movies, $people);
+        //TODO handle the situation where there is an exact match
+    }
+    
+    /**
+     * Displays cached query results found by the key
+     * 
+     * @param type $query
+     * @return type
+     */
+    public function displaySearchResults($key) {
+        $innerhtml = "<h2>Search Results for $key</h2>";
+        $innerhtml .= "<ul>";
+        
+        foreach ($this->queryMap["$key"] as $result) {
+            if (method_exists($result, "getId")) {
+                $id = $result->getId();
+            }
+            if ($result instanceof Movie) {
+                $redirect = "../movie.php";
+            } else if ($result instanceof Person) {
+                $redirect = "../person.php";
+            }
+            $link = "$redirect?id=$id";
+            $a = "<li><a href='".$link."' target='_blank'>$result</a></li>";
+            $innerhtml .= $a;
+        }
+        
+        $innerhtml .= "</ul>";
+        return $innerhtml;
+    }
+    
     public function upcomingMoviesAsBlock() {
         $connection = new Connection();
         $innerHtml = "";
