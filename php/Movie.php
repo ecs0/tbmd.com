@@ -130,22 +130,22 @@ class Movie extends stdClass {
         $title = "<h2>$this->title</h2>";
         $img = "<img class='movie_image' src=$imgSrc alt='".$this->title."'";
         $release = "<p><strong>Released: </strong>$this->releaseDate</p>";
-        $director = "<p><strong>Directed By: </strong>$this->director</p>";
+        $director = "<p><strong>Directed By: </strong>$this->director</p>"; //TODO convert to link
         
         $actorList = array();
         $i = 0;
         foreach ($this->actors as $actor) {
             $id = $actor->getId();
             $link = "'person.php?id=$id"."'";
-            $a = "<a href=$link>$actor</a>";
+            $a = "<li><a href=$link target='_blank'>$actor</a></li>";
             $actorList[$i++] = $a;
         }
         
-        $actors = "<p><strong>Starring: </strong>".  implode(" | ", $actorList)."</p>";
+        $actors = "<p><strong>Starring: </strong><ul>".implode("", $actorList)."</ul></p>";
         $synopsis = "<p><strong>Synopsis: </strong>$this->synopsis</p>";
+        $id = "'".$this->id."'";
         
-        
-        return "<div id=$this->id class='movie_block'>".$title.$img.$release.$director.$actors.$synopsis."</div>";
+        return "<div id=$id class='movie_block'>$title$img$release$director$actors$synopsis</div>";
     }
     
     public function __toString() {

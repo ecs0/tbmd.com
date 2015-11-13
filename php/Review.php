@@ -78,6 +78,19 @@ class Review extends stdClass {
         return $this->reviewContent;
     }
 
+    public function asBlockView() {
+
+        $title = $this->getMovie()->getTitle();
+        $header = "<h3>$title</h3>"; //TODO convert to link
+        $submission = "<p><strong>Submitted By: </strong>$this->user</p>"; //TODO convert to link to user page
+        $date = "<p><strong>Submitted On: </strong>$this->submitDate</p>";
+        $rating = "<p><strong>Rating: </strong>$this->rating/5 Stars</p>";
+        $review = "<p><strong>Review: </strong>$this->reviewContent</p>";
+        $id = "'".$this->id."'";
+        
+        return "<div id=$id class='review_block'>$header$submission$date$rating$review</div>";
+    }
+    
     public function asTableRow() {
         $username = $this->getUser()->getUserName();
         $movieTitle = $this->getMovie()->getTitle();

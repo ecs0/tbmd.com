@@ -26,6 +26,18 @@ class View {
         return "<div>$body</div>";
     }
     
+    public function recentReviewsAsBlock() {
+        $connection = new Connection();
+        $innerHtml = "";
+        foreach ($connection->getReviewsByDate() as $review) {
+            if ($review instanceof Review) {
+                $innerHtml .= $review->asBlockView();
+            }
+        }
+        
+        return $innerHtml;
+    }
+    
     public function ratedMoviesAsTable() {
         $innerHtml = "<thead><tr>".
             "<th>id</th><th>director</th><th>title</th><th>release date</th><th>synopsis</th>".

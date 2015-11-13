@@ -3,7 +3,7 @@ html {
 }
 
 .movie_image {
-    max-height: 200px;
+    max-height: 400px;
     max-width: 200px;
     display: block;
 }
@@ -11,6 +11,11 @@ html {
 .movie_block {
     border: 1px solid black;
     margin-top: -1px; 
+}
+
+.review_block {
+    border: 1px solid black;
+    margin-top: -1px;
 }
 
 table, th, td {

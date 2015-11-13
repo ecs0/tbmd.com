@@ -211,7 +211,10 @@
         <h2>Top Rated Movies</h2>
         <?php echo $view->highestRatedMoviesAsBlock() ;?>
     </section>
-    <section id="recent_reviews"></section>
+    <section id="recent_reviews">
+        <h2>Recent Reviews</h2>
+        <?php echo $view->recentReviewsAsBlock(); ?>
+    </section>
     <section id="upcoming_movies"></section>
     <footer>
         tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
