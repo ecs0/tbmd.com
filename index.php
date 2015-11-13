@@ -215,7 +215,10 @@
         <h2>Recent Reviews</h2>
         <?php echo $view->recentReviewsAsBlock(); ?>
     </section>
-    <section id="upcoming_movies"></section>
+    <section id="upcoming_movies">
+        <h2>Upcoming Movies</h2>
+        <?php echo $view->upcomingMoviesAsBlock(); ?>
+    </section>
     <footer>
         tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
         <!-- Remove below once testing is complete -->

@@ -131,7 +131,7 @@ class Movie extends stdClass {
         
         $title = "<h2>$a</h2>";
         $img = "<img class='movie_image' src=$imgSrc alt='".$this->title."'";
-        $release = "<p><strong>Released: </strong>$this->releaseDate</p>";
+        $release = "<p><strong>Release Date: </strong>$this->releaseDate</p>";
         $director = "<p><strong>Directed By: </strong>$this->director</p>"; //TODO convert to link
         
         $actorList = array();

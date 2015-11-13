@@ -14,6 +14,17 @@ include_once("Connection.php");
  */
 class View {
 
+    public function upcomingMoviesAsBlock() {
+        $connection = new Connection();
+        $innerHtml = "";
+        foreach ($connection->getUpcomingMovies() as $movie) {
+            if ($movie instanceof Movie) {
+                $innerHtml .= $movie->asBlockView();
+            }
+        }
+        return "<div>$innerHtml</div>";
+    }
+    
     public function highestRatedMoviesAsBlock() {
         $connection = new Connection();
         $body = "";
@@ -35,7 +46,7 @@ class View {
             }
         }
         
-        return $innerHtml;
+        return "<div>$innerHtml</div>";
     }
     
     public function ratedMoviesAsTable() {
