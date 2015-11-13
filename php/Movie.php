@@ -132,7 +132,11 @@ class Movie extends stdClass {
         $title = "<h2>$a</h2>";
         $img = "<img class='movie_image' src=$imgSrc alt='".$this->title."'";
         $release = "<p><strong>Release Date: </strong>$this->releaseDate</p>";
-        $director = "<p><strong>Directed By: </strong>$this->director</p>"; //TODO convert to link
+        
+        $directorId = $this->director->getId();
+        $directorLink = "'person.php?id=$directorId"."'";
+        $directerAnchor = "<a href=$directorLink target='_blank'>$this->director</a>";
+        $director = "<p><strong>Directed By: </strong>$directerAnchor</p>";
         
         $actorList = array();
         $i = 0;
