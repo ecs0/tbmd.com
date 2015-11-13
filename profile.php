@@ -2,20 +2,19 @@
 
 <?php
 include_once('php/Connection.php');
-include_once('php/Person.php');
+include_once('php/User.php');
 
 $connection = new Connection();
 if (isset($_GET['id'])) {
-    $person = $connection->getPeople([filter_input(INPUT_GET, 'id')])[0];
-    if ($person instanceof Person) {
-        $title = $person->getFirstName()." ".$person->getLastName();
+    $user = $connection->getUsers([filter_input(INPUT_GET, 'id')])[0];
+    if ($user instanceof User) {
+        $title = $user->getUsername();
     }
 } else {
     header("Location: index.php");
     exit();
 }
 ?>
-
 
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -28,6 +27,5 @@ and open the template in the editor.
         <title><?php echo "$title on tbmd.com"; ?></title>
     </head>
     <body>
-        
     </body>
 </html>

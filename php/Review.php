@@ -80,9 +80,16 @@ class Review extends stdClass {
 
     public function asBlockView() {
 
-        $title = $this->getMovie()->getTitle();
-        $header = "<h3>$title</h3>"; //TODO convert to link
-        $submission = "<p><strong>Submitted By: </strong>$this->user</p>"; //TODO convert to link to user page
+        $movie = $this->getMovie();
+        $title = $movie->getTitle();
+        $movieId = $movie->getId();
+        $link = "movie.php?id=$movieId";
+        $a = "<a href='".$link."' target='_blank'>$title</a>";
+        $header = "<h3>$a</h3>"; 
+        
+        $userLink = "profile.php?id=".$this->getUser()->getId();
+        $userA = "<a href='".$userLink."' target='_blank'>$this->user</a>";
+        $submission = "<p><strong>Submitted By: </strong>$userA</p>"; 
         $date = "<p><strong>Submitted On: </strong>$this->submitDate</p>";
         $rating = "<p><strong>Rating: </strong>$this->rating/5 Stars</p>";
         $review = "<p><strong>Review: </strong>$this->reviewContent</p>";

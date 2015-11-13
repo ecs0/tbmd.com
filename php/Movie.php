@@ -126,8 +126,10 @@ class Movie extends stdClass {
             $imgSrc = "'images/uploads/$this->imageLink"."'";
         }
         
+        $link = "movie.php?id=$this->id";
+        $a = "<a href='".$link."' target='_blank'>$this->title</a>";
         
-        $title = "<h2>$this->title</h2>";
+        $title = "<h2>$a</h2>";
         $img = "<img class='movie_image' src=$imgSrc alt='".$this->title."'";
         $release = "<p><strong>Released: </strong>$this->releaseDate</p>";
         $director = "<p><strong>Directed By: </strong>$this->director</p>"; //TODO convert to link
@@ -144,6 +146,8 @@ class Movie extends stdClass {
         $actors = "<p><strong>Starring: </strong><ul>".implode("", $actorList)."</ul></p>";
         $synopsis = "<p><strong>Synopsis: </strong>$this->synopsis</p>";
         $id = "'".$this->id."'";
+        
+        //TODO add a 'review this movie' link
         
         return "<div id=$id class='movie_block'>$title$img$release$director$actors$synopsis</div>";
     }
