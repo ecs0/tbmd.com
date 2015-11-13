@@ -47,23 +47,28 @@ class View {
      */
     public function displaySearchResults($key) {
         $innerhtml = "<h2>Search Results for $key</h2>";
-        $innerhtml .= "<ul>";
-        
-        foreach ($this->queryMap["$key"] as $result) {
-            if (method_exists($result, "getId")) {
-                $id = $result->getId();
+
+        $matches = $this->queryMap["$key"];
+        if (count($matches) != 0) {
+            $innerhtml .= "<ul>";
+            foreach ($matches as $result) {
+                if (method_exists($result, "getId")) {
+                    $id = $result->getId();
+                }
+                if ($result instanceof Movie) {
+                    $redirect = "../movie.php";
+                } else if ($result instanceof Person) {
+                    $redirect = "../person.php";
+                }
+                $link = "$redirect?id=$id";
+                $a = "<li><a href='".$link."' target='_blank'>$result</a></li>";
+                $innerhtml .= $a;
             }
-            if ($result instanceof Movie) {
-                $redirect = "../movie.php";
-            } else if ($result instanceof Person) {
-                $redirect = "../person.php";
-            }
-            $link = "$redirect?id=$id";
-            $a = "<li><a href='".$link."' target='_blank'>$result</a></li>";
-            $innerhtml .= $a;
+            $innerhtml .= "</ul>";
+        } else {
+            $innerhtml .= "<p>No Results</p>";
         }
-        
-        $innerhtml .= "</ul>";
+        $innerhtml .= "<p><a href='index.php'>Go Back</p>";
         return $innerhtml;
     }
     
