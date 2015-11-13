@@ -25,8 +25,18 @@ class View {
         $connection = new Connection();
         $movies = $connection->searchMovies($query);
         $people = $connection->searchPeople($query);
-        $this->queryMap["$query"] = array_merge($movies, $people);
-        //TODO handle the situation where there is an exact match
+        $results = array_merge($movies, $people);
+        $this->queryMap["$query"] = $results;
+        
+        if (count($results) == 1) {
+            $result = $results[0];
+            if ($result instanceof Movie) {
+                header("Location: ../movie.php?id=".$result->getId());
+            } else if ($result instanceof Person) {
+                header("Location: ../person.php?id=".$result->getId());
+            }
+            exit();
+        }
     }
     
     /**

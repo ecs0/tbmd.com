@@ -3,18 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var KEY_DOWN = 40;
+var KEY_ENTER = 13;
+
 window.addEventListener("load", function() {
     document.getElementById('btnSearch').addEventListener('click', search, false);
     document.getElementById('query').addEventListener('keyup', hint, false);
 }, false);
 
 function search() {
-    //TODO implement
+    var query = document.getElementById('query').value;
+    if (query.length === 0) {
+        return;
+    }
+    
+    window.location.href = "results.php?query=" + query;
 }
 
-function hint() {
+function hint(e) {
     var str = document.getElementById('query').value;
-    if (str.length === 0) {
+    if (str.length === 0 || e.keyCode === KEY_DOWN) {
+        return;
+    }
+    
+    if (e.keyCode === KEY_ENTER) {
+        search();
         return;
     }
     

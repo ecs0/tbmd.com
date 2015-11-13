@@ -46,8 +46,7 @@ class Connection {
     }
     
     public function searchPeople($query) {
-        $where = "WHERE fname LIKE '%".$query."%'";
-        $where .= " OR lname LIKE '%".$query."%'";
+        $where = "WHERE CONCAT_WS(' ', fname, lname) LIKE '%".$query."%'";
         return $this->getPeople($where);
     }
     
