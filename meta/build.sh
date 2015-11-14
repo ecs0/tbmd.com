@@ -1,3 +1,5 @@
 #!/bin/bash
 
-echo "Hello World!"
+echo "Building Database"
+mysql -u "root" -p < ../database/schema.sql
+
