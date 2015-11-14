@@ -180,7 +180,7 @@
     <header>
         <div class="logo">tbmd.com</div>
         <h1>Welcome to tbmd.com!</h1>
-        <section id="login">
+        <section class="login">
             <div id="login">
                 <form method="post" action="#">
                     <!--TODO build the login handler, and post this form to it-->

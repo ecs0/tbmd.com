@@ -24,6 +24,14 @@ div.logo {
     font-size: 1.5em;
     text-decoration: none;
     color: black;
+    box-shadow: 5px 5px 20px black;
+}
+
+.login {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    text-align: right;
 }
 
 header {
