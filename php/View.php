@@ -68,7 +68,6 @@ class View {
         } else {
             $innerhtml .= "<p>No Results</p>";
         }
-        $innerhtml .= "<p><a href='index.php'>Go Back</p>";
         return $innerhtml;
     }
     

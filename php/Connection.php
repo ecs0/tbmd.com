@@ -339,7 +339,7 @@ class Connection {
      * @return array
      */
     public function getUserReviews($userId) {
-        return $this->getReviews("WHERE user_id = $userId");
+        return $this->getReviews("WHERE user_id = $userId ORDER BY submit_date DESC");
     }
 
     /**
@@ -540,6 +540,37 @@ class Connection {
         
         $this->disconnect();
         return $rating;
+    }
+    
+    public function getFavouriteMovie($userId) {
+        $this->connect();
+        $sql = "SELECT ".
+                "movie.id, ".
+                "movie.director_id, ".
+                "movie.title, ".
+                "movie.release_date, ".
+                "movie.synopsis, ".
+                "movie.submit_date, ".
+                "movie.image_link, ".
+                "MAX(reviews.rating) rating ".
+                "FROM movie INNER JOIN reviews ON movie.id = reviews.movie_id ".
+                "INNER JOIN users ON reviews.user_id = users.id ".
+                "ORDER BY reviews.submit_date DESC";
+        $result = mysqli_query($this->link, $sql);
+        if ($result) {
+            $row = mysqli_fetch_array($result);
+            $fav = new Movie($row['id'], 
+                    $row['director_id'], 
+                    $row['title'], 
+                    $row['release_date'], 
+                    $row['synopsis'], 
+                    $row['submit_date'], 
+                    $row['image_link']);
+            mysqli_free_result($result);
+        }
+        
+        $this->disconnect();
+        return $fav;
     }
     
     /**

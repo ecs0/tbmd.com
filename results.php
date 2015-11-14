@@ -17,8 +17,16 @@ and open the template in the editor.
         <title>Search Results</title>
     </head>
     <body>
+        <p>
         <?php
             echo $view->displaySearchResults(filter_input(INPUT_GET, 'query'));
         ?>
+        </p>
+        <p>
+            <a href="index.php">Back to Front</a>
+        </p>
+        <footer>
+            tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
+        </footer>
     </body>
 </html>
