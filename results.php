@@ -18,6 +18,21 @@ and open the template in the editor.
         <link rel="stylesheet" href="style/main.css">
     </head>
     <body>
+        <header>
+            <a href="index.php"><div class="logo">tbmd.com</div></a>
+            <h1>Search Results</h1>
+            <section id="search">
+                <div class="search_bar">
+                    <p>
+                        <label>Search the Site:
+                            <input type="text" name="query" id="query" list="search_results">
+                            <datalist id="search_results"></datalist>
+                            <input type="button" id="btnSearch" value="Search!">
+                        </label>
+                    </p>
+                </div>
+            </section>
+        </header>
         <section class="content">
             <p>
             <?php

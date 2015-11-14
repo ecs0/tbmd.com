@@ -178,6 +178,7 @@
 
     <!-- Visible Page Content -->
     <header>
+        <div class="logo">tbmd.com</div>
         <h1>Welcome to tbmd.com!</h1>
         <section id="login">
             <div id="login">

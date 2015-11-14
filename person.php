@@ -20,6 +20,7 @@ if (isset($_GET['id'])) {
     </head>
     <body>
         <header>
+            <a href="index.php"><div class="logo">tbmd.com</div></a>
             <h1>
                 <?php echo $person->getName();?>
             </h1>
