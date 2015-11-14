@@ -181,7 +181,7 @@
         <div class="logo">tbmd.com</div>
         <h1>Welcome to tbmd.com!</h1>
         <section class="login">
-            <div id="login">
+            <div>
                 <form method="post" action="#">
                     <!--TODO build the login handler, and post this form to it-->
                     <p>
@@ -201,10 +201,10 @@
                 </form>
             </div>
         </section>
-        <section id="search">
-            <div class="search_bar">
+        <section class="search">
+            <div>
                 <p>
-                    <label>Search the Site:
+                    <label>Search tbmd.com:
                         <input type="text" name="query" id="query" list="search_results">
                         <datalist id="search_results"></datalist>
                         <input type="button" id="btnSearch" value="Search!">

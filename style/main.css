@@ -27,11 +27,16 @@ div.logo {
     box-shadow: 5px 5px 20px black;
 }
 
-.login {
+section.login {
     position: absolute;
     right: 10px;
     top: 10px;
     text-align: right;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: burlywood;
+    box-shadow: 5px 5px 20px black;
+    border-radius: 10px;
 }
 
 header {
@@ -40,8 +45,17 @@ header {
 }
 
 header h1 {
+    width: 60%;
+    height: 100px;
+    line-height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
     font-family: 'Oswald', sans-serif;
     font-size: 3em;
+    background-color: lightblue;
+    box-shadow: 5px 5px 10px black;
+    border-radius: 10px;
 }
 
 footer {
@@ -59,6 +73,20 @@ section.content {
     border-radius: 10px;
 }
 
+section.search {
+    width: 40%;
+    margin: auto;
+    border: 1px solid black;
+    background-color: wheat;
+    box-shadow: 5px 5px 10px black;
+    font-size: 2em;
+    border-radius: 10px;
+}
+
+section.search input, datalist, option {
+    font-size: .75em;
+}
+
 .movie_image {
     max-height: 400px;
     max-width: 200px;
@@ -73,10 +101,6 @@ section.content {
 .review_block {
     border: 1px solid black;
     margin-top: -1px;
-}
-
-.search_bar {
-    border: 1px solid black;
 }
 
 table, th, td {

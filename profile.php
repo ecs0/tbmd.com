@@ -24,16 +24,23 @@ if (isset($_GET['id'])) {
             <h1>
                 <?php echo $user->getUsername();?>
             </h1>
-            <section id="search">
-                <div class="search_bar">
+            <section class="search">
+                <div>
                     <p>
-                        <label>Search the Site:
+                        <label>Search tbmd.com:
                             <input type="text" name="query" id="query" list="search_results">
                             <datalist id="search_results"></datalist>
                             <input type="button" id="btnSearch" value="Search!">
                         </label>
                     </p>
                 </div>
+            </section>
+            <section id="add_items">
+                <p>
+                    <input type="button" id="btnAddPerson" value="Add an Actor or Director!">
+                    <input type="button" id="btnAddMovie" value="Add a Movie!">
+                    <input type="button" id="btnAddReview" value="Review your Favourite Movie!">
+                </p>
             </section>
         </header>
         <section class="content">
