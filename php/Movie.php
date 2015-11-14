@@ -1,6 +1,7 @@
 <?php
 
 include_once("Person.php");
+include_once("Connection.php");
 
 /**
  * Created by PhpStorm.
@@ -118,7 +119,7 @@ class Movie extends stdClass {
         return $row."</tr>";
     }
 
-    public function asBlockView() {
+    public function asBlockView($hideTitle = false) {
 
         if (!$this->imageLink) {
             $imgSrc = "'images/movie_placeholder.jpg'";
@@ -126,11 +127,22 @@ class Movie extends stdClass {
             $imgSrc = "'images/uploads/$this->imageLink"."'";
         }
         
-        $link = "movie.php?id=$this->id";
-        $a = "<a href='".$link."' target='_blank'>$this->title</a>";
-        
-        $title = "<h2>$a</h2>";
-        $img = "<img class='movie_image' src=$imgSrc alt='".$this->title."'";
+        if (!$hideTitle) {
+            $link = "movie.php?id=$this->id";
+            $a = "<a href='" . $link . "' target='_blank'>$this->title</a>";
+            $title = "<h2>$a</h2>";
+        } else {
+            $title = "";
+        }
+        $img = "<img class='movie_image' src=$imgSrc alt='".$this->title."'>";
+        $connection = new Connection();
+        $rating = $connection->getAverageRating($this->getId());
+        if ($rating === null) {
+            $rating = "NR";
+        } else {
+            $rating = number_format($rating, 2);
+        }
+        $ratingBlock = "<div class='movie_rating'>$rating</div>";
         $release = "<p><strong>Release Date: </strong>$this->releaseDate</p>";
         
         $directorId = $this->director->getId();
@@ -153,7 +165,7 @@ class Movie extends stdClass {
         
         //TODO add a 'review this movie' link
         
-        return "<div id=$id class='movie_block'>$title$img$release$director$actors$synopsis</div>";
+        return "<div id=$id class='movie_block'>$title$img$ratingBlock$release$director$actors$synopsis</div>";
     }
     
     public function __toString() {

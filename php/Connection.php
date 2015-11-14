@@ -432,7 +432,7 @@ class Connection {
     public function getReviewsByDate($movieId = null) {
         $this->connect();
         $filter = "ORDER BY submit_date DESC ";
-        $where = $movieId ? "WHERE movie_id = $movieId" : "";
+        $where = $movieId ? "WHERE movie_id = $movieId " : "";
         return $this->getReviews($where.$filter);
     }
 
@@ -524,6 +524,22 @@ class Connection {
         
         $this->disconnect();
         return $movies;
+    }
+    
+    public function getAverageRating($movieId) {
+        $this->connect();
+        $sql = "SELECT AVG(reviews.rating) average FROM movie ".
+                "INNER JOIN reviews ON movie.id = reviews.movie_id ".
+                "WHERE movie.id = $movieId";
+        $result = mysqli_query($this->link, $sql);
+        if ($result) {
+            $row = mysqli_fetch_array($result);
+            $rating = $row['average'];
+            mysqli_free_result($result);
+        }
+        
+        $this->disconnect();
+        return $rating;
     }
     
     /**

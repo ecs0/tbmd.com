@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-include_once('php/Connection.php');
 include_once('php/PersonView.php');
 
-$connection = new Connection();
 if (isset($_GET['id'])) {
     $person = new PersonView(filter_input(INPUT_GET, 'id'));
 } else {
