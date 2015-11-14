@@ -39,7 +39,14 @@ class UserView {
     }
     
     public function getAverageRating() {
+        $connection = new Connection();
+        $average = $connection->getAverageUserRating($this->user->getId());
         
+        if ($average) {
+            return number_format($average, 2);
+        } else {
+            return "This user has not rated any movies yet.";
+        }
     }
     
     public function getFavouriteMovie() {
@@ -51,7 +58,7 @@ class UserView {
             $title = $fav->getTitle();
             $a = "<a href=$link target='_blank'>$title</a>";
         } else {
-            $a = "This use has not rated any movies yet.";
+            $a = "This user has not rated any movies yet.";
         }
         return $a;
     }

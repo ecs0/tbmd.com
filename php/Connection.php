@@ -542,6 +542,20 @@ class Connection {
         return $rating;
     }
     
+    public function getAverageUserRating($userId) {
+        $this->connect();
+        $sql = "SELECT AVG(rating) average FROM reviews WHERE user_id = $userId";
+        $result = mysqli_query($this->link, $sql);
+        if ($result) {
+            $row = mysqli_fetch_array($result);
+            $average = $row['average'];
+            mysqli_free_result($result);
+        }
+        
+        $this->disconnect();
+        return $average;
+    }
+    
     public function getFavouriteMovie($userId) {
         $this->connect();
         $sql = "SELECT ".

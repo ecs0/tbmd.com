@@ -42,6 +42,9 @@ if (isset($_GET['id'])) {
             <p>
                 <?php echo "Favourite Movie: ".$user->getFavouriteMovie(); ?>
             </p>
+            <p>
+                <?php echo "Average Movie Rating: ".$user->getAverageRating(); ?>
+            </p>
         </section>
         <section>
             <h3><?php echo "Reviews made by ".$user->getUsername().":"; ?></h3>
