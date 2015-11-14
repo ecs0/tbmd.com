@@ -200,36 +200,38 @@
                 </form>
             </div>
         </section>
-    </header>
-    <section id="search">
-        <div class="search_bar">
+        <section id="search">
+            <div class="search_bar">
+                <p>
+                    <label>Search the Site:
+                        <input type="text" name="query" id="query" list="search_results">
+                        <datalist id="search_results"></datalist>
+                        <input type="button" id="btnSearch" value="Search!">
+                    </label>
+                </p>
+            </div>
+        </section>
+        <section id="add_items">
             <p>
-                <label>Search the Site:
-                    <input type="text" name="query" id="query" list="search_results">
-                    <datalist id="search_results"></datalist>
-                    <input type="button" id="btnSearch" value="Search!">
-                </label>
+                <input type="button" id="btnAddPerson" value="Add an Actor or Director!">
+                <input type="button" id="btnAddMovie" value="Add a Movie!">
+                <input type="button" id="btnAddReview" value="Review your Favourite Movie!">
             </p>
-        </div>
-    </section>
-    <section id="add_items">
-        <p>
-            <input type="button" id="btnAddPerson" value="Add an Actor or Director!">
-            <input type="button" id="btnAddMovie" value="Add a Movie!">
-            <input type="button" id="btnAddReview" value="Review your Favourite Movie!">
-        </p>
-    </section>
-    <section id="top_rated_movies">
-        <h2>Top Rated Movies</h2>
-        <?php echo $view->highestRatedMoviesAsBlock() ;?>
-    </section>
-    <section id="recent_reviews">
-        <h2>Recent Reviews</h2>
-        <?php echo $view->recentReviewsAsBlock(); ?>
-    </section>
-    <section id="upcoming_movies">
-        <h2>Upcoming Movies</h2>
-        <?php echo $view->upcomingMoviesAsBlock(); ?>
+        </section>
+    </header>
+    <section class="content">
+        <section id="top_rated_movies">
+            <h2>Top Rated Movies</h2>
+            <?php echo $view->highestRatedMoviesAsBlock() ;?>
+        </section>
+        <section id="recent_reviews">
+            <h2>Recent Reviews</h2>
+            <?php echo $view->recentReviewsAsBlock(); ?>
+        </section>
+        <section id="upcoming_movies">
+            <h2>Upcoming Movies</h2>
+            <?php echo $view->upcomingMoviesAsBlock(); ?>
+        </section>
     </section>
     <footer>
         tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015

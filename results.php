@@ -15,16 +15,19 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Search Results</title>
+        <link rel="stylesheet" href="style/main.css">
     </head>
     <body>
-        <p>
-        <?php
-            echo $view->displaySearchResults(filter_input(INPUT_GET, 'query'));
-        ?>
-        </p>
-        <p>
-            <a href="index.php">Back to Front</a>
-        </p>
+        <section class="content">
+            <p>
+            <?php
+                echo $view->displaySearchResults(filter_input(INPUT_GET, 'query'));
+            ?>
+            </p>
+            <p>
+                <a href="index.php">Back to Front</a>
+            </p>
+        </section>
         <footer>
             tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
         </footer>

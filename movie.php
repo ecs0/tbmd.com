@@ -21,32 +21,32 @@ if (isset($_GET['id'])) {
     <body>
         <header>
             <h1><?php echo $movie->getTitle(); ?></h1>
+            <section id="search">
+                <div class="search_bar">
+                    <p>
+                        <label>Search the Site:
+                            <input type="text" name="query" id="query" list="search_results">
+                            <datalist id="search_results"></datalist>
+                            <input type="button" id="btnSearch" value="Search!">
+                        </label>
+                    </p>
+                </div>
+            </section>
         </header>
-        <section id="search">
-            <div class="search_bar">
-                <p>
-                    <label>Search the Site:
-                        <input type="text" name="query" id="query" list="search_results">
-                        <datalist id="search_results"></datalist>
-                        <input type="button" id="btnSearch" value="Search!">
-                    </label>
-                </p>
-            </div>
-        </section>
-        <section id="movie_body">
+        <section class="content">
             <div>
                 <?php echo $movie->getBlockView(); ?>
             </div>
+            <section id="reviews">
+                <div>
+                    <h3><?php echo "Reviews of ".$movie->getTitle().":"; ?></h3>
+                    <?php echo $movie->getReviews(); ?>
+                </div>
+            </section>
+            <p>
+                <a href="index.php">Back to Front</a>
+            </p>
         </section>
-        <section id="reviews">
-            <div>
-                <h3><?php echo "Reviews of ".$movie->getTitle().":"; ?></h3>
-                <?php echo $movie->getReviews(); ?>
-            </div>
-        </section>
-        <p>
-            <a href="index.php">Back to Front</a>
-        </p>
         <footer>
             tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
         </footer>

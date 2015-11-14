@@ -2,6 +2,25 @@ html {
     font-family: Arial, sans-serif;
 }
 
+body {
+    background-color: gray;
+}
+
+footer {
+    position: fixed;
+    right: 10px;
+    bottom: 0;
+}
+
+section.content {
+    width: 50%;
+    margin: auto;
+    background-color: wheat;
+    padding: 10px;
+    box-shadow: 5px 5px 10px black;
+    border-radius: 10px;
+}
+
 .movie_image {
     max-height: 400px;
     max-width: 200px;

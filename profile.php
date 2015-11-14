@@ -23,19 +23,19 @@ if (isset($_GET['id'])) {
             <h1>
                 <?php echo $user->getUsername();?>
             </h1>
+            <section id="search">
+                <div class="search_bar">
+                    <p>
+                        <label>Search the Site:
+                            <input type="text" name="query" id="query" list="search_results">
+                            <datalist id="search_results"></datalist>
+                            <input type="button" id="btnSearch" value="Search!">
+                        </label>
+                    </p>
+                </div>
+            </section>
         </header>
-        <section id="search">
-            <div class="search_bar">
-                <p>
-                    <label>Search the Site:
-                        <input type="text" name="query" id="query" list="search_results">
-                        <datalist id="search_results"></datalist>
-                        <input type="button" id="btnSearch" value="Search!">
-                    </label>
-                </p>
-            </div>
-        </section>
-        <section>
+        <section class="content">
             <p>
                 <?php echo "Email: ".$user->getEmail(); ?>
             </p>
@@ -45,14 +45,14 @@ if (isset($_GET['id'])) {
             <p>
                 <?php echo "Average Movie Rating: ".$user->getAverageRating(); ?>
             </p>
+            <section>
+                <h3><?php echo "Reviews made by ".$user->getUsername().":"; ?></h3>
+                <?php echo $user->getUserReviews(); ?>
+            </section>
+            <p>
+                <a href="index.php">Back to Front</a>
+            </p>
         </section>
-        <section>
-            <h3><?php echo "Reviews made by ".$user->getUsername().":"; ?></h3>
-            <?php echo $user->getUserReviews(); ?>
-        </section>
-        <p>
-            <a href="index.php">Back to Front</a>
-        </p>
         <footer>
             tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
         </footer>
