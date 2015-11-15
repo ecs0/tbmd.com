@@ -1,0 +1,53 @@
+/* 
+    Created on : Nov 15, 2015, 10:12:30 AM
+    Author     : bryan
+*/
+
+.movie_block {
+    position: relative;
+    border: 1px solid black;
+    margin-top: -1px;
+}
+
+.movie_rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 2px solid black;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Oswald', sans-serif;
+    background-color: seashell;
+}
+
+.movie_image {
+    max-height: 400px;
+    max-width: 200px;
+    display: block;
+    float: left;
+    border: 2px solid black;
+    margin: 10px 10px 10px 10px;
+}
+
+.movie_synopsis {
+    clear: left;
+    margin: 10px 10px 10px 10px;
+}
+
+.movie_people li {
+    display: inline;
+    list-style-type: none;
+    border-right: 1px solid gray;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.movie_people li:first-child {
+    padding-left: 0px;
+}
+
+.movie_people li:last-child {
+    border-right: none;
+}

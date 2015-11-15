@@ -16,6 +16,7 @@ if (isset($_GET['id'])) {
         <meta charset="UTF-8">
         <title><?php echo $movie->getTitle()." on tbmd.com"; ?></title>
         <link rel="stylesheet" href="style/main.css">
+        <link rel="stylesheet" href="style/movie.css">
         <script src="script/search.js"></script>
     </head>
     <body>

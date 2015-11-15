@@ -140,9 +140,8 @@ class Movie extends stdClass {
         if ($rating === null) {
             $rating = "NR";
         } else {
-            $rating = number_format($rating, 2);
+            $rating = number_format($rating, 1);
         }
-        $ratingBlock = "<div class='movie_rating'>$rating</div>";
         $release = "<p><strong>Release Date: </strong>$this->releaseDate</p>";
         
         $directorId = $this->director->getId();
@@ -165,7 +164,14 @@ class Movie extends stdClass {
         
         //TODO add a 'review this movie' link
         
-        return "<div id=$id class='movie_block'>$title$img$ratingBlock$release$director$actors$synopsis</div>";
+        return "<div id=$id class='movie_block'>"
+                . "$img
+                $title
+                <div class='movie_rating'>$rating</div>
+                <div class='movie_release'>$release</div>
+                <div class='movie_people'>$director$actors</div>
+                <div class='movie_synopsis'>$synopsis</div>"
+                . "</div>";
     }
     
     public function __toString() {

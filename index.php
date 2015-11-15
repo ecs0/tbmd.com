@@ -11,6 +11,7 @@
     <title>Welcome to tbmd.com</title>
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/overlay.css">
+    <link rel="stylesheet" href="style/movie.css">
     <script src="script/signup.js"></script>
     <script src="script/overlay.js"></script>
     <script src="script/search.js"></script>
@@ -222,15 +223,15 @@
     </header>
     <section class="content">
         <section id="top_rated_movies">
-            <h2>Top Rated Movies</h2>
+            <h2 class="aggregate">Top Rated Movies</h2>
             <?php echo $view->highestRatedMoviesAsBlock() ;?>
         </section>
         <section id="recent_reviews">
-            <h2>Recent Reviews</h2>
+            <h2 class="aggregate">Recent Reviews</h2>
             <?php echo $view->recentReviewsAsBlock(); ?>
         </section>
         <section id="upcoming_movies">
-            <h2>Upcoming Movies</h2>
+            <h2 class="aggregate">Upcoming Movies</h2>
             <?php echo $view->upcomingMoviesAsBlock(); ?>
         </section>
     </section>
