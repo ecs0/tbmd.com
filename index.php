@@ -185,7 +185,9 @@
         <h1>Welcome to tbmd.com!</h1>
         <section class="login">
             <div>
-                <?php echo $login->getLoginForm(); ?>
+                <form method='post' action='php/login_handler.php'>
+                    <?php echo $login->getLoginForm(); ?>
+                </form>
             </div>
         </section>
         <section class="search">
