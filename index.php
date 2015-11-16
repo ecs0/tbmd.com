@@ -2,7 +2,9 @@
 
 <?php
     include_once("php/View.php");
+    include_once('php/LoginManager.php');
     $view = new View();
+    $login = new LoginManager();
 ?>
 
 <html>
@@ -183,23 +185,7 @@
         <h1>Welcome to tbmd.com!</h1>
         <section class="login">
             <div>
-                <form method="post" action="#">
-                    <!--TODO build the login handler, and post this form to it-->
-                    <p>
-                        <label>Email:
-                            <input type="email" name="email" required>
-                        </label>
-                    </p>
-                    <p>
-                        <label>Password:
-                            <input type="password" name="password" required>
-                        </label>
-                    </p>
-                    <p>
-                        <input type="submit" name="submit" value="Login">
-                        <input type="button" id="btnAddUser" value="Sign Up">
-                    </p>
-                </form>
+                <?php echo $login->getLoginForm(); ?>
             </div>
         </section>
         <section class="search">

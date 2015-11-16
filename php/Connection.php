@@ -64,7 +64,7 @@ class Connection {
             $this->connect();
 
             $sql = "INSERT INTO users (email, username, password, join_date) ".
-                    "VALUES ('$email', '$username', PASSWORD('.$password.'), CURDATE())";
+                    "VALUES ('$email', '$username', PASSWORD('$password'), CURDATE())";
 
             mysqli_query($this->link, $sql);
             $id = mysqli_insert_id($this->link);
@@ -74,6 +74,32 @@ class Connection {
         return -1;
     }
 
+    /**
+     * Checks an email/password combo against the database
+     * 
+     * @param type $email
+     * @param type $password
+     * @return boolean/int, false if the user doesnt exist, their id if they do
+     */
+    public function checkLogin($email, $password) {
+        $this->connect();
+        $sql = "SELECT id FROM users WHERE "
+                . "email = '".$email."' "
+                . "AND password = PASSWORD('".$password."')";
+        $result = mysqli_query($this->link, $sql);
+        
+        if ($result) {
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $id = $row['id'];
+            mysqli_free_result($result);
+            $this->disconnect();
+            return $id;
+        } else {
+            $this->disconnect();
+            return FALSE;
+        }
+    }
+    
     /**
      * Checks to see if a user already exists in the database, returning true if they do
      *
