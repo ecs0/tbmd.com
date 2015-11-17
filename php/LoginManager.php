@@ -31,7 +31,7 @@ class LoginManager {
      * @return type
      */
     public function getLoginForm() {
-        if (isset($_SESSION['auth'])) {
+        if ($this->isLoggedIn()) {
             $id = $_SESSION['auth'];
             $user = $this->link->getUsers([$id])[0];
             $username = $user->getUsername();
