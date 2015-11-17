@@ -3,10 +3,11 @@
 <?php
 include_once("php/UserView.php");
 include_once("php/LoginManager.php");
-$login = new LoginManager("profile.php");
 
 if (isset($_GET['id'])) {
-    $user = new UserView(filter_input(INPUT_GET, 'id'));
+    $id = filter_input(INPUT_GET, 'id');
+    $user = new UserView($id);
+    $login = new LoginManager("profile.php?id=$id");
 } else {
     header("Location: index.php");
     exit();

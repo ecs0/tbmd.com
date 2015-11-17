@@ -3,10 +3,11 @@
 <?php
 include_once('php/MovieView.php');
 include_once('php/LoginManager.php');
-$login = new LoginManager("movie.php");
 
 if (isset($_GET['id'])) {
-    $movie = new MovieView(filter_input(INPUT_GET, 'id'));
+    $id = filter_input(INPUT_GET, 'id');
+    $movie = new MovieView($id);
+    $login = new LoginManager("movie.php?id=$id");
 } else {
     header("Location: index.php");
     exit();

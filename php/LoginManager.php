@@ -27,26 +27,18 @@ class LoginManager {
             $link = "'profile.php?id=".$id."'";
             $a = "<a href=$link>$username</a>";
             
-            return "<p>
-                        Logged in as $a
-                    <p>
-                        <input type='submit' name='submit' value='Logout'>
-                    </p>";
+            $loggedInAs = $this->tag("p", "Logged in as $a");
+            $sourceInput = $this->input("hidden", "source", $this->location);
+            $submit = $this->input("submit", "submit", "Logout");
+            return $loggedInAs.$this->tag("p", $sourceInput.$submit);
         } else {
-            return "<p>
-                        <label>Email:
-                            <input type='email' name='email' required>
-                        </label>
-                    </p>
-                    <p>
-                        <label>Password:
-                            <input type='password' name='password' required>
-                        </label>
-                    </p>
-                    <p>
-                        <input type='submit' name='submit' value='Login'>
-                        <input type='button' id='btnAddUser' value='Sign Up'>
-                    </p>";
+            $email = $this->tag("p", $this->tag("label", "Email: ".$this->input("email", "email", "", true)));
+            $password = $this->tag("p", $this->tag("label", "Password: ".$this->input("password", "password", "", true)));
+            $source = $this->input("hidden", "source", $this->location);
+            $submit = $this->input("submit", "submit", "Login");
+            $signUp = "<input type='button' id='btnAddUser' value='Sign Up'>";
+            $buttons = $this->tag("p", $source.$submit."\n".$signUp);
+            return $email.$password.$buttons;
         }
     }
 
@@ -59,5 +51,15 @@ class LoginManager {
     
     public function logout() {
         session_destroy();
+    }
+    
+    private function tag($tag, $content) {
+        return "<$tag>$content</$tag>";
+    }
+    
+    private function input($type, $name, $value, $required = false) {
+        $input = "<input type='".$type."' name='".$name."' value='".$value."' "; 
+        $input .= $required ? "required>" : ">";
+        return $input;
     }
 }

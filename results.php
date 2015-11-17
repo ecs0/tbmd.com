@@ -8,9 +8,10 @@ and open the template in the editor.
 <?php
     include_once('php/View.php');
     include_once('php/LoginManager.php');
-    $login = new LoginManager("results.php");
     $view = new View();
-    $view->search(filter_input(INPUT_GET, 'query'));
+    $query = filter_input(INPUT_GET, 'query');
+    $view->search($query);
+    $login = new LoginManager("results.php?query=$query");
 ?>
 
 <html>
