@@ -19,6 +19,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Search Results</title>
         <link rel="stylesheet" href="style/main.css">
+        <script src="script/search.js"></script>
     </head>
     <body>
         <header>
