@@ -75,11 +75,28 @@ class LoginManager {
     }
     
     /**
+     * Returns content generation buttons if the user is logged in
+     *  
+     * @return String
+     */
+    public function getContentButtons() {
+        
+        if ($this->isLoggedIn()) {
+            $btnAddPerson = $this->inputById("button", "btnAddPerson", "Add an Actor or Director!");
+            $btnAddMovie = $this->inputById("button", "btnAddMovie", "Add a Movie!");
+            $btnAddReview = $this->inputById("button", "btnAddReview", "Review Your Favourite Movie!");
+            return $this->tag("p", "$btnAddPerson\n$btnAddMovie\n$btnAddReview");
+        } else {
+            return $this->tag("p", "");
+        }
+    }
+    
+    /**
      * Helper function for marking up form components
      * 
      * @param type $tag
      * @param type $content
-     * @return type
+     * @return String
      */
     private function tag($tag, $content) {
         return "<$tag>$content</$tag>";
@@ -92,11 +109,32 @@ class LoginManager {
      * @param type $name
      * @param type $value
      * @param type $required
-     * @return type
+     * @return String
      */
     private function input($type, $name, $value, $required = false) {
         $input = "<input type='".$type."' name='".$name."' value='".$value."' "; 
         $input .= $required ? "required>" : ">";
         return $input;
+    }
+    
+    /**
+     * Helper function that creates an input with a custom id
+     * 
+     * @param type $type
+     * @param type $id
+     * @param type $value
+     * @return String
+     */
+    private function inputById($type, $id, $value) {
+        return "<input type='".$type."' id='".$id."' value='".$value."'>";
+    }
+    
+    /**
+     * Checks if the session has a logged in user
+     * 
+     * @return Bool
+     */
+    private function isLoggedIn() {
+        return isset($_SESSION['auth']); 
     }
 }

@@ -43,11 +43,7 @@ and open the template in the editor.
                 </div>
             </section>
             <section id="add_items">
-                <p>
-                    <input type="button" id="btnAddPerson" value="Add an Actor or Director!">
-                    <input type="button" id="btnAddMovie" value="Add a Movie!">
-                    <input type="button" id="btnAddReview" value="Review your Favourite Movie!">
-                </p>
+                <?php echo $login->getContentButtons(); ?>
             </section>
         </header>
         <section class="content">
