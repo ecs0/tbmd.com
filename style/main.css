@@ -37,6 +37,8 @@ section.login {
     background-color: burlywood;
     box-shadow: 5px 5px 20px black;
     border-radius: 10px;
+    min-width: 265px;
+    min-height: 130px;
 }
 
 header {

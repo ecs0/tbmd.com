@@ -4,7 +4,7 @@ include_once('User.php');
 session_start();
 
 /**
- * Description of LoginManager
+ * This class is used by the login_handler to log the user in, and out
  *
  * @author bryan
  */
@@ -13,11 +13,23 @@ class LoginManager {
     private $link;
     private $location;
     
+    /**
+     * Creates an instance of LoginManager
+     * 
+     * @param type $location - calling location of the form, will be the return point
+     */
     public function __construct($location) {
         $this->link = new Connection();
         $this->location = $location;
     }
 
+    /**
+     * Manages the state of the login panel at the top left of the website
+     * Pages can simply request the form, and this function will return the 
+     * proper form based on the session's authentication state.
+     * 
+     * @return type
+     */
     public function getLoginForm() {
         if (isset($_SESSION['auth'])) {
             $id = $_SESSION['auth'];
@@ -42,6 +54,12 @@ class LoginManager {
         }
     }
 
+    /**
+     * Logs the user in to the system, if their email and password authenticate
+     * 
+     * @param type $email
+     * @param type $password
+     */
     public function login($email, $password) {
         $id = $this->link->checkLogin($email, $password);
         if ($id) {
@@ -49,14 +67,33 @@ class LoginManager {
         }
     }
     
+    /**
+     * Logs the user out of the system by clearing all session variables.
+     */
     public function logout() {
         session_destroy();
     }
     
+    /**
+     * Helper function for marking up form components
+     * 
+     * @param type $tag
+     * @param type $content
+     * @return type
+     */
     private function tag($tag, $content) {
         return "<$tag>$content</$tag>";
     }
-    
+
+    /**
+     * Helper function that creates an input element
+     * 
+     * @param type $type
+     * @param type $name
+     * @param type $value
+     * @param type $required
+     * @return type
+     */
     private function input($type, $name, $value, $required = false) {
         $input = "<input type='".$type."' name='".$name."' value='".$value."' "; 
         $input .= $required ? "required>" : ">";
