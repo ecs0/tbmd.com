@@ -6,8 +6,8 @@ if (!isset($_POST['submit'])) {
     header("Location: ../index.php");
     exit();
 }
-$loginManager = new LoginManager();
 $source = filter_input(INPUT_POST, 'source');
+$loginManager = new LoginManager($source);
 
 if (!isset($_POST['email'])) {
     $loginManager->logout();
