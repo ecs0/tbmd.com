@@ -2,6 +2,8 @@
 
 <?php
 include_once('php/MovieView.php');
+include_once('php/LoginManager.php');
+$login = new LoginManager("movie.php");
 
 if (isset($_GET['id'])) {
     $movie = new MovieView(filter_input(INPUT_GET, 'id'));
@@ -23,6 +25,13 @@ if (isset($_GET['id'])) {
         <header>
             <a href="index.php"><div class="logo">tbmd.com</div></a>
             <h1><?php echo $movie->getTitle(); ?></h1>
+            <section class="login">
+                <div>
+                    <form method='post' action='php/login_handler.php'>
+                        <?php echo $login->getLoginForm(); ?>
+                    </form>
+                </div>
+            </section>
             <section class="search">
                 <div>
                     <p>

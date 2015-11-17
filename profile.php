@@ -2,6 +2,8 @@
 
 <?php
 include_once("php/UserView.php");
+include_once("php/LoginManager.php");
+$login = new LoginManager("profile.php");
 
 if (isset($_GET['id'])) {
     $user = new UserView(filter_input(INPUT_GET, 'id'));
@@ -24,6 +26,13 @@ if (isset($_GET['id'])) {
             <h1>
                 <?php echo $user->getUsername();?>
             </h1>
+            <section class="login">
+                <div>
+                    <form method='post' action='php/login_handler.php'>
+                        <?php echo $login->getLoginForm(); ?>
+                    </form>
+                </div>
+            </section>
             <section class="search">
                 <div>
                     <p>

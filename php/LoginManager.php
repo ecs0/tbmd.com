@@ -11,18 +11,24 @@ session_start();
 class LoginManager {
 
     private $link;
+    private $location;
     
-    public function __construct() {
+    public function __construct($location) {
         $this->link = new Connection();
+        $this->location = $location;
     }
 
     public function getLoginForm() {
         if (isset($_SESSION['auth'])) {
             $id = $_SESSION['auth'];
             $user = $this->link->getUsers([$id])[0];
-            $userName = $user->getUsername();
+            $username = $user->getUsername();
+            
+            $link = "'profile.php?id=".$id."'";
+            $a = "<a href=$link>$username</a>";
+            
             return "<p>
-                        Logged in as $userName
+                        Logged in as $a
                     <p>
                         <input type='submit' name='submit' value='Logout'>
                     </p>";

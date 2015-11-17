@@ -4,7 +4,7 @@
     include_once("php/View.php");
     include_once('php/LoginManager.php');
     $view = new View();
-    $login = new LoginManager();
+    $login = new LoginManager("index.php");
 ?>
 
 <html>

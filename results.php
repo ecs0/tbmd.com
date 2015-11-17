@@ -7,6 +7,8 @@ and open the template in the editor.
 
 <?php
     include_once('php/View.php');
+    include_once('php/LoginManager.php');
+    $login = new LoginManager("results.php");
     $view = new View();
     $view->search(filter_input(INPUT_GET, 'query'));
 ?>
@@ -21,6 +23,13 @@ and open the template in the editor.
         <header>
             <a href="index.php"><div class="logo">tbmd.com</div></a>
             <h1>Search Results</h1>
+            <section class="login">
+                <div>
+                    <form method='post' action='php/login_handler.php'>
+                        <?php echo $login->getLoginForm(); ?>
+                    </form>
+                </div>
+            </section>
             <section class="search">
                 <div>
                     <p>
