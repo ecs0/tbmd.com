@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 var KEY_DOWN = 40;
+var KEY_UP = 38;
 var KEY_ENTER = 13;
 
 window.addEventListener('load', function() {
@@ -23,7 +24,7 @@ function search() {
 
 function hint(e) {
     var str = document.getElementById('query').value;
-    if (str.length === 0 || e.keyCode === KEY_DOWN) {
+    if (str.length === 0 || e.keyCode === KEY_DOWN || e.keyCode === KEY_UP) {
         return;
     }
 
