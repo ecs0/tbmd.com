@@ -1,0 +1,19 @@
+
+div.logo {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    border-radius: 50px 2px 50px 2px;
+    background-color: orange;
+    border: 10px solid black;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: black;
+    box-shadow: 5px 5px 20px black;
+}
