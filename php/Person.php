@@ -85,6 +85,25 @@ class Person extends stdClass {
         return $this->bio;
     }
 
+    public function asBlockView() {
+        if ($this->imageLink) {
+            $imgSrc = "'images/uploads/".$this->imageLink."'";
+        } else {
+            $imgSrc = "'images/person_placeholder.jpg'";
+        }
+        $image = "<img class='person_image' src=$imgSrc alt='".$this."'>";
+        $name = "<p><b>Name: </b>$this->firstName $this->lastName</p>";
+        $bdate = "<p><b>Birthdate: </b>$this->birthdate</p>";
+        $bio = "<p><b>Bio: </b>$this->bio</p>";
+        
+        
+        $div = "<div id=$this->id class='person_block'>$image</div>"
+                . "<div class='person_name'>$name</div>"
+                . "<div class='person_bdate'>$bdate</div>"
+                . "<div class='person_bio'>$bio</div>";
+        return $div;
+    }
+    
     public function asTableRow() {
         return "<tr><td>$this->id</td><td>$this->firstName</td><td>$this->lastName</td>".
             "<td>$this->birthdate</td><td>$this->imageLink</td><td>$this->submitDate</td>".

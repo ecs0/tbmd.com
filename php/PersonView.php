@@ -28,17 +28,6 @@ class PersonView {
         return $this->person." on tbmd.com";
     }
     
-    public function getImage() {
-        $link = $this->person->getImageLink();
-        if ($link) {
-            $imgSrc = "'images/uploads/".$link."'";
-        } else {
-            $imgSrc = "'images/person_placeholder.jpg'";
-        }
-        $image = "<img class='person_image' src=$imgSrc alt='".$this->person."'>";
-        return $image;
-    }
-    
     public function getMoviesAsActor() {
         //TODO check for no entries, and insert a different output
         $connection = new Connection();
@@ -51,6 +40,10 @@ class PersonView {
         $connection = new Connection();
         $movies = $connection->getMoviesByDirector($this->person->getId());
         return $this->buildList($movies);
+    }
+    
+    public function getBlockView() {
+        return $this->person->asBlockView();
     }
     
     private function buildList($movies) {

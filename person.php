@@ -52,7 +52,7 @@ if (isset($_GET['id'])) {
         </header>
         <section class="content">
             <div>
-                <?php echo $person->getImage(); ?>
+                <?php echo $person->getBlockView(); ?>
             </div>
             <div>
                 <h3><?php echo "Movies Directed by ".$person->getName().":"; ?></h3>
