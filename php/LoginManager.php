@@ -12,6 +12,7 @@ class LoginManager {
 
     private $link;
     private $location;
+    private $type;
     
     /**
      * Creates an instance of LoginManager
@@ -21,6 +22,14 @@ class LoginManager {
     public function __construct($location) {
         $this->link = new Connection();
         $this->location = $location;
+
+        if (strpos($location, "movie.php") === FALSE && strpos($location, "person.php") === FALSE) {
+            $this->type = null;
+        } else if (strpos($location, "movie.php") !== FALSE) {
+            $this->type = "Movie";
+        } else {
+            $this->type = "Person";
+        }
     }
 
     /**
@@ -85,7 +94,16 @@ class LoginManager {
             $btnAddPerson = $this->inputById("button", "btnAddPerson", "Add an Actor or Director!");
             $btnAddMovie = $this->inputById("button", "btnAddMovie", "Add a Movie!");
             $btnAddReview = $this->inputById("button", "btnAddReview", "Review Your Favourite Movie!");
-            return $this->tag("p", "$btnAddPerson\n$btnAddMovie\n$btnAddReview");
+            
+            if ($this->type == "Person") {
+                $btnEdit = $this->inputById("button", "btnAddActorToMovie", "Add this actor to another movie!");
+            } else if ($this->type == "Movie") {
+                $btnEdit = $this->input("button", "btnAddMovieToActor", "Add another actor to this movie!");
+            } else {
+                $btnEdit = "";
+            }
+            
+            return $this->tag("p", "$btnAddPerson\n$btnAddMovie\n$btnAddReview\n$btnEdit");
         } else {
             return $this->tag("p", "");
         }
