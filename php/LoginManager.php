@@ -98,7 +98,7 @@ class LoginManager {
             if ($this->type == "Person") {
                 $btnEdit = $this->inputById("button", "btnAddActorToMovie", "Add this actor to another movie!");
             } else if ($this->type == "Movie") {
-                $btnEdit = $this->input("button", "btnAddMovieToActor", "Add another actor to this movie!");
+                $btnEdit = $this->inputById("button", "btnAddMovieToActor", "Add another actor to this movie!");
             } else {
                 $btnEdit = "";
             }

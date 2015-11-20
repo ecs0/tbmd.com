@@ -22,9 +22,23 @@ window.addEventListener('load', function() {
     // register add review
     registerButton(document.getElementById('btnAddReview'), 'add_review');
     registerButton(document.getElementById('add_review_close'), 'add_review');
+    
+    // register edit buttons
+    registerButton(document.getElementById('btnAddActorToMovie'), 'actor_to_movie');
+    registerButton(document.getElementById('actor_to_movie_close'), 'actor_to_movie');
+    registerButton(document.getElementById('btnAddMovieToActor'), 'movie_to_actor');
+    registerButton(document.getElementById('movie_to_actor_close'), 'movie_to_actor');
 
 }, false);
 
+/**
+ * Registers the overlay handler with a button and form
+ * 
+ * @param {type} button - button to register
+ * @param {type} id - id of the form to link to button
+ * @param {type} secondaryId - link a secondary button
+ * @returns {undefined}
+ */
 function registerButton(button, id, secondaryId) {
     if (button !== null) {
         button.addEventListener('click', function() {

@@ -184,6 +184,12 @@ if (isset($_GET['id'])) {
                 </form>
             </div>
         </div>
+        <div class='overlay' id='actor_to_movie' >
+            <div>
+                <input class="exit" id="actor_to_movie_close" type="button" value="x">
+                <h1>Testing!!</h1>
+            </div>
+        </div>
         <?php //</editor-fold>?>
 
         <!-- Visible Page Content -->
