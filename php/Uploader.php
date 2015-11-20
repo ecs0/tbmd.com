@@ -35,6 +35,11 @@ class Uploader {
         
         // create unique file name
         $name = $this->file['name'];
+        
+        if ($name == "") {
+            return FALSE;
+        }
+        
         $extension = pathinfo($name, PATHINFO_EXTENSION);
         $hashed_name =  md5($name + uniqid(time())).".".$extension;
         

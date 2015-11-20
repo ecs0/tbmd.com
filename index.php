@@ -17,6 +17,7 @@
     <script src="script/signup.js"></script>
     <script src="script/overlay.js"></script>
     <script src="script/search.js"></script>
+    <script src="script/upload.js"></script>
 </head>
 <body>
 

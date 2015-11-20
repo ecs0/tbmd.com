@@ -24,6 +24,7 @@ if (isset($_GET['id'])) {
         <link rel="stylesheet" href="style/overlay.css">
         <script src="script/search.js"></script>
         <script src="script/overlay.js"></script>
+        <script src="script/upload.js"></script>
     </head>
     <body>
         

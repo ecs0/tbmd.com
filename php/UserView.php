@@ -1,13 +1,14 @@
 <?php
 include_once("Connection.php");
 include_once('User.php');
+include_once('View.php');
 
 /**
  * Description of UserView
  *
  * @author bryan
  */
-class UserView {
+class UserView extends View {
     
     private $user;
     
