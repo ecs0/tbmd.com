@@ -30,9 +30,9 @@ $uploader = new Uploader($file);
 $image_link = $uploader->upload();
 
 $connection = new Connection();
-$person = new Person(NULL, $fname, $lname, $birthdate, $image_link, NULL, $bio);
+$view = new Person(NULL, $fname, $lname, $birthdate, $image_link, NULL, $bio);
 
-$connection->addPerson($person);
+$connection->addPerson($view);
 
 if (!$return) {
     $return = "../index.php";

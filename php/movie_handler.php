@@ -27,9 +27,9 @@ if (isset($_POST['submit'])) {
     $director = $connection->getPeopleById([$directorId]);
     $actors = $connection->getPeopleById($actorIds);
 
-    $movie = new Movie(NULL, $director[0], $title, $releaseDate, $synopsis, NULL, $imageLink, $actors);
+    $view = new Movie(NULL, $director[0], $title, $releaseDate, $synopsis, NULL, $imageLink, $actors);
 
-    $connection->addMovie($movie);
+    $connection->addMovie($view);
 
     if (!$return) {
         $return = "../index.php";

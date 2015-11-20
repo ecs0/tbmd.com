@@ -1,13 +1,14 @@
 <?php
 include_once('Connection.php');
 include_once('Movie.php');
+include_once('View.php');
 
 /**
  * Description of MovieView
  *
  * @author bryan
  */
-class MovieView {
+class MovieView extends View {
 
     private $movie;
     

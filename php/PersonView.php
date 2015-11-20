@@ -1,12 +1,13 @@
 <?php
 include_once('Connection.php');
+include_once('View.php');
 
 /**
  * This class manages the dynamic display of the person.php page
  *
  * @author bryan
  */
-class PersonView {
+class PersonView extends View {
 
     private $person;
     
