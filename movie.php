@@ -8,6 +8,7 @@ if (isset($_GET['id'])) {
     $id = filter_input(INPUT_GET, 'id');
     $view = new MovieView($id);
     $login = new LoginManager("movie.php?id=$id");
+    $return = "../movie.php?id=$id";
 } else {
     header("Location: index.php");
     exit();
@@ -33,7 +34,7 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="add_user_close" type="button" value="x">
                 <h1>Sign Up for tbmd.com!</h1>
                 <form method="post" action="php/signup_handler.php">
-                    <input type="hidden" name="return" value="../index.php">
+                    <input type="hidden" name="return" value="<?php echo $return; ?>">
                     <p>
                         <label>Email:
                             <input id="email" type="email" name="email" required>
@@ -61,7 +62,7 @@ if (isset($_GET['id'])) {
                 <input id="add_person_close" class="exit" type="button" value="x">
                 <h1>Enter a Person</h1>
                 <form method="post" action="php/person_handler.php" enctype="multipart/form-data">
-                    <input type="hidden" name="return" id="../index.php">
+                    <input type="hidden" name="return" value="<?php echo $return; ?>">
                     <p>
                         <label>
                             First Name:
@@ -104,7 +105,7 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="add_movie_close" type="button" value="x">
                 <h1>Enter a Movie</h1>
                 <form method="post" action="php/movie_handler.php" enctype="multipart/form-data">
-                    <input type="hidden" name="return" value="../index.php">
+                    <input type="hidden" name="return" value="<?php echo $return; ?>">
                     <p>
                         <label>Title
                             <input type="text" name="title" required>
@@ -152,7 +153,7 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="add_review_close" type="button" value="x">
                 <h1>Submit A Review</h1>
                 <form method="post" action="php/review_handler.php">
-                    <input type="hidden" name="return" value="../index.php">
+                    <input type="hidden" name="return" value="<?php echo $return; ?>">
                     <p>
                         <label>Movie:
                             <select name="movie">
@@ -186,7 +187,22 @@ if (isset($_GET['id'])) {
         <div class='overlay' id='movie_to_actor' >
             <div>
                 <input class="exit" id="movie_to_actor_close" type="button" value="x">
-                <h1>Working!!</h1>
+                <form method="post" action="php/movie_to_person_handler.php">
+                    <input type="hidden" name="movieId" value="<?php echo $id?>">
+                    <input type="hidden" name="return" value=<?php echo "$return"; ?>>
+                    <p>
+                        <label>
+                            Add 
+                            <select name="person">
+                                <?php echo $view->getActorsNotIn(); ?>
+                            </select>
+                            <?php echo " to ".$view->getTitle(); ?>
+                        </label>
+                    </p>
+                    <p>
+                        <input type="submit" name="submit" value="Add">
+                    </p>
+                </form>
             </div>
         </div>
         <?php //</editor-fold>?>

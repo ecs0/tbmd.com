@@ -21,6 +21,18 @@ class MovieView extends View {
         }
     }
     
+    public function getActorsNotIn() {
+        $connection = new Connection();
+        $actors = $connection->getActorsNotIn($this->movie->getId());
+        
+        $innerHtml = "";
+        foreach ($actors as $actor) {
+            $innerHtml .= parent::tag("option", $actor);
+        }
+        
+        return $innerHtml;
+    }
+    
     public function getReviews() {
         $connection = new Connection();
         $reviews = $connection->getReviewsByDate($this->movie->getId());

@@ -524,7 +524,47 @@ class Connection {
     }
     
     public function getActorsNotIn($movieId) {
-        //TODO build query
+        $this->connect();
+        
+        $sql = "SELECT "
+                . "people.id, "
+                . "people.fname, "
+                . "people.lname, "
+                . "people.birthdate, "
+                . "people.image_link, "
+                . "people.submit_date, "
+                . "people.bio "
+                . "FROM people INNER JOIN actor "
+                . "ON people.id = actor.people_id "
+                . "WHERE people.id NOT IN ("
+                . " SELECT actor.people_id "
+                . " FROM actor "
+                . " WHERE movie_id = $movieId) "
+                . "GROUP BY people.id";
+        
+        $result = mysqli_query($this->link, $sql);
+        
+        $actors = array();
+        $i = 0;
+        if ($result) {
+
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $id = $row['id'];
+                $firstName = $row['fname'];
+                $lastName = $row['lname'];
+                $birthdate = $row['birthdate'];
+                $imageLink = $row['image_link'];
+                $submitDate = $row['submit_date'];
+                $bio = $row['bio'];
+
+                $person = new Person($id, $firstName, $lastName, $birthdate, $imageLink, $submitDate, $bio);
+                $actors[$i++] = $person;
+            }
+            mysqli_free_result($result);
+        }
+        
+        $this->disconnect();
+        return $actors;
     }
 
     /**
