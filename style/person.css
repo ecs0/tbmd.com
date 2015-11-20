@@ -1,0 +1,32 @@
+/* 
+    Created on : Nov 19, 2015, 4:38:32 PM
+    Author     : bryan
+*/
+
+.person_image {
+    max-height: 200px;
+    max-width: 200px;
+    display: block;
+    float: left;
+    border: 2px solid black;
+    margin: 10px 10px 10px 10px;
+}
+
+.person_name {
+    margin-top: 10px;
+    font-size: 2em;
+}
+
+.person_bdate {
+    
+}
+
+.person_bio {
+    clear: left;
+    margin: 10px 10px 10px 10px;
+}
+
+.person_block {
+    position: relative;
+    border: 1px solid black;
+}

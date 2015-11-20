@@ -92,16 +92,16 @@ class Person extends stdClass {
             $imgSrc = "'images/person_placeholder.jpg'";
         }
         $image = "<img class='person_image' src=$imgSrc alt='".$this."'>";
-        $name = "<p><b>Name: </b>$this->firstName $this->lastName</p>";
+        $name = "<b>$this->firstName $this->lastName</b>";
         $bdate = "<p><b>Birthdate: </b>$this->birthdate</p>";
         $bio = "<p><b>Bio: </b>$this->bio</p>";
         
         
-        $div = "<div id=$this->id class='person_block'>$image</div>"
+        $div = "$image"
                 . "<div class='person_name'>$name</div>"
                 . "<div class='person_bdate'>$bdate</div>"
                 . "<div class='person_bio'>$bio</div>";
-        return $div;
+        return "<div id='".$this->id."' class='person_block'>$div</div>";
     }
     
     public function asTableRow() {

@@ -20,6 +20,7 @@ if (isset($_GET['id'])) {
         <title><?php echo $person->getTitle(); ?></title>
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/movie.css">
+        <link rel="stylesheet" href="style/person.css">
         <script src="script/search.js"></script>
     </head>
     <body>
