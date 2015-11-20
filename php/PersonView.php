@@ -29,6 +29,17 @@ class PersonView extends View {
         return $this->person." on tbmd.com";
     }
     
+    public function getMoviesAsNotActor() {
+        $connection = new Connection();
+        $movies = $connection->getMoviesNotIn($this->person->getId());
+
+        $innerHtml = "";
+        foreach ($movies as $movie) {
+            $innerHtml .= parent::tag("option", $movie);
+        }
+        return $innerHtml;
+    }
+    
     public function getMoviesAsActor() {
         //TODO check for no entries, and insert a different output
         $connection = new Connection();

@@ -250,7 +250,16 @@ class Connection {
         return -1;
     }
 
+    public function addActorToMovie($movieId, $actorId) {
+        $this->connect();
+        
+        $sql = "INSERT INTO actor (movie_id, people_id) "
+                . "VALUES ($movieId, $actorId)";
 
+        return mysqli_query($this->link, $sql);
+    }
+    
+    
     /**
      * Fetches all movies in a list of ids from the database
      *
@@ -514,6 +523,61 @@ class Connection {
         return $this->getMovies($where);
     }
     
+    public function getActorsNotIn($movieId) {
+        //TODO build query
+    }
+
+    /**
+     *  Fetches an array of all movies that a particular actor does not 
+     *  act in (although they may direct it).
+     * 
+     * @param type $actorId - id of the actor to filter by
+     * @return \Movie
+     */
+    public function getMoviesNotIn($actorId) {
+        $this->connect();
+        
+        $sql = "SELECT "
+                . "movie.id, "
+                . "movie.director_id, "
+                . "movie.title, "
+                . "movie.release_date, "
+                . "movie.synopsis, "
+                . "movie.submit_date, "
+                . "movie.image_link "
+                . "FROM movie INNER JOIN actor "
+                . "ON movie.id = actor.movie_id "
+                . "WHERE movie.id NOT IN ("
+                . " SELECT actor.movie_id "
+                . " FROM actor "
+                . " WHERE people_id = $actorId) "
+                . "GROUP BY movie.id";
+        
+        $result = mysqli_query($this->link, $sql);
+        
+        $movies = array();
+        $i = 0;
+        if ($result) {
+            
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $movieId = $row['id'];
+                $movie = new Movie($movieId,
+                    $this->getPeopleById([$row['director_id']])[0],
+                    $row['title'],
+                    $row['release_date'],
+                    $row['synopsis'],
+                    $row['submit_date'],
+                    $row['image_link'],
+                    $this->getActors($movieId));
+                $movies[$i++] = $movie;
+            }
+            mysqli_free_result($result);
+        }
+        
+        $this->disconnect();
+        return $movies;
+    }
+    
     public function getMoviesByActor($actorId) {
         $this->connect();
         
@@ -525,7 +589,7 @@ class Connection {
             "movie.synopsis, ".
             "movie.submit_date, ".
             "movie.image_link ".
-            "FROM movie INNER JOIN actor on actor.movie_id = movie.id ".
+            "FROM movie INNER JOIN actor ON actor.movie_id = movie.id ".
                 "WHERE actor.people_id = $actorId";
         
         $result = mysqli_query($this->link, $sql);

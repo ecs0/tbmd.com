@@ -55,7 +55,7 @@
             <input id="add_person_close" class="exit" type="button" value="x">
             <h1>Enter a Person</h1>
             <form method="post" action="php/person_handler.php" enctype="multipart/form-data">
-                <input type="hidden" name="return" id="../index.php">
+                <input type="hidden" name="return" value="../index.php">
                 <p>
                     <label>
                         First Name:
