@@ -20,13 +20,35 @@
     text-align: left;
 }
 
+.overlay input[type="date"] {
+    font-family: Arial, sans-serif;
+}
+
 .overlay h1 {
-    text-align: center
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
 }
 
 .overlay input[type="text"], input[type="date"] {
     font-size: 1.5em;
     width: 75%;
+}
+
+.overlay select {
+    font-size: 1.5em;
+    width: 75%;
+    clear: left;
+}
+
+.actor_list {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+#btnAddDirector {
+    display: block;
+    clear: left;
 }
 
 .overlay textarea {

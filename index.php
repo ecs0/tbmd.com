@@ -86,39 +86,29 @@
             <form method="post" action="php/movie_handler.php" enctype="multipart/form-data">
                 <input type="hidden" name="return" value="../index.php">
                 <p>
-                    <label>Title
-                        <input type="text" name="title" required>
-                    </label>
+                    <input type="text" name="title" placeholder="Title" required>
                 </p>
                 <p>
-                    <label>Release Date
-                        <input type="date" name="release_date" required>
-                    </label>
+                    <input type="date" name="release_date" required> (release date)
                 </p>
                 <p>
-                    <label>Director
-                        <select name="director">
-                            <?php echo $view->peopleAsTag("option") ?>
-                        </select>
-                        <input type="button" id="btnAddDirector" value="New Person">
-                    </label>
+                    <select name="director">
+                        <?php echo $view->peopleAsTag("option") ?>
+                    </select> (director)
+                </p>
+                <p> 
+                    <select class="actor_list" name="actors[]" multiple> 
+                        <?php echo $view->peopleAsTag("option") ?>
+                    </select> (actors)
+                </p> 
+                <p>
+                    <input type="button" id="btnAddDirector" value="New Person">
                 </p>
                 <p>
-                    <label>Actors
-                        <select name="actors[]" multiple>
-                            <?php echo $view->peopleAsTag("option") ?>
-                        </select>
-                    </label>
+                    <textarea cols="40" rows="10" name="synopsis" placeholder="Enter Synopsis here..." required></textarea>
                 </p>
                 <p>
-                    <label>Image
-                        <input type="file" name="upload" accept="image/*">
-                    </label>
-                </p>
-                <p>
-                    <label>Synopsis
-                        <textarea cols="40" rows="10" name="synopsis" required></textarea>
-                    </label>
+                    <input type="file" name="upload" accept="image/*">
                 </p>
                 <p>
                     <input type="submit" name="submit" value="Submit">
