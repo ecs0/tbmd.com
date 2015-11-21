@@ -6,6 +6,7 @@
 var KEY_DOWN = 40;
 var KEY_UP = 38;
 var KEY_ENTER = 13;
+var KEY_ESCAPE = 27;
 
 window.addEventListener('load', function() {
     document.getElementById('btnSearch').addEventListener('click',
@@ -24,7 +25,8 @@ function search() {
 
 function hint(e) {
     var str = document.getElementById('query').value;
-    if (str.length === 0 || e.keyCode === KEY_DOWN || e.keyCode === KEY_UP) {
+    if (str.length === 0 || e.keyCode === KEY_DOWN 
+            || e.keyCode === KEY_UP || e.keyCode === KEY_ESCAPE) {
         return;
     }
 
