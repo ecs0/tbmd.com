@@ -181,6 +181,9 @@
     <?php //</editor-fold>?>
 
     <!-- Visible Page Content -->
+    <section class="add_items">
+        <?php echo $login->getContentButtons(); ?>
+    </section>
     <header>
         <div class="logo">tbmd.com</div>
         <h1>Welcome to tbmd.com!</h1>
@@ -201,9 +204,6 @@
                     </label>
                 </p>
             </div>
-        </section>
-        <section id="add_items">
-            <?php echo $login->getContentButtons(); ?>
         </section>
     </header>
     <section class="content">

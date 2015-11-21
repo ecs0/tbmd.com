@@ -231,7 +231,7 @@ if (isset($_GET['id'])) {
                     </p>
                 </div>
             </section>
-            <section id="add_items">
+            <section class="add_items">
                 <?php echo $login->getContentButtons(); ?>
             </section>
         </header>

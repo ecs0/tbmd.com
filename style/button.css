@@ -1,0 +1,31 @@
+
+.add_items p {
+    margin: 8px;
+}
+
+.add_items input[type="button"] {
+	font-family: 'Oswald', sans-serif;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #dcdcdc;
+	padding: 5px 18px;
+	background: -moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	background: -ms-linear-gradient( top, #ededed 5%, #dfdfdf 100% );
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(5%, #ededed), color-stop(100%, #dfdfdf) );
+	background-color: #ededed;
+	color: #771100;
+	display: inline-block;
+}
+
+.add_items input[type="button"]:hover {
+	background: -moz-linear-gradient( center top, #8D8E8E 5%, #ededed 100% );
+	background: -ms-linear-gradient( top, #8D8E8E 5%, #ededed 100% );
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(5%, #8D8E8E), color-stop(100%, #ededed) );
+	background-color: #dfdfdf;
+}
+
+.add_items input[type="button"]:active {
+	position: relative;
+	top: 1px;
+}

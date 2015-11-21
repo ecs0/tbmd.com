@@ -208,7 +208,7 @@ and open the template in the editor.
                     </p>
                 </div>
             </section>
-            <section id="add_items">
+            <section class="add_items">
                 <?php echo $login->getContentButtons(); ?>
             </section>
         </header>
