@@ -192,13 +192,6 @@ if (isset($_GET['id'])) {
             <h1>
                 <?php echo $view->getUsername();?>
             </h1>
-            <section class="login">
-                <div>
-                    <form method='post' action='php/login_handler.php'>
-                        <?php echo $login->getLoginForm(); ?>
-                    </form>
-                </div>
-            </section>
             <section class="search">
                 <div>
                     <p>
@@ -210,8 +203,13 @@ if (isset($_GET['id'])) {
                     </p>
                 </div>
             </section>
-            <section class="add_items">
+            <section class="top_bar">
                 <?php echo $login->getContentButtons(); ?>
+                <section class="login">
+                    <form method='post' action='php/login_handler.php'>
+                        <?php echo $login->getLoginForm(); ?>
+                    </form>
+                </section>
             </section>
         </header>
         <section class="content">

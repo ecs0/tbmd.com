@@ -190,13 +190,6 @@ and open the template in the editor.
         <header>
             <a href="index.php"><div class="logo">tbmd.com</div></a>
             <h1>Search Results</h1>
-            <section class="login">
-                <div>
-                    <form method='post' action='php/login_handler.php'>
-                        <?php echo $login->getLoginForm(); ?>
-                    </form>
-                </div>
-            </section>
             <section class="search">
                 <div>
                     <p>
@@ -208,8 +201,13 @@ and open the template in the editor.
                     </p>
                 </div>
             </section>
-            <section class="add_items">
+            <section class="top_bar">
                 <?php echo $login->getContentButtons(); ?>
+                <section class="login">
+                    <form method='post' action='php/login_handler.php'>
+                        <?php echo $login->getLoginForm(); ?>
+                    </form>
+                </section>
             </section>
         </header>
         <section class="content">

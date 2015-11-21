@@ -181,19 +181,17 @@
     <?php //</editor-fold>?>
 
     <!-- Visible Page Content -->
-    <section class="add_items">
+    <section class="top_bar">
         <?php echo $login->getContentButtons(); ?>
+        <section class="login">
+            <form method='post' action='php/login_handler.php'>
+                <?php echo $login->getLoginForm(); ?>
+            </form>
+        </section>
     </section>
     <header>
         <div class="logo">tbmd.com</div>
         <h1>Welcome to tbmd.com!</h1>
-        <section class="login">
-            <div>
-                <form method='post' action='php/login_handler.php'>
-                    <?php echo $login->getLoginForm(); ?>
-                </form>
-            </div>
-        </section>
         <section class="search">
             <div>
                 <p>

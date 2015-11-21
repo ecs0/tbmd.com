@@ -48,18 +48,18 @@ class LoginManager {
             $link = "'profile.php?id=".$id."'";
             $a = "<a href=$link>$username</a>";
             
-            $loggedInAs = $this->tag("p", "Logged in as $a");
+            $loggedInAs = "Logged in as $a";
             $sourceInput = $this->input("hidden", "source", $this->location);
             $submit = $this->input("submit", "submit", "Logout");
-            return $loggedInAs.$this->tag("p", $sourceInput.$submit);
+            return $loggedInAs.$sourceInput."\n".$submit;
         } else {
-            $email = $this->tag("p", $this->tag("label", "Email: ".$this->input("email", "email", "", true)));
-            $password = $this->tag("p", $this->tag("label", "Password: ".$this->input("password", "password", "", true)));
+            $email = $this->tag("label", "Email: ".$this->input("email", "email", "", true));
+            $password = $this->tag("label", "Password: ".$this->input("password", "password", "", true));
             $source = $this->input("hidden", "source", $this->location);
             $submit = $this->input("submit", "submit", "Login");
             $signUp = "<input type='button' id='btnAddUser' value='Sign Up'>";
-            $buttons = $this->tag("p", $source.$submit."\n".$signUp);
-            return $email.$password.$buttons;
+            $buttons = $source.$submit."\n".$signUp;
+            return $email."\n".$password."\n".$buttons;
         }
     }
 
@@ -103,9 +103,9 @@ class LoginManager {
                 $btnEdit = "";
             }
             
-            return $this->tag("p", "$btnAddPerson\n$btnAddMovie\n$btnAddReview\n$btnEdit");
+            return "$btnAddPerson\n$btnAddMovie\n$btnAddReview\n$btnEdit";
         } else {
-            return $this->tag("p", "");
+            return "";
         }
     }
     

@@ -1,9 +1,5 @@
 
-.add_items p {
-    margin: 8px;
-}
-
-.add_items input[type="button"] {
+.top_bar input[type="button"], input[type="submit"] {
 	font-family: 'Oswald', sans-serif;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -16,16 +12,17 @@
 	background-color: #ededed;
 	color: #771100;
 	display: inline-block;
+        margin-top: 8px;
 }
 
-.add_items input[type="button"]:hover {
+.top_bar input[type="button"]:hover, input[type="submit"]:hover {
 	background: -moz-linear-gradient( center top, #8D8E8E 5%, #ededed 100% );
 	background: -ms-linear-gradient( top, #8D8E8E 5%, #ededed 100% );
 	background: -webkit-gradient( linear, left top, left bottom, color-stop(5%, #8D8E8E), color-stop(100%, #ededed) );
 	background-color: #dfdfdf;
 }
 
-.add_items input[type="button"]:active {
+.top_bar input[type="button"]:active, input[type="submit"]:active {
 	position: relative;
 	top: 1px;
 }

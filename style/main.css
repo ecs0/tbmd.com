@@ -19,7 +19,7 @@ body {
     padding-top: 50px; 
 }
 
-section.add_items {
+section.top_bar {
     position: fixed;
     top: 0;
     left: 0;
@@ -28,11 +28,10 @@ section.add_items {
     background-color: #475B5A;
     text-align: center;
     z-index: 2;
-    display: block;
     box-shadow: 5px 5px 20px black;
 }
 
-section.login {
+/*section.login {
     position: absolute;
     right: 10px;
     top: 75px;
@@ -44,6 +43,21 @@ section.login {
     border-radius: 10px;
     min-width: 265px;
     min-height: 130px;
+}*/
+
+section.login {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: white;
+}
+
+section.login a {
+    color: #52D4DC;
+}
+
+section.login a:hover {
+    color: #771100;
 }
 
 header {
