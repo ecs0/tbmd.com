@@ -11,7 +11,7 @@ body {
     background: -webkit-gradient(linear, center top, center bottom,
         color-stop(1%, #8D8E8E), color-stop(100%, white));
     background: -moz-linear-gradient(top center, #8D8E8E 1%, white 100%);
-    background: linear-gradient(to bottom, #8D8E8E 1%, white 100%);
+    background: linear-gradient(to bottom, #8D8E8E 60%, white 100%);
     height: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;

@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $return = "../index.php";
     }
 
-    header("Location: $return?creation=success");
+    header("Location: $return");
 } else {
     header("Location: ../index.php");
 }
