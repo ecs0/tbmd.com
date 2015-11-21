@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
     $id = filter_input(INPUT_GET, 'id');
     $view = new UserView($id);
     $login = new LoginManager("profile.php?id=$id");
-    $return = "../profile.php?$id";
+    $return = "../profile.php?id=$id";
 } else {
     header("Location: index.php");
     exit();
@@ -158,13 +158,6 @@ if (isset($_GET['id'])) {
                         <label>Movie:
                             <select name="movie">
                                 <?php echo $view->moviesAsTag("option")?>
-                            </select>
-                        </label>
-                    </p>
-                    <p>
-                        <label>User:
-                            <select name="user">
-                                <?php echo $view->usersAsTag("option") ?>
                             </select>
                         </label>
                     </p>

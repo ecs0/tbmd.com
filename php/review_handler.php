@@ -7,15 +7,18 @@
  */
 
 include_once("Connection.php");
+include_once("LoginManager.php");
 
 if (isset($_POST['submit'])) {
 
     $movieId = filter_input(INPUT_POST, 'movie');
-    $userId = filter_input(INPUT_POST, 'user');
     $rating = filter_input(INPUT_POST, 'rating');
     $content = filter_input(INPUT_POST, 'content');
     $return = filter_input(INPUT_POST, 'return');
 
+    $login = new LoginManager($return);
+    $userId = $login->getLoggedInUserId();
+    
     $connection = new Connection();
 
     $connection->createReview($userId, $movieId, $rating, $content);

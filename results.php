@@ -162,13 +162,6 @@ and open the template in the editor.
                         </label>
                     </p>
                     <p>
-                        <label>User:
-                            <select name="user">
-                                <?php echo $view->usersAsTag("option") ?>
-                            </select>
-                        </label>
-                    </p>
-                    <p>
                         <label>Rating:
                             <input name="rating" type="number" min="1" max="5" step="1" value="1" required>
                         </label>

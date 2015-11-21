@@ -31,6 +31,17 @@ class LoginManager {
             $this->type = "Person";
         }
     }
+    
+    /**
+     * @return boolean|int - logged in users id if logged in, false otherwise
+     */
+    public function getLoggedInUserId() {
+        if ($this->isLoggedIn()) {
+            return $_SESSION['auth'];
+        } else {
+            return FALSE;
+        }
+    }
 
     /**
      * Manages the state of the login panel at the top left of the website
