@@ -147,14 +147,11 @@ if (isset($_GET['id'])) {
                 <form method="post" action="php/movie_to_person_handler.php">
                     <input type="hidden" name="movieId" value="<?php echo $id?>">
                     <input type="hidden" name="return" value=<?php echo "$return"; ?>>
+                    <h1><?php echo "Add a new actor to ".$view->getTitle(); ?></h1>
                     <p>
-                        <label>
-                            Add 
-                            <select name="person">
-                                <?php echo $view->getActorsNotIn(); ?>
-                            </select>
-                            <?php echo " to ".$view->getTitle(); ?>
-                        </label>
+                        <select name="person">
+                            <?php echo $view->getActorsNotIn(); ?>
+                        </select>
                     </p>
                     <p>
                         <input type="submit" name="submit" value="Add">
