@@ -64,36 +64,21 @@ if (isset($_GET['id'])) {
                 <input id="add_person_close" class="exit" type="button" value="x">
                 <h1>Enter a Person</h1>
                 <form method="post" action="php/person_handler.php" enctype="multipart/form-data">
-                    <input type="hidden" name="return" value=<?php echo "$return"; ?>>
+                    <input type="hidden" name="return" value="../index.php">
                     <p>
-                        <label>
-                            First Name:
-                            <input type="text" name="fname" max="50" maxlength="50" required>
-                        </label>
+                        <input type="text" name="fname" max="50" maxlength="50" placeholder="First Name" required>
                     </p>
                     <p>
-                        <label>
-                            Last Name:
-                            <input type="text" name="lname" max="50" maxlength="50" required>
-                        </label>
+                        <input type="text" name="lname" max="50" maxlength="50" placeholder="Last Name" required>
                     </p>
                     <p>
-                        <label>
-                            Birth Date:
-                            <input type="date" name="birthdate" required>
-                        </label>
+                        <input type="date" name="birthdate" required> (DOB)
                     </p>
                     <p>
-                        <label>
-                            Picture:
-                            <input type="file" name="upload" accept="image/*">
-                        </label>
+                        <textarea cols="40" rows="10" name="bio" placeholder="Enter biography here..." required></textarea>
                     </p>
-                    <p>
-                        <label>
-                            Biography:
-                            <textarea cols="40" rows="10" name="bio" required></textarea>
-                        </label>
+                    <p> 
+                        <input type="file" name="upload" accept="image/*">
                     </p>
                     <p>
                         <input name="submit" type="submit" value="Submit">

@@ -13,22 +13,32 @@
 .overlay div {
     width: 500px;
     margin: 100px auto;
-    background-color: #202E51;
+    background-color: #475B5A;
     color: white;
     padding: 15px;
-    text-align: center;
     box-shadow: 3px 3px 5px black;
+    text-align: left;
+}
+
+.overlay h1 {
+    text-align: center
+}
+
+.overlay input[type="text"], input[type="date"] {
+    font-size: 1.5em;
+    width: 75%;
 }
 
 .overlay textarea {
     resize: vertical;
+    width: 100%;
 }
 
 .exit {
     display: block;
     float: right;
     border: none;
-    background-color: #202E51;
+    background-color: #475B5A;
     color: white;
 }
 
