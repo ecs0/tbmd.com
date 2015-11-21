@@ -207,17 +207,17 @@
         </section>
     </header>
     <section class="content">
-        <section id="top_rated_movies">
-            <h2 class="aggregate">Top Rated Movies</h2>
-            <?php echo $view->highestRatedMoviesAsBlock() ;?>
+        <section id="upcoming_movies">
+            <h2 class="aggregate">Upcoming Movies</h2>
+            <?php echo $view->upcomingMoviesAsBlock(); ?>
         </section>
         <section id="recent_reviews">
             <h2 class="aggregate">Recent Reviews</h2>
             <?php echo $view->recentReviewsAsBlock(); ?>
         </section>
-        <section id="upcoming_movies">
-            <h2 class="aggregate">Upcoming Movies</h2>
-            <?php echo $view->upcomingMoviesAsBlock(); ?>
+        <section id="top_rated_movies">
+            <h2 class="aggregate">Top Rated Movies</h2>
+            <?php echo $view->highestRatedMoviesAsBlock() ;?>
         </section>
     </section>
     <footer>

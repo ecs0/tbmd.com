@@ -20,7 +20,9 @@
     text-align: center;
     font-size: 3em;
     font-family: 'Oswald', sans-serif;
-    background-color: seashell;
+    background: -webkit-radial-gradient(top right, white, #A3A9AA);
+    background: -moz-radial-gradient(top right, white, #A3A9AA);
+    background: radial-gradient(top right, white, #A3A9AA);
 }
 
 .movie_image {
