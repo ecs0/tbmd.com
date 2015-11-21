@@ -123,23 +123,17 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="add_review_close" type="button" value="x">
                 <h1>Submit A Review</h1>
                 <form method="post" action="php/review_handler.php">
-                    <input type="hidden" name="return" value="<?php echo $return; ?>">
+                    <input type="hidden" name="return" value="../index.php">
                     <p>
-                        <label>Movie:
-                            <select name="movie">
-                                <?php echo $view->moviesAsTag("option")?>
-                            </select>
-                        </label>
+                        <select name="movie">
+                            <?php echo $view->moviesAsTag("option")?>
+                        </select> (movie)
                     </p>
                     <p>
-                        <label>Rating:
-                            <input name="rating" type="number" min="1" max="5" step="1" value="1" required>
-                        </label>
+                        <input name="rating" type="number" min="1" max="5" step="1" value="1" required> (rating)
                     </p>
                     <p>
-                        <label>Review:
-                            <textarea name="content" cols="40" rows="10"></textarea>
-                        </label>
+                        <textarea name="content" cols="40" rows="10" placeholder="Write your review here..."></textarea>
                     </p>
                     <p>
                         <input type="submit" name="submit" value="Submit">

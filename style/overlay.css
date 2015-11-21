@@ -30,7 +30,8 @@
 }
 
 .overlay input[type="text"], 
-    .overlay input[type="date"] {
+    .overlay input[type="date"],
+    .overlay input[type="number"] {
     font-size: 1.5em;
     width: 75%;
 }
