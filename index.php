@@ -30,20 +30,14 @@
             <form method="post" action="php/signup_handler.php">
                 <input type="hidden" name="return" value="../index.php">
                 <p>
-                    <label>Email:
-                        <input id="email" type="email" name="email" required>
-                        <span class="warning" id="duplicate_warning"></span>
-                    </label>
+                    <input id="email" type="email" name="email" placeholder="Email" required>
+                    <span class="warning" id="duplicate_warning"></span>
                 </p>
                 <p>
-                    <label>Username:
-                        <input id="username" type="text" name="username" required>
-                    </label>
+                    <input id="username" type="text" name="username" placeholder="Username" required>
                 </p>
                 <p>
-                    <label>Password:
-                        <input id="password" type="password" name="password" required>
-                    </label>
+                    <input id="password" type="password" name="password" placeholder="Password" required>
                 </p>
                 <p>
                     <input id="btnSubmitUser" type="submit" name="submit" value="Sign Up!">

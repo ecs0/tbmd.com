@@ -29,9 +29,17 @@
     font-family: 'Oswald', sans-serif;
 }
 
-.overlay input[type="text"], input[type="date"] {
+.overlay input[type="text"], 
+    .overlay input[type="date"] {
     font-size: 1.5em;
     width: 75%;
+}
+
+#add_user input[type="email"],
+#add_user input[type="text"],
+#add_user input[type="password"] {
+    font-size: 1.5em;
+    width: 100%;
 }
 
 .overlay select {
@@ -70,5 +78,6 @@
 
 .warning {
     color: red;
-    font-size: .75em;
+    font-size: 1em;
+    margin-top: 3px;
 }
