@@ -8,6 +8,7 @@ window.addEventListener("load", function() {
     var totalTime = 0;
     var lastFrameTime = 0;
     var numImages;
+    var imageIndices;
     
     var img = new Image();
     img.onload = imageLoaded;
@@ -17,6 +18,7 @@ window.addEventListener("load", function() {
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             loadImages(JSON.parse(xmlHttp.responseText));
+            shuffleImages();
         }
     };
     xmlHttp.open("GET", "php/slide_show.php", true);
@@ -25,9 +27,17 @@ window.addEventListener("load", function() {
 
     function imageLoaded() {
         numImages = Math.ceil(canvas.width / img.width) + 1;
+        shuffleImages();
         draw(0);
         running = true;
         run();
+    }
+    
+    function shuffleImages() {
+        imageIndices = new Array(numImages * 3);
+        for (var i = 0; i < numImages * 3; i++) {
+            imageIndices[i] = randomIndex();
+        }
     }
     
     function draw(delta) {
@@ -50,9 +60,11 @@ window.addEventListener("load", function() {
         for (var i = 0; i < numImages; i++) {
 
             // draw the images in each film frame
-            context.drawImage(getImage(10), (i * img.width), 0, frameWidth, frameHeight);
-            context.drawImage(getImage(2), frameWidth + (i * img.width), 0, frameWidth, frameHeight);
-            context.drawImage(getImage(3), (frameWidth * 2) + (i * img.width), 0, frameWidth, frameHeight);
+            if (images.length >= 2 + (1 * 3)) {
+                context.drawImage(getImage(imageIndices[0 + (i * 3)]), (i * img.width), 0, frameWidth, frameHeight);
+                context.drawImage(getImage(imageIndices[1 + (i * 3)]), frameWidth + (i * img.width), 0, frameWidth, frameHeight);
+                context.drawImage(getImage(imageIndices[2 + (i * 3)]), (frameWidth * 2) + (i * img.width), 0, frameWidth, frameHeight);
+            }
 
             context.drawImage(img, i * img.width - 1, 0);
         }
