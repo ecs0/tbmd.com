@@ -18,6 +18,7 @@
     <script src="script/overlay.js"></script>
     <script src="script/search.js"></script>
     <script src="script/upload.js"></script>
+    <script src="script/slideshow.js"></script>
 </head>
 <body>
 
@@ -147,7 +148,7 @@
     </section>
     <header>
         <div class="logo">tbmd.com</div>
-        <h1>Welcome to tbmd.com!</h1>
+        <canvas id="slide_show" width="2000" height="300"></canvas>
         <section class="search">
             <div>
                 <p>
