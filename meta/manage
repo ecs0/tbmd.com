@@ -1,0 +1,128 @@
+#!/bin/bash
+
+# Print the help message to console
+function help {
+  echo "[HELP]"
+  echo "This script will backup or restore the tbmd.com database"
+  echo "As well as the image repository that goes with the database"
+  echo "" 
+  echo "Manage supports 3 parameters, -b, -r, and -h"
+  echo "Backup, Restore, and Help respectively"
+  echo ""
+  echo "Backup creates a dump of the current tbmd database"
+  echo "Then archives the contents of images/uploads/ in the meta/ director"
+  echo ""
+  echo "Restore must requires a tbmd.tar.gz and tbmd.sql file in the same directory."
+  echo "The script will extract and over write any contents"
+  echo "in images/uploads with the extracted images. It will then run the"
+  echo "tbmd.com script against the database, after first nuking it."
+  echo ""
+  echo "Help will print the help message"
+  echo ""
+  echo "Normal usage of the script should be:"
+  echo "  1. Create a back up of the db with 'manage -b'"
+  echo "  2. Commit archive to the repository"
+  echo "  3. Pull archive on another machine"
+  echo "  4. Extract archive on new machine by running 'manage -r'"
+}
+
+# Print the error message to console
+function error {
+  echo "[ERROR] Usage: please specify usage parameter"
+  echo "Try 'manage -h' for more information"
+  exit 1
+}
+
+# Back up the image/uploads file and database
+function backup {
+  echo "[BACKUP]"
+
+  #create a tmp dir
+  mkdir -p tmp
+
+  #copy image files to it, and the db backup
+  cp ../images/uploads/* tmp/
+
+  # dump the db
+  mysqldump -u root -p tbmd > tmp/tbmd.sql
+
+  # archive and zip everything
+  tar -zcvf tbmd.tar.gz tmp
+
+  # uncomment to automatically version the archive
+  #git add tbmd.tar.gz 
+
+  # clean up
+  rm -r tmp
+
+  # all done
+  echo "[DONE]"
+  exit 0
+}
+
+# Restore the image/uploads file and database
+function restore {
+  echo "[RESTORE]"
+
+  # first check to see if there is an archive to use
+  if [ -f "tbmd.tar.gz" ];
+  then
+    # we good
+    echo "[RESTORE] Archive found, restoring..."
+
+    # uncompress and extract archive
+    tar -zxvf tbmd.tar.gz
+
+    # move db back up to current directory
+    mv tmp/tbmd.sql .
+
+    #TODO find a way to avoid double password prompts!!
+    # nuke and rebuild the database schema
+    mysql -u root -p < ../database/schema.sql
+
+    # run the back up on the fresh db schema
+    mysql -u root -p tbmd < tbmd.sql
+
+    # move unzipped files to their proper location
+    mv tmp/* ../images/uploads
+
+    # clean up
+    rm -r tmp
+    rm tbmd.sql
+
+    # all done
+    echo "[DONE]"
+    exit 0
+
+  else
+    # no archive, no restore, gg
+    echo "[ERROR] No archive to restore from found."
+    exit 1
+  fi
+}
+
+### Script Start ###
+if [ $# -eq 0 ];
+then
+  error
+fi
+
+# Determine course of action, depending on option
+while getopts :brh opt; do
+  case $opt in
+    b)
+      backup
+      ;;
+    r)
+      restore
+      ;;
+    h)
+      help
+      exit 0
+      ;;
+    \?)
+      error
+      ;;
+  esac
+done
+
