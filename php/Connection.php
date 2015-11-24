@@ -723,7 +723,7 @@ class Connection {
     private function connect() {
         $this->link = mysqli_connect(Constants::HOST, Constants::USER, Constants::PASSWORD, Constants::DATABASE);
         if (mysqli_connect_errno()) {
-            header("Location: html/error.php?error=".mysqli_connect_error());
+            header("Location: error.php?error=".mysqli_connect_error());
             exit();
         }
     }
