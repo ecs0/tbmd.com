@@ -166,8 +166,8 @@ class Movie extends stdClass {
         
         return "<div id=$id class='movie_block'>"
                 . "$img
-                $title
                 <div class='movie_rating'>$rating</div>
+                $title
                 <div class='movie_release'>$release</div>
                 <div class='movie_people'>$director$actors</div>
                 <div class='movie_synopsis'>$synopsis</div>"

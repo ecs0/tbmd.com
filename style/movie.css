@@ -10,7 +10,8 @@
 }
 
 .movie_rating {
-    position: absolute;
+    float: right;
+    margin: 10px;
     top: 10px;
     right: 10px;
     border: 2px solid black;
