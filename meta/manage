@@ -87,6 +87,7 @@ function restore {
     if [ ! -d ../images/uploads ];
     then
       mkdir ../images/uploads
+      chmod 777 ../images/uploads
     fi
 
     # move unzipped files to their proper location
