@@ -224,8 +224,8 @@ class Connection {
             mysqli_query($this->link, $sql);
             $id = mysqli_insert_id($this->link);
 
-            // update the bridge table
-            if ($id > 0) {
+            // update the bridge table, if there are movies to add to it
+            if ($id > 0 && count($movie->getActors()) > 0) {
 
                 $callback = function($person) use ($id) {
                     if ($person instanceof Person) {
