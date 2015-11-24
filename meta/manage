@@ -83,6 +83,12 @@ function restore {
     # run the back up on the fresh db schema
     mysql -u root -p tbmd < tbmd.sql
 
+    # check if the uploads dir exists, create if it doesn't
+    if [ ! -d ../images/uploads ];
+    then
+      mkdir ../images/uploads
+    fi
+
     # move unzipped files to their proper location
     mv tmp/* ../images/uploads
 
