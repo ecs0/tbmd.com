@@ -23,6 +23,7 @@ if (isset($_GET['id'])) {
         <link rel="stylesheet" href="style/movie.css">
         <link rel="stylesheet" href="style/person.css">
         <link rel="stylesheet" href="style/overlay.css">
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
         <script src="script/search.js"></script>
         <script src="script/overlay.js"></script>
         <script src="script/upload.js"></script>

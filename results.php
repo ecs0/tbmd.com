@@ -21,6 +21,7 @@ and open the template in the editor.
         <title>Search Results</title>
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/overlay.css">
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
         <script src="script/overlay.js"></script>
         <script src="script/search.js"></script>
         <script src="script/upload.js"></script>

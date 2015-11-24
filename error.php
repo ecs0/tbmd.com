@@ -13,6 +13,7 @@
     <title>Error</title>
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/overlay.css">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
     <script src="script/signup.js"></script>
     <script src="script/overlay.js"></script>
 </head>
