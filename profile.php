@@ -123,7 +123,7 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="add_review_close" type="button" value="x">
                 <h1>Submit A Review</h1>
                 <form method="post" action="php/review_handler.php">
-                    <input type="hidden" name="return" value="../index.php">
+                    <input type="hidden" name="return" value="<?php echo $return; ?>">
                     <p>
                         <select name="movie">
                             <?php echo $view->moviesAsTag("option")?>

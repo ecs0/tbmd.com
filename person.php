@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="add_user_close" type="button" value="x">
                 <h1>Sign Up for tbmd.com!</h1>
                 <form method="post" action="php/signup_handler.php">
-                    <input type="hidden" name="return" value="../index.php">
+                    <input type="hidden" name="return" value="<?php echo "$return"; ?>">
                     <p>
                         <input id="email" type="email" name="email" placeholder="Email" required>
                         <span class="warning" id="duplicate_warning"></span>
@@ -59,7 +59,7 @@ if (isset($_GET['id'])) {
                 <input id="add_person_close" class="exit" type="button" value="x">
                 <h1>Enter a Person</h1>
                 <form method="post" action="php/person_handler.php" enctype="multipart/form-data">
-                    <input type="hidden" name="return" value="../index.php">
+                    <input type="hidden" name="return" value="<?php echo "$return"; ?>">
                     <p>
                         <input type="text" name="fname" max="50" maxlength="50" placeholder="First Name" required>
                     </p>
@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="add_movie_close" type="button" value="x">
                 <h1>Enter a Movie</h1>
                 <form method="post" action="php/movie_handler.php" enctype="multipart/form-data">
-                    <input type="hidden" name="return" value="../index.php">
+                    <input type="hidden" name="return" value="<?php echo "$return"; ?>">
                     <p>
                         <input type="text" name="title" placeholder="Title" required>
                     </p>
@@ -125,7 +125,7 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="add_review_close" type="button" value="x">
                 <h1>Submit A Review</h1>
                 <form method="post" action="php/review_handler.php">
-                    <input type="hidden" name="return" value="../index.php">
+                    <input type="hidden" name="return" value="<?php echo "$return"; ?>">
                     <p>
                         <select name="movie">
                             <?php echo $view->moviesAsTag("option")?>
