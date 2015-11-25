@@ -160,6 +160,26 @@ if (isset($_GET['id'])) {
                 </form>
             </div>
         </div>
+        <div class="overlay" id="edit_review">
+            <div>
+                <input class="exit" id="edit_review_close" type="button" value="x">
+                <h1 id="review_title">Edit Your Review</h1>
+                <form method="post" action="php/edit_review_handler.php">
+                    <input type="hidden" name="userId" value="<?php echo $login->getLoggedInUserId(); ?>">
+                    <input type="hidden" name="reviewId" id="reviewId" value="">
+                    <input type="hidden" name="return" value="<?php echo $return; ?>">
+                    <p>
+                        <input id="review_form_rating" name="rating" type="number" step="1" min="1" max="5" value="1" required>
+                    </p>
+                    <p>
+                        <textarea id="review_form_content" name="content" cols="40" rows="10" placeholder="Write your review here..."></textarea>
+                    </p>
+                    <p>
+                        <input type="submit" name="submit" value="Update">
+                    </p>
+                </form>
+            </div>
+        </div>
         <?php //</editor-fold>?>
 
         <!-- Visible Page Content -->
