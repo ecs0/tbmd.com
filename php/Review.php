@@ -2,6 +2,7 @@
 
 include_once("User.php");
 include_once("Movie.php");
+include_once("LoginManager.php");
 
 /**
  * Created by PhpStorm.
@@ -87,6 +88,16 @@ class Review extends stdClass {
         $a = "<a href='".$link."' target='_blank'>$title</a>";
         $header = "<h3>$a</h3>"; 
         
+        $login = new LoginManager("../error.php");
+        
+        if ($login->isLoggedIn()) {
+            //TODO check to see if the user id of the review, matches the logged in id
+            $addReview = "<input class='review' id='".$this->id."' type='button' value='Edit'>";
+        } else {
+            $addReview = "";
+        }
+        
+        
         $userLink = "profile.php?id=".$this->getUser()->getId();
         $userA = "<a href='".$userLink."' target='_blank'>$this->user</a>";
         $submission = "<p><strong>Submitted By: </strong>$userA</p>"; 
@@ -95,7 +106,7 @@ class Review extends stdClass {
         $review = "<p><strong>Review: </strong>$this->reviewContent</p>";
         $id = "'".$this->id."'";
         
-        return "<div id=$id class='review_block'>$header$submission$date$rating$review</div>";
+        return "<div id=$id class='review_block'>$addReview$header$submission$date$rating$review</div>";
     }
     
     public function asTableRow() {

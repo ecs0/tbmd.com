@@ -1,7 +1,7 @@
 
 .top_bar input[type="button"],
     input[type="submit"],
-    input[type="reset"], #btnAddDirector {
+    input[type="reset"], #btnAddDirector, .review {
 	font-family: 'Oswald', sans-serif;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -20,7 +20,7 @@
 .top_bar input[type="button"]:hover, 
     input[type="submit"]:hover,
     input[type="reset"]:hover, 
-    #btnAddDirector:hover {
+    #btnAddDirector:hover, .review:hover {
 	background: -moz-linear-gradient( center top, #8D8E8E 5%, #ededed 100% );
 	background: -ms-linear-gradient( top, #8D8E8E 5%, #ededed 100% );
 	background: -webkit-gradient( linear, left top, left bottom, color-stop(5%, #8D8E8E), color-stop(100%, #ededed) );
@@ -31,7 +31,12 @@
 .top_bar input[type="button"]:active, 
     input[type="submit"]:active,
     input[type="reset"]:active,
-    #btnAddDirector {
+    #btnAddDirector:active, .review:active {
 	position: relative;
 	top: 1px;
+}
+
+.review {
+    float: right;
+    margin: 10px;
 }

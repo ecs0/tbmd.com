@@ -163,7 +163,7 @@ class LoginManager {
      * 
      * @return Bool
      */
-    private function isLoggedIn() {
+    public function isLoggedIn() {
         return isset($_SESSION['auth']); 
     }
 }
