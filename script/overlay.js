@@ -29,6 +29,17 @@ window.addEventListener('load', function() {
     registerButton(document.getElementById('btnAddMovieToActor'), 'movie_to_actor');
     registerButton(document.getElementById('movie_to_actor_close'), 'movie_to_actor');
 
+    // register review edit button
+    registerButton(document.getElementById('edit_review_close'), 'edit_review');
+    var buttons = document.getElementsByClassName("edit_review");
+    for (var i = 0; i < buttons.length; i++) {
+        registerButton(buttons[i], 'edit_review');
+        (function(btn, id) {
+            btn.addEventListener("click", function() {
+                fillReviewEdit(id);
+            }, false);
+        })(buttons[i], buttons[i].id);
+    }
 }, false);
 
 /**
@@ -50,9 +61,40 @@ function registerButton(button, id, secondaryId) {
     }
 }
 
+/**
+ * Shows/Hides the modal form submission dialogs
+ * 
+ * @param {type} id
+ * @returns {undefined}
+ */
 function overlay(id) {
     var element = document.getElementById(id);
     element.style.visibility =
             (element.style.visibility === 'visible') ? 'hidden' : 'visible';
+}
+
+/**
+ * Populates the review edit form with the proper content
+ * 
+ * @param {type} reviewId
+ * @returns {undefined}
+ */
+function fillReviewEdit(reviewId) {
+    var id = reviewId.replace("edit_", "");
+    document.getElementById("reviewId").value = id;
+    
+    var reviewBlock = document.getElementById(id);
+    var movieTitle = reviewBlock.getElementsByTagName("h3")[0];
+    var formHeader = document.getElementById("review_title");
+    formHeader.innerHTML = movieTitle.innerText;
+    
+    var content = reviewBlock.getElementsByClassName("review_content")[0];
+    var formContent = document.getElementById("review_form_content");
+    formContent.innerHTML = content.innerHTML;
+    
+    var rating = reviewBlock.getElementsByClassName("rating")[0];
+    var formRating = document.getElementById("review_form_rating");
+    
+    formRating.value = rating.innerHTML;
 }
 

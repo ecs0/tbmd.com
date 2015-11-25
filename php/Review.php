@@ -92,7 +92,7 @@ class Review extends stdClass {
         
         $userId = $this->user->getId();
         if ($login->isLoggedIn() && $userId == $login->getLoggedInUserId()) {
-            $addReview = "<input class='review' id='".$this->id."' type='button' value='Edit'>";
+            $addReview = "<input class='edit_review' id='edit_".$this->id."' type='button' value='Edit'>";
         } else {
             $addReview = "";
         }
@@ -102,8 +102,8 @@ class Review extends stdClass {
         $userA = "<a href='".$userLink."' target='_blank'>$this->user</a>";
         $submission = "<p><strong>Submitted By: </strong>$userA</p>"; 
         $date = "<p><strong>Submitted On: </strong>$this->submitDate</p>";
-        $rating = "<p><strong>Rating: </strong>$this->rating/5 Stars</p>";
-        $review = "<p><strong>Review: </strong>$this->reviewContent</p>";
+        $rating = "<p><strong>Rating: </strong><span class='rating'>$this->rating</span>/5 Stars</p>";
+        $review = "<p><strong>Review: </strong><span class='review_content'>$this->reviewContent</span></p>";
         $id = "'".$this->id."'";
         
         return "<div id=$id class='review_block'>$addReview$header$submission$date$rating$review</div>";

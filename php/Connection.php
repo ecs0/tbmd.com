@@ -170,6 +170,20 @@ class Connection {
         return $id;
     }
 
+    public function updateReview($userId, $reviewId, $rating, $content) {
+        $this->connect();
+        $filteredContent = "'".mysqli_real_escape_string($this->link, $content)."'";
+        
+        $sql = "UPDATE reviews "
+                . "SET submit_date = CURDATE(), "
+                . "rating = $rating, "
+                . "review_content = $filteredContent "
+                . "WHERE id = $reviewId "
+                . "AND user_id = $userId";
+        
+        return mysqli_query($this->link, $sql);
+    }
+    
     /**
      * This function adds a new person to the database
      *
