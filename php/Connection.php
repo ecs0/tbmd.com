@@ -710,10 +710,12 @@ class Connection {
                 "movie.synopsis, ".
                 "movie.submit_date, ".
                 "movie.image_link, ".
-                "MAX(reviews.rating) rating ".
+                "reviews.rating ".
                 "FROM movie INNER JOIN reviews ON movie.id = reviews.movie_id ".
                 "INNER JOIN users ON reviews.user_id = users.id ".
-                "ORDER BY reviews.submit_date DESC";
+                "WHERE users.id = $userId ".
+                "ORDER BY reviews.rating DESC, reviews.submit_date DESC ".
+                "LIMIT 1";
         $result = mysqli_query($this->link, $sql);
         if ($result) {
             $row = mysqli_fetch_array($result);
