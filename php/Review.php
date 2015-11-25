@@ -90,8 +90,8 @@ class Review extends stdClass {
         
         $login = new LoginManager("../error.php");
         
-        if ($login->isLoggedIn()) {
-            //TODO check to see if the user id of the review, matches the logged in id
+        $userId = $this->user->getId();
+        if ($login->isLoggedIn() && $userId == $login->getLoggedInUserId()) {
             $addReview = "<input class='review' id='".$this->id."' type='button' value='Edit'>";
         } else {
             $addReview = "";
