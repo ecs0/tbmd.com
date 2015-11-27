@@ -40,3 +40,13 @@
     float: right;
     margin: 10px;
 }
+
+.spacer {
+    background-color: white;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}

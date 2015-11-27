@@ -106,6 +106,7 @@ class LoginManager {
             $btnAddMovie = $this->inputById("button", "btnAddMovie", "Add a Movie!");
             $btnAddReview = $this->inputById("button", "btnAddReview", "Review Your Favourite Movie!");
             
+            $spacer = "<span class='spacer'></span>";
             if ($this->type == "Person") {
                 $btnEdit = $this->inputById("button", "btnEditPerson", "Edit");
                 $btnAddActor = $this->inputById("button", "btnAddActorToMovie", "Quick Add");
@@ -115,9 +116,10 @@ class LoginManager {
             } else {
                 $btnEdit = "";
                 $btnAddActor = "";
+                $spacer = "";
             }
             
-            return "$btnAddPerson\n$btnAddMovie\n$btnAddReview\n$btnEdit\n$btnAddActor";
+            return "$btnAddPerson\n$btnAddMovie\n$btnAddReview\n$spacer\n$btnEdit\n$btnAddActor";
         } else {
             return "";
         }
