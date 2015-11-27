@@ -23,11 +23,19 @@ window.addEventListener('load', function() {
     registerButton(document.getElementById('btnAddReview'), 'add_review');
     registerButton(document.getElementById('add_review_close'), 'add_review');
     
-    // register edit buttons
+    // register quick add buttons
     registerButton(document.getElementById('btnAddActorToMovie'), 'actor_to_movie');
     registerButton(document.getElementById('actor_to_movie_close'), 'actor_to_movie');
     registerButton(document.getElementById('btnAddMovieToActor'), 'movie_to_actor');
     registerButton(document.getElementById('movie_to_actor_close'), 'movie_to_actor');
+
+    //register edit buttons
+    var editPerson = document.getElementById("btnEditPerson");
+    registerButton(editPerson, "edit_person");
+    registerButton(document.getElementById("edit_person_close"), "edit_person");
+    editPerson.addEventListener("click", function() {
+        fillEditPerson();
+    }, false);
 
     // register review edit button
     registerButton(document.getElementById('edit_review_close'), 'edit_review');
@@ -98,3 +106,21 @@ function fillReviewEdit(reviewId) {
     formRating.value = rating.innerHTML;
 }
 
+function fillEditPerson() {
+    
+    var bdate = document.getElementById("person_bdate");
+    var bio = document.getElementById("person_bio");
+    var fname = document.getElementById("fname");
+    var lname = document.getElementById("lname");
+    
+    var editBdate = document.getElementById("bdate");
+    var editBio = document.getElementById("bio");
+    var editFname = document.getElementById("edit_fname");
+    var editLname = document.getElementById("edit_lname");
+
+
+    editFname.value = fname.innerHTML;
+    editLname.value = lname.innerHTML;
+    editBio.innerHTML = bio.innerHTML;
+    editBdate.value = bdate.innerHTML;
+}

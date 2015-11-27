@@ -161,6 +161,31 @@ if (isset($_GET['id'])) {
                 </form>
             </div>
         </div>
+        <div class="overlay" id="edit_person">
+            <div>
+                <input class="exit" id="edit_person_close" type="button" value="x">
+                <form method="post" action="php/edit_person_handler.php">
+                    <input type="hidden" name="personId" value="<?php echo $id; ?>">
+                    <input type="hidden" name="return" value="<?php echo $return; ?>">
+                    <h1>Edit <?php echo $view->getName(); ?></h1>
+                    <p>
+                        <input type="text" id="edit_fname" name="fname" max="50" maxlength="50" placeholder="First Name" required>
+                    </p>
+                    <p>
+                        <input type="text" id="edit_lname" name="lname" max="50" maxlength="50" placeholder="Last Name" required>
+                    </p>
+                    <p>
+                        <input type="date" id='bdate' name="birthdate" required> (DOB)
+                    </p>
+                    <p>
+                        <textarea cols="40" rows="10" id='bio' name="bio" placeholder="Enter biography here..." required></textarea>
+                    </p>
+                    <p>
+                        <input type="submit" name="submit" value="Update">
+                    </p>
+                </form>
+            </div>
+        </div>
         <?php //</editor-fold>?>
 
         <!-- Visible Page Content -->

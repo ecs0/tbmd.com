@@ -92,9 +92,9 @@ class Person extends stdClass {
             $imgSrc = "'images/person_placeholder.jpg'";
         }
         $image = "<img class='person_image' src=$imgSrc alt='".$this."'>";
-        $name = "<b>$this->firstName $this->lastName</b>";
-        $bdate = "<p><b>Birthdate: </b>$this->birthdate</p>";
-        $bio = "<p><b>Bio: </b>$this->bio</p>";
+        $name = "<b><span id='fname'>$this->firstName</span> <span id='lname'>$this->lastName</span></b>";
+        $bdate = "<p><b>Birthdate: </b><span id='person_bdate'>$this->birthdate</span></p>";
+        $bio = "<p><b>Bio: </b><span id='person_bio'>$this->bio</span</p>";
         
         
         $div = "$image"

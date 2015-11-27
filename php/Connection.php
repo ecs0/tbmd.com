@@ -169,7 +169,7 @@ class Connection {
         $this->disconnect();
         return $id;
     }
-
+    
     public function updateReview($userId, $reviewId, $rating, $content) {
         $this->connect();
         $filteredContent = "'".mysqli_real_escape_string($this->link, $content)."'";
@@ -213,6 +213,34 @@ class Connection {
         return -1;
     }
 
+    /**
+     * Updates a person in the database, Image Link will not be updated, even
+     * if passed. ID must be valid.
+     * 
+     * @param Person $person
+     * @return type
+     */
+    public function updatePerson(Person $person) {
+        
+        $this->connect();
+        
+        $id = $person->getId();
+        $fname = "'".$person->getFirstName()."'";
+        $lname = "'".$person->getLastName()."'";
+        $birthdate = "'".$person->getBirthdate()."'";
+        $bio = "'".mysqli_real_escape_string($this->link, $person->getBio())."'";
+        
+        $sql = "UPDATE people "
+                . "SET fname = $fname, "
+                . "lname = $lname, "
+                . "birthdate = $birthdate, "
+                . "submit_date = CURDATE(), "
+                . "bio = $bio "
+                . "WHERE id = $id";
+        
+        return mysqli_query($this->link, $sql);
+    }
+    
     /**
      * Insert a new movie in to the database, updating the actor bridge table as well
      *
