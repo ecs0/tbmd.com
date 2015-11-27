@@ -142,11 +142,11 @@ class Movie extends stdClass {
         } else {
             $rating = number_format($rating, 1);
         }
-        $release = "<p><strong>Release Date: </strong>$this->releaseDate</p>";
+        $release = "<p><strong>Release Date: </strong><span id='rdate'>$this->releaseDate</span></p>";
         
         $directorId = $this->director->getId();
         $directorLink = "'person.php?id=$directorId"."'";
-        $directerAnchor = "<a href=$directorLink target='_blank'>$this->director</a>";
+        $directerAnchor = "<a href=$directorLink target='_blank'><span id='dir'>$this->director</span></a>";
         $director = "<p><strong>Directed By: </strong>$directerAnchor</p>";
         
         $actorList = array();
@@ -154,12 +154,12 @@ class Movie extends stdClass {
         foreach ($this->actors as $actor) {
             $id = $actor->getId();
             $link = "'person.php?id=$id"."'";
-            $a = "<li><a href=$link target='_blank'>$actor</a></li>";
+            $a = "<li><a href=$link target='_blank'><span>$actor</span></a></li>";
             $actorList[$i++] = $a;
         }
         
-        $actors = "<p><strong>Starring: </strong><ul>".implode("", $actorList)."</ul></p>";
-        $synopsis = "<p><strong>Synopsis: </strong>$this->synopsis</p>";
+        $actors = "<p><strong>Starring: </strong><ul id='actors'>".implode("", $actorList)."</ul></p>";
+        $synopsis = "<p><strong>Synopsis: </strong><span id='synopsis'>$this->synopsis</span></p>";
         $id = "'".$this->id."'";
         
         //TODO add a 'review this movie' link

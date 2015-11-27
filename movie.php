@@ -180,6 +180,38 @@ if (isset($_GET['id'])) {
                 </form>
             </div>
         </div>
+        <div class="overlay" id="edit_movie">
+            <div>
+                <input class="exit" id="edit_movie_close" type="button" value="x">
+                <h1>Edit <?php echo $view->getTitle(); ?></h1>
+                <form method="post" action="php/edit_movie_handler.php">
+                    <input type="hidden" name="movieId" value="<?php echo $id; ?>"
+                    <input type="hidden" name="return" value="<?php echo "$return"; ?>">
+                    <p>
+                        <input type="text" id="editTitle" name="title" placeholder="Title" required>
+                    </p>
+                    <p>
+                        <input type="date" id="releaseDate" name="release_date" required> (release date)
+                    </p>
+                    <p>
+                        <select name="director" id="directorList">
+                            <?php echo $view->peopleAsTag("option") ?>
+                        </select> (director)
+                    </p>
+                    <p> 
+                        <select class="actor_list" name="actors[]" id="actorList" multiple> 
+                            <?php echo $view->peopleAsTag("option") ?>
+                        </select> (actors)
+                    </p> 
+                    <p>
+                        <textarea id="editSynopsis" cols="40" rows="10" name="synopsis" placeholder="Enter Synopsis here..." required></textarea>
+                    </p>
+                    <p>
+                        <input type="submit" name="submit" value="Update">
+                    </p>
+                </form>
+            </div>
+        </div>
         <?php //</editor-fold>?>
 
         <!-- Visible Page Content -->
@@ -212,7 +244,7 @@ if (isset($_GET['id'])) {
             </div>
             <section id="reviews">
                 <div>
-                    <h3><?php echo "Reviews of ".$view->getTitle().":"; ?></h3>
+                    <h3><?php echo "Reviews of <span id='movieTitle'>".$view->getTitle()."</span>:"; ?></h3>
                     <?php echo $view->getReviews(); ?>
                 </div>
             </section>

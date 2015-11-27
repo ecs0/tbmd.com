@@ -29,13 +29,25 @@ window.addEventListener('load', function() {
     registerButton(document.getElementById('btnAddMovieToActor'), 'movie_to_actor');
     registerButton(document.getElementById('movie_to_actor_close'), 'movie_to_actor');
 
-    //register edit buttons
+    //register person edit buttons
     var editPerson = document.getElementById("btnEditPerson");
     registerButton(editPerson, "edit_person");
     registerButton(document.getElementById("edit_person_close"), "edit_person");
-    editPerson.addEventListener("click", function() {
-        fillEditPerson();
-    }, false);
+    if (editPerson !== null) {
+        editPerson.addEventListener("click", function () {
+            fillEditPerson();
+        }, false);
+    }
+
+    // register movie edit buttons
+    var editMovie = document.getElementById("btnEditMovie");
+    registerButton(editMovie, "edit_movie");
+    registerButton(document.getElementById("edit_movie_close"), "edit_movie");
+    if (editMovie !== null) {
+        editMovie.addEventListener("click", function() {
+            fillEditMovie();
+        }, false);
+    }
 
     // register review edit button
     registerButton(document.getElementById('edit_review_close'), 'edit_review');
@@ -85,7 +97,6 @@ function overlay(id) {
  * Populates the review edit form with the proper content
  * 
  * @param {type} reviewId
- * @returns {undefined}
  */
 function fillReviewEdit(reviewId) {
     var id = reviewId.replace("edit_", "");
@@ -106,6 +117,9 @@ function fillReviewEdit(reviewId) {
     formRating.value = rating.innerHTML;
 }
 
+/**
+ * Populate the person edit form
+ */
 function fillEditPerson() {
     
     var bdate = document.getElementById("person_bdate");
@@ -123,4 +137,49 @@ function fillEditPerson() {
     editLname.value = lname.innerHTML;
     editBio.innerHTML = bio.innerHTML;
     editBdate.value = bdate.innerHTML;
+}
+
+/**
+ * Populate the movie edit form 
+ */
+function fillEditMovie() {
+    
+    var title = document.getElementById("movieTitle").innerHTML;
+    document.getElementById("editTitle").value = title;
+    
+    var rdate = document.getElementById("rdate").innerHTML;
+    document.getElementById("releaseDate").value = rdate;
+    
+    var synopsis = document.getElementById("synopsis").innerHTML;
+    document.getElementById("editSynopsis").innerHTML = synopsis;
+    
+    var director = document.getElementById("dir").innerHTML;
+    var directorList = document.getElementById("directorList").getElementsByTagName("option");
+    for (var index in directorList) {
+        var option = directorList[index];
+        if (option.innerHTML === director) {
+            option.selected = true;
+        }
+    }
+    
+    var allActors = document.getElementById("actorList").getElementsByTagName("option");
+    
+    var actorList = document.getElementById("actors");
+    var actors = actorList.getElementsByTagName("span");
+    for (var i in actors) {
+        var actor = actors[i];
+        if (actor === undefined) {
+            continue;
+        }
+        for (var k in allActors) {
+            var check = allActors[k];
+            if (check === undefined) {
+                continue;
+            }
+            
+            if (actor.innerHTML === check.innerHTML) {
+                check.selected = true;
+            }
+        }
+    }
 }
