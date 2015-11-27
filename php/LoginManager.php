@@ -107,14 +107,17 @@ class LoginManager {
             $btnAddReview = $this->inputById("button", "btnAddReview", "Review Your Favourite Movie!");
             
             if ($this->type == "Person") {
-                $btnEdit = $this->inputById("button", "btnAddActorToMovie", "Add this actor to another movie!");
+                $btnEdit = $this->inputById("button", "btnEditPerson", "Edit");
+                $btnAddActor = $this->inputById("button", "btnAddActorToMovie", "Quick Add");
             } else if ($this->type == "Movie") {
-                $btnEdit = $this->inputById("button", "btnAddMovieToActor", "Add another actor to this movie!");
+                $btnEdit = $this->inputById("button", "btnEditMovie", "Edit");
+                $btnAddActor = $this->inputById("button", "btnAddMovieToActor", "Quick Add");
             } else {
                 $btnEdit = "";
+                $btnAddActor = "";
             }
             
-            return "$btnAddPerson\n$btnAddMovie\n$btnAddReview\n$btnEdit";
+            return "$btnAddPerson\n$btnAddMovie\n$btnAddReview\n$btnEdit\n$btnAddActor";
         } else {
             return "";
         }
