@@ -118,9 +118,8 @@ function fillReviewEdit(reviewId) {
     formContent.innerHTML = content.innerHTML;
     
     var rating = reviewBlock.getElementsByClassName("rating")[0];
-    var formRating = document.getElementById("review_form_rating");
+    setRating("edit_movie_rating", rating.innerHTML);
     
-    formRating.value = rating.innerHTML;
 }
 
 /**
@@ -199,8 +198,9 @@ function fillEditMovie() {
 function setRating(id, value) {
     var span = document.getElementById(id);
     var radioButtons = span.getElementsByTagName("input");
-    for (var index in radioButtons) {
-        var rdoButton = radioButtons[index];
+    
+    for (var i = 0; i < radioButtons.length; i++) {
+        var rdoButton = radioButtons[i];
         rdoButton.checked = rdoButton.value === value.toString();
     }
 }

@@ -1,5 +1,5 @@
 
-.star_rating:not(old) {
+.star_rating {
     display: inline-block;
     width: 15em;
     height: 1.5em;
@@ -7,12 +7,12 @@
     vertical-align: bottom;
 }
 
-.star_rating:not(old) > input {
+.star_rating > input {
     margin-right: -100%;
     opacity: 0;
 }
 
-.star_rating:not(old) > label {
+.star_rating > label {
     display: block;
     float: right;
     position: relative;
@@ -20,7 +20,7 @@
     background-size: contain;
 }
 
-.star_rating:not(old) > label:before {
+.star_rating > label:before {
     content: '';
     display: block;
     width: 1.5em;
@@ -31,8 +31,8 @@
     transition: opacity 0.2s linear;
 }
 
-.star_rating:not(old) > label:hover:before,
-.star_rating:not(old) > label:hover ~ label:before,
-.star_rating:not(old) > :checked ~ label:before {
+.star_rating label:hover:before,
+.star_rating > label:hover ~ label:before,
+.star_rating > :checked ~ label:before {
     opacity: 1;
 }
