@@ -352,6 +352,74 @@ class Connection {
 
     public function updateMovie(Movie $movie) {
         
+        $this->connect();
+        
+        // disable auto commit, so that we can roll back bridge table deletes if 
+        // the transaction fails in the second portion of the query
+        mysqli_autocommit($this->link, FALSE);
+        
+        // first, we delete all records in the actor bridge table for the movie
+        $sqlDelete = "DELETE FROM actor WHERE movie_id = ".$movie->getId();
+        
+        try {
+            if (mysqli_query($this->link, $sqlDelete)) {
+
+                // now that the bridge table is cleared out, update the movie
+                $movieId = $movie->getId();
+                $directorId = $movie->getDirector()->getId();
+                $title = "'".mysqli_real_escape_string($this->link, $movie->getTitle())."'";
+                $releaseDate = "'".$movie->getReleaseDate()."'";
+                $synopsis = "'".mysqli_real_escape_string($this->link, $movie->getSynopsis())."'";
+
+                $sqlUpdate = "UPDATE movie "
+                        . "SET director_id = $directorId, "
+                        . "title = $title, "
+                        . "release_date = $releaseDate, "
+                        . "submit_date = CURDATE(), "
+                        . "synopsis = $synopsis "
+                        . "WHERE id = $movieId";
+
+                if (mysqli_query($this->link, $sqlUpdate)) {
+                    // alright, movie table is updated, now to re-enter the new 
+                    // actor list into the bridge table.
+                    $callback = function($person) use ($movieId) {
+                        if ($person instanceof Person) {
+                        $personId = $person->getId();
+                            return "($movieId, $personId)";
+                        } else {
+                            return "";
+                        }
+                    };
+
+                    $bridgePairs = array_map($callback, $movie->getActors());
+                    $values = implode(", ", $bridgePairs);
+
+                    $bridgeSql = "INSERT INTO actor (movie_id, people_id) VALUES $values";
+
+                    $result = mysqli_query($this->link, $bridgeSql);
+                    
+                    if ($result) {
+                        // ok, movie is update, and bridge table too
+                        // now we can safely commit
+                        mysqli_commit($this->link);
+                        $this->disconnect();
+                        return TRUE;
+                    }
+                    
+                } else {
+                    // uh oh, something went wrong, roll back and abort!
+                    mysqli_rollback($this->link);
+                    $this->disconnect();
+                    return FALSE;
+                }
+            } else {
+                return FALSE;
+            }
+        } catch (Exception $e) {
+            mysqli_rollback($this->link);
+            $this->disconnect();
+            return FALSE;
+        } 
     }
     
     /**
