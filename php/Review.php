@@ -110,11 +110,12 @@ class Review extends stdClass {
         $userA = "<a href='".$userLink."' target='_blank'>$this->user</a>";
         $submission = "<p><strong>Submitted By: </strong>$userA</p>"; 
         $date = "<p><strong>Submitted On: </strong>$this->submitDate</p>";
+        $ratingValue = "<span class='rating'>$this->rating</span>";
         $rating = "<p>$stars</p>";
         $review = "<p><strong>Review: </strong><span class='review_content'>$this->reviewContent</span></p>";
         $id = "'".$this->id."'";
         
-        return "<div id=$id class='review_block'>$addReview$header$submission$date$rating$review</div>";
+        return "<div id=$id class='review_block'>$addReview$header$submission$date$rating$review$ratingValue</div>";
     }
     
     public function asTableRow() {

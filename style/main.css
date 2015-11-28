@@ -127,3 +127,7 @@ a {
 a:hover {
     color: orangered;
 }
+
+.rating {
+    display: none;
+}
