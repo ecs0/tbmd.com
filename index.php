@@ -166,26 +166,26 @@
                 <input type="hidden" name="return" value="../index.php">
                 <p>
                     <span class="star_rating" id="edit_movie_rating">
-                        <input id="rating10" type="radio" name="rating" value="10">
-                        <label for="rating10">10</label>
-                        <input id="rating9" type="radio" name="rating" value="9">
-                        <label for="rating9">9</label>
-                        <input id="rating8" type="radio" name="rating" value="8">
-                        <label for="rating8">8</label>
-                        <input id="rating7" type="radio" name="rating" value="7">
-                        <label for="rating7">7</label>
-                        <input id="rating6" type="radio" name="rating" value="6">
-                        <label for="rating6">6</label>
-                        <input id="rating5" type="radio" name="rating" value="5">
-                        <label for="rating5">5</label>
-                        <input id="rating4" type="radio" name="rating" value="4">
-                        <label for="rating4">4</label>
-                        <input id="rating3" type="radio" name="rating" value="3">
-                        <label for="rating3">3</label>
-                        <input id="rating2" type="radio" name="rating" value="2">
-                        <label for="rating2">2</label>
-                        <input id="rating1" type="radio" name="rating" value="1">
-                        <label for="rating1">1</label>
+                        <input id="erating10" type="radio" name="rating" value="10">
+                        <label for="erating10">10</label>
+                        <input id="erating9" type="radio" name="rating" value="9">
+                        <label for="erating9">9</label>
+                        <input id="erating8" type="radio" name="rating" value="8">
+                        <label for="erating8">8</label>
+                        <input id="erating7" type="radio" name="rating" value="7">
+                        <label for="erating7">7</label>
+                        <input id="erating6" type="radio" name="rating" value="6">
+                        <label for="erating6">6</label>
+                        <input id="erating5" type="radio" name="rating" value="5">
+                        <label for="erating5">5</label>
+                        <input id="erating4" type="radio" name="rating" value="4">
+                        <label for="erating4">4</label>
+                        <input id="erating3" type="radio" name="rating" value="3">
+                        <label for="erating3">3</label>
+                        <input id="erating2" type="radio" name="rating" value="2">
+                        <label for="erating2">2</label>
+                        <input id="erating1" type="radio" name="rating" value="1">
+                        <label for="erating1">1</label>
                     </span>
                 </p>
                 <p>

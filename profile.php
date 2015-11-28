@@ -171,7 +171,28 @@ if (isset($_GET['id'])) {
                     <input type="hidden" name="reviewId" id="reviewId" value="">
                     <input type="hidden" name="return" value="<?php echo $return; ?>">
                     <p>
-                        <input id="review_form_rating" name="rating" type="number" step="1" min="1" max="5" value="1" required>
+                        <span class="star_rating" id="edit_movie_rating">
+                            <input id="erating10" type="radio" name="rating" value="10">
+                            <label for="erating10">10</label>
+                            <input id="erating9" type="radio" name="rating" value="9">
+                            <label for="erating9">9</label>
+                            <input id="erating8" type="radio" name="rating" value="8">
+                            <label for="erating8">8</label>
+                            <input id="erating7" type="radio" name="rating" value="7">
+                            <label for="erating7">7</label>
+                            <input id="erating6" type="radio" name="rating" value="6">
+                            <label for="erating6">6</label>
+                            <input id="erating5" type="radio" name="rating" value="5">
+                            <label for="erating5">5</label>
+                            <input id="erating4" type="radio" name="rating" value="4">
+                            <label for="erating4">4</label>
+                            <input id="erating3" type="radio" name="rating" value="3">
+                            <label for="erating3">3</label>
+                            <input id="erating2" type="radio" name="rating" value="2">
+                            <label for="erating2">2</label>
+                            <input id="erating1" type="radio" name="rating" value="1">
+                            <label for="erating1">1</label>
+                        </span>
                     </p>
                     <p>
                         <textarea id="review_form_content" name="content" cols="40" rows="10" placeholder="Write your review here..."></textarea>
