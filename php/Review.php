@@ -102,7 +102,7 @@ class Review extends stdClass {
         $userA = "<a href='".$userLink."' target='_blank'>$this->user</a>";
         $submission = "<p><strong>Submitted By: </strong>$userA</p>"; 
         $date = "<p><strong>Submitted On: </strong>$this->submitDate</p>";
-        $rating = "<p><strong>Rating: </strong><span class='rating'>$this->rating</span>/5 Stars</p>";
+        $rating = "<p><strong>Rating: </strong><span class='rating'>$this->rating</span>/10 Stars</p>";
         $review = "<p><strong>Review: </strong><span class='review_content'>$this->reviewContent</span></p>";
         $id = "'".$this->id."'";
         

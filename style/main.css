@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:700');
 @import url('logo.css');
 @import url('button.css');
+@import url('stars.css');
 
 html {
     font-family: Arial, sans-serif;
