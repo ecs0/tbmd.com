@@ -350,6 +350,10 @@ class Connection {
         return $movies;
     }
 
+    public function updateMovie(Movie $movie) {
+        
+    }
+    
     /**
      * Returns an array of all movies that release after the current date, in ascending order (date order)
      *

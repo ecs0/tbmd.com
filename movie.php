@@ -185,8 +185,8 @@ if (isset($_GET['id'])) {
                 <input class="exit" id="edit_movie_close" type="button" value="x">
                 <h1>Edit <?php echo $view->getTitle(); ?></h1>
                 <form method="post" action="php/edit_movie_handler.php">
-                    <input type="hidden" name="movieId" value="<?php echo $id; ?>"
-                    <input type="hidden" name="return" value="<?php echo "$return"; ?>">
+                    <input type="hidden" name="movieId" value="<?php echo $id; ?>">
+                    <input type="hidden" name="return" value="<?php echo $return; ?>">
                     <p>
                         <input type="text" id="editTitle" name="title" placeholder="Title" required>
                     </p>

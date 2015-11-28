@@ -1,4 +1,8 @@
 <?php
+include_once("Connection.php");
+include_once("Movie.php");
+
+$return = "../index.php";
 
 if (isset($_POST["submit"])) {
     
@@ -9,10 +13,13 @@ if (isset($_POST["submit"])) {
     $actorIds = filter_input(INPUT_POST, 'actors', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
     $synopsis = filter_input(INPUT_POST, 'synopsis');
     $return = filter_input(INPUT_POST, 'return');
-    
-    
-    echo "$movieId, $title, $releaseDate, $directorId, $actorIds, $synopsis, $return";
+
+    $connection = new Connection();
+    $actors = $connection->getPeopleById($actorIds);
+    $director = $connection->getPeopleById([$directorId])[0];
+    $movie = new Movie($movieId, $director, $title, $releaseDate, $synopsis, NULL, NULL, $actors);
+
+    $connection->updateMovie($movie);
 }
 
-
-
+header("Location: $return");
