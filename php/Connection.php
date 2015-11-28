@@ -148,7 +148,7 @@ class Connection {
     }
 
     /**
-     * Insert a new review into the dataabse
+     * Insert a new review into the database
      *
      * @param $userId
      * @param $movieId

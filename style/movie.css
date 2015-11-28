@@ -2,7 +2,7 @@
     Created on : Nov 15, 2015, 10:12:30 AM
     Author     : bryan
 */
-
+@import URL('https://fonts.googleapis.com/css?family=Francois+One');
 .movie_block {
     position: relative;
     border: 1px solid black;
@@ -14,16 +14,18 @@
     margin: 10px;
     top: 10px;
     right: 10px;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
     width: 100px;
     height: 100px;
     line-height: 100px;
     text-align: center;
     font-size: 3em;
-    font-family: 'Oswald', sans-serif;
-    background: -webkit-radial-gradient(top right, white, #A3A9AA);
-    background: -moz-radial-gradient(top right, white, #A3A9AA);
-    background: radial-gradient(top right, white, #A3A9AA);
+    font-family: 'Francios One', sans-serif;
+    background: url('../images/star.svg') no-repeat center;
+    background-size: cover;
+    /*background: -webkit-radial-gradient(top right, white, #A3A9AA);*/
+    /*background: -moz-radial-gradient(top right, white, #A3A9AA);*/
+    /*background: radial-gradient(top right, white, #A3A9AA);*/
 }
 
 .movie_image {

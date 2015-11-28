@@ -64,6 +64,7 @@ header h1 {
     background-color: #52D4DC;
     box-shadow: 5px 5px 10px black;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 footer {
@@ -97,6 +98,7 @@ section.search {
     box-shadow: 5px 5px 10px black;
     font-size: 2em;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 section.search input, datalist, option {

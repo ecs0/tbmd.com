@@ -86,7 +86,8 @@ class Review extends stdClass {
         $movieId = $movie->getId();
         $link = "movie.php?id=$movieId";
         $a = "<a href='".$link."' target='_blank'>$title</a>";
-        $header = "<h3>$a</h3>"; 
+        $header = "<h3>$a</h3>";
+        $stars = "";
         
         $login = new LoginManager("../error.php");
         
@@ -96,13 +97,20 @@ class Review extends stdClass {
         } else {
             $addReview = "";
         }
-        
+
+        for ( $i = 0; $i < $this->rating; $i++){
+            $stars .= "<img src='./images/star-on.svg'>";
+        }
+        for ( $i = $this->rating; $i < 10; $i++){
+            $stars .= "<img src='./images/star-off.svg'>";
+        }
+
         
         $userLink = "profile.php?id=".$this->getUser()->getId();
         $userA = "<a href='".$userLink."' target='_blank'>$this->user</a>";
         $submission = "<p><strong>Submitted By: </strong>$userA</p>"; 
         $date = "<p><strong>Submitted On: </strong>$this->submitDate</p>";
-        $rating = "<p><strong>Rating: </strong><span class='rating'>$this->rating</span>/10 Stars</p>";
+        $rating = "<p>$stars</p>";
         $review = "<p><strong>Review: </strong><span class='review_content'>$this->reviewContent</span></p>";
         $id = "'".$this->id."'";
         
