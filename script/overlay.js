@@ -20,8 +20,14 @@ window.addEventListener('load', function() {
     registerButton(document.getElementById('add_movie_close'), 'add_movie');
 
     // register add review
-    registerButton(document.getElementById('btnAddReview'), 'add_review');
+    btnReview = document.getElementById("btnAddReview");
+    registerButton(btnReview, 'add_review');
     registerButton(document.getElementById('add_review_close'), 'add_review');
+    if (btnReview !== null) {
+        btnReview.addEventListener("click", function() {
+            setRating("new_movie_rating", 0);
+        }, false);
+    }
     
     // register quick add buttons
     registerButton(document.getElementById('btnAddActorToMovie'), 'actor_to_movie');
@@ -181,5 +187,20 @@ function fillEditMovie() {
                 check.selected = true;
             }
         }
+    }
+}
+
+/**
+ * Sets the Star Rating Field to the appropriate value
+ * 
+ * @param {type} id - id of the star field to set
+ * @param {type} value - value to set 1- 10 (any other value clears)
+ */
+function setRating(id, value) {
+    var span = document.getElementById(id);
+    var radioButtons = span.getElementsByTagName("input");
+    for (var index in radioButtons) {
+        var rdoButton = radioButtons[index];
+        rdoButton.checked = rdoButton.value === value.toString();
     }
 }

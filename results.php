@@ -130,7 +130,7 @@ and open the template in the editor.
                         </select> (movie)
                     </p>
                     <p>
-                        <span class="star_rating">
+                        <span class="star_rating" id="new_movie_rating">
                             <input id="rating10" type="radio" name="rating" value="10">
                             <label for="rating10">10</label>
                             <input id="rating9" type="radio" name="rating" value="9">
