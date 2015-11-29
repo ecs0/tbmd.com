@@ -108,6 +108,7 @@ section.search input, datalist, option {
 .review_block {
     border: 1px solid black;
     margin-top: -1px;
+    padding: 5px;
 }
 
 table, th, td {
