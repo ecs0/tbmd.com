@@ -160,7 +160,7 @@ class Movie extends stdClass {
         
         $actors = "<p><strong>Starring: </strong><ul id='actors'>".implode("", $actorList)."</ul></p>";
         $synopsis = "<p><strong>Synopsis: </strong><span id='synopsis'>$this->synopsis</span></p>";
-        $id = "'".$this->id."'";
+        $id = "'movie_".$this->id."'";
         
         //TODO add a 'review this movie' link
         

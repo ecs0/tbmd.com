@@ -113,7 +113,7 @@ class Review extends stdClass {
         $ratingValue = "<span class='rating'>$this->rating</span>";
         $rating = "<p>$stars</p>";
         $review = "<p><strong>Review: </strong><span class='review_content'>$this->reviewContent</span></p>";
-        $id = "'".$this->id."'";
+        $id = "'review_".$this->id."'";
         
         return "<div id=$id class='review_block'>$addReview$header$submission$date$rating$review$ratingValue</div>";
     }

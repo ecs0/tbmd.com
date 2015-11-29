@@ -108,7 +108,7 @@ function fillReviewEdit(reviewId) {
     var id = reviewId.replace("edit_", "");
     document.getElementById("reviewId").value = id;
     
-    var reviewBlock = document.getElementById(id);
+    var reviewBlock = document.getElementById("review_" + id);
     var movieTitle = reviewBlock.getElementsByTagName("h3")[0];
     var formHeader = document.getElementById("review_title");
     formHeader.innerHTML = movieTitle.innerText;
