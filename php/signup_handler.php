@@ -37,8 +37,14 @@ if (isset($_POST['submit'])) {
         $return = "../index.php";
     }
 
-    header("Location: $return?creation=success");
+    if (strpos($return, "?") !== FALSE) {
+        $notificationGets = "&signup=$username";
+    } else {
+        $notificationGets = "?signup=$username";
+    }
+    
+    header("Location: $return$notificationGets");
 } else {
-    header("Location: ../index.php?creation=failed"); // temp
+    header("Location: ../index.php"); 
 }
 

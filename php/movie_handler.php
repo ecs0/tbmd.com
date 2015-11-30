@@ -38,7 +38,13 @@ if (isset($_POST['submit'])) {
 //    $rss = new RSS($title, $return, substr($synopsis, 0, 60), $return, "Movie");
 //    $rss->addRSS($title, $return, substr($synopsis, 0, 60), $return, "Movie");
 
-    header("Location: $return");
+    if (strpos($return, "?") !== FALSE) {
+        $notificationGets = "&addentity=$title";
+    } else {
+        $notificationGets = "?addentity=$title";
+    }
+    
+    header("Location: $return$notificationGets");
 } else {
     header("Location: ../index.php");
 }

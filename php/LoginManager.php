@@ -43,6 +43,16 @@ class LoginManager {
         }
     }
 
+    public function getLoggedInUserName() {
+        if ($this->isLoggedIn()) {
+            $id = $_SESSION['auth'];
+            $user = $this->link->getUsers([$id])[0];
+            return $user->getUsername();
+        } else {
+            return FALSE;
+        }
+    }
+    
     /**
      * Manages the state of the login panel at the top left of the website
      * Pages can simply request the form, and this function will return the 

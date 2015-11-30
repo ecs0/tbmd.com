@@ -14,6 +14,8 @@ if (isset($_POST['submit'])) {
     $person = new Person($id, $fname, $lname, $bdate, NULL, NULL, $bio);
     $connection = new Connection();
     $connection->updatePerson($person);
+    
+    $return .= "&addentity=$fname $lname&edited=true";
 }
 
 header("Location: $return");

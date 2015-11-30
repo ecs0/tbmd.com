@@ -38,5 +38,11 @@ if (!$return) {
     $return = "../index.php";
 }
 
-header("Location: $return");
+if (strpos($return, "?") !== FALSE) {
+    $notificationGets = "&addentity=$fname $lname";
+} else {
+    $notificationGets = "?addentity=$fname $lname";
+}
+
+header("Location: $return$notificationGets");
 
