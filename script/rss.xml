@@ -6,11 +6,12 @@
         <link>http://tbmd.com</link>
         <description>Tim and Bryan's Movie Database!</description>
         <atom:link href="http://tbmd.com/script/rss.xml" rel="self" type="application/rss+xml" />
-        <!--<item>-->
-            <!--<title>Upcoming Movies</title>-->
-            <!--<link>http://tbmd.com/upcoming_movies.php</link>-->
-            <!--<description>The most recent movies on TBMD</description>-->
-            <!--<guid isPermaLink="true">http://tbmd.com/upcoming_movies.php</guid>-->
-        <!--</item>-->
+        <item>
+            <title>Star Wars: The Force Awakens</title>
+            <link>http://tbmd.com/movie.php?id=4</link>
+            <description>A continuation of the saga created by George Lucas and
+                set thirty years after Star Wars: Episode VI - Return of the Jedi</description>
+            <guid isPermaLink="true">http://tbmd.com/movie.php?id=4</guid>
+        </item>
     </channel>
 </rss>
