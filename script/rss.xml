@@ -2,9 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 
     <channel>
-        <title>TBMD Home Page</title>
+        <title>Tim and Bryan's Movie Database</title>
         <link>http://tbmd.com</link>
         <description>Tim and Bryan's Movie Database!</description>
+        <category>Movie Database</category>
         <image>http://tbmd.com/images/favicon.ico</image>
         <webMaster>admin@tbmd.com</webMaster>
         <copyright>tbmd.com</copyright>
@@ -16,12 +17,28 @@
             <description>A continuation of the saga created by George Lucas and
                 set thirty years after Star Wars: Episode VI - Return of the Jedi</description>
             <guid isPermaLink="true">http://tbmd.com/movie.php?id=4</guid>
+            <category>Movies</category>
         </item>
         <item>
             <title>Star Wars: Episode IV - A New Hope</title>
             <link>http://tbmd.com/movie.php?id=1</link>
             <description>A long time ago in a galaxy far far away...</description>
             <guid isPermaLink="http://tbmd.com/movie.php?id=1"></guid>
+        </item>
+        <item>
+            <title>George Lucas</title>
+            <link>http://tbmd.com/person.php?id=1</link>
+            <description>George Lucas... Mainly known for the creation of the
+                Star Wars series, is a renowned...</description>
+            <guid isPermaLink="http://tbmd.com/person.php?id=1"></guid>
+            <category>Directors</category>
+        </item>
+        <item>
+            <title>Natalie Portman</title>
+            <link>http://tbmd.com/person.php?id=7</link>
+            <description></description>
+            <guid isPermaLink="http://tbmd.com/person.php?id=7"></guid>
+            <category>Actors</category>
         </item>
     </channel>
 </rss>
