@@ -11,14 +11,18 @@ $loginManager = new LoginManager($source);
 
 if (!isset($_POST['email'])) {
     $loginManager->logout();
+    header("Location: ../$source");
+    exit();
 } else {
     $email = filter_input(INPUT_POST, 'email');
     $password = filter_input(INPUT_POST, 'password');
     $loginManager->login($email, $password);
 }
 
-header("Location: ../$source");
+if (strpos($source, "?") !== FALSE) {
+    $notificationGets = "&signin=".$loginManager->getLoggedInUserName();
+} else {
+    $notificationGets = "?signin=".$loginManager->getLoggedInUserName();
+}
 
-
-
-
+header("Location: ../$source$notificationGets");

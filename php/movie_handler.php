@@ -35,7 +35,13 @@ if (isset($_POST['submit'])) {
         $return = "../index.php";
     }
 
-    header("Location: $return");
+    if (strpos($return, "?") !== FALSE) {
+        $notificationGets = "&addentity=$title";
+    } else {
+        $notificationGets = "?addentity=$title";
+    }
+    
+    header("Location: $return$notificationGets");
 } else {
     header("Location: ../index.php");
 }

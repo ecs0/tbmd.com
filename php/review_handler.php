@@ -27,7 +27,16 @@ if (isset($_POST['submit'])) {
         $return = "../index.php";
     }
 
-    header("Location: $return");
+    $movie = $connection->getMoviesById([$movieId])[0];
+    $title = $movie->getTitle();
+    
+    if (strpos($return, "?") !== FALSE) {
+        $notificationGets = "&addreview=$title";
+    } else {
+        $notificationGets = "?addreview=$title";
+    }
+    
+    header("Location: $return$notificationGets");
 } else {
     header("Location: ../index.php");
 }

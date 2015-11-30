@@ -24,6 +24,9 @@ if (isset($_GET['id'])) {
         <link rel="stylesheet" href="style/person.css">
         <link rel="stylesheet" href="style/overlay.css">
         <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.0/notify.min.js"></script>
+        <script src="script/notifications.js"></script>
         <script src="script/search.js"></script>
         <script src="script/overlay.js"></script>
         <script src="script/upload.js"></script>

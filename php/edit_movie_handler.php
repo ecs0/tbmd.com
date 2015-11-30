@@ -20,6 +20,7 @@ if (isset($_POST["submit"])) {
     $movie = new Movie($movieId, $director, $title, $releaseDate, $synopsis, NULL, NULL, $actors);
 
     $connection->updateMovie($movie);
+    $return .= "&addentity=$title&edited=true";
 }
 
 header("Location: $return");
