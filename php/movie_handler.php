@@ -8,6 +8,7 @@
 
 include_once('Connection.php');
 include_once('Uploader.php');
+include_once('RSS.php');
 
 if (isset($_POST['submit'])) {
 
@@ -34,6 +35,8 @@ if (isset($_POST['submit'])) {
     if (!$return) {
         $return = "../index.php";
     }
+//    $rss = new RSS($title, $return, substr($synopsis, 0, 60), $return, "Movie");
+//    $rss->addRSS($title, $return, substr($synopsis, 0, 60), $return, "Movie");
 
     header("Location: $return");
 } else {

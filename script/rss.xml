@@ -6,7 +6,7 @@
         <link>http://tbmd.com</link>
         <description>Tim and Bryan's Movie Database!</description>
         <category>Movie Database</category>
-        <image>http://tbmd.com/images/favicon.ico</image>
+        <image>../images/favicon.ico</image>
         <webMaster>admin@tbmd.com</webMaster>
         <copyright>tbmd.com</copyright>
         <lastBuildDate>11-30-2015</lastBuildDate>
@@ -31,14 +31,14 @@
             <description>George Lucas... Mainly known for the creation of the
                 Star Wars series, is a renowned...</description>
             <guid isPermaLink="http://tbmd.com/person.php?id=1"></guid>
-            <category>Directors</category>
+            <category>Person</category>
         </item>
         <item>
             <title>Natalie Portman</title>
             <link>http://tbmd.com/person.php?id=7</link>
             <description></description>
             <guid isPermaLink="http://tbmd.com/person.php?id=7"></guid>
-            <category>Actors</category>
+            <category>Person</category>
         </item>
     </channel>
 </rss>
