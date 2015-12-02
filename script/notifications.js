@@ -28,6 +28,11 @@ window.addEventListener("load", function() {
         }
     }
     
+    value = getQueryParameter("quickadd");
+    if (value !== false) {
+        display("New actor added!");
+    }
+    
 }, false);
 
 /**
