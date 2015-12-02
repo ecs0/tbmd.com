@@ -10,7 +10,13 @@ if (isset($_POST['submit'])) {
     $connection = new Connection();
     $connection->addActorToMovie($movieId, $personId);
     
-    header("Location: $return");
+    if (strpos($return, "?") !== FALSE) {
+        $notificationGets = "&quickadd=true";
+    } else {
+        $notificationGets = "?quickadd=true";
+    }
+    
+    header("Location: $return$notificationGets");
 } else {
     header("Location: ../index.php");
 }
