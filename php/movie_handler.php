@@ -35,8 +35,12 @@ if (isset($_POST['submit'])) {
     if (!$return) {
         $return = "../index.php";
     }
-//    $rss = new RSS($title, $return, substr($synopsis, 0, 60), $return, "Movie");
-//    $rss->addRSS($title, $return, substr($synopsis, 0, 60), $return, "Movie");
+
+    $id = $connection->addMovie($view);
+
+    $rss = new RSS($id, $title, $id, $synopsis);
+    $rss->addRSS();
+
 
     if (strpos($return, "?") !== FALSE) {
         $notificationGets = "&addentity=$title";

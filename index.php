@@ -242,7 +242,7 @@
     </section>
     <footer>
         tbmd.com &copy; Tim Sayler &amp; Bryan Bergen - 2015
-        <a href="script/rss.xml">
+        <a href="rss/rss.xml">
             <img src="images/rss.gif" width="36" height="14">
         </a>
     </footer>

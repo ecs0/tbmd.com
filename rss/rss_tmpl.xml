@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tim and Bryan's Movie Database</title>
+        <link>http://tbmd.com</link>
+        <description>Tim and Bryan's Movie Database!</description>
+        <category>Movie Database</category>
+        <image>../images/favicon.ico</image>
+        <webMaster>admin@tbmd.com</webMaster>
+        <copyright>tbmd.com</copyright>
+        <lastBuildDate>11-30-2015</lastBuildDate>
+        <atom:link href="http://tbmd.com/script/rss.xml" rel="self" type="application/rss+xml" />
