@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
     $id = $connection->addMovie($view);
 
     $rss = new RSS($id, $title, $id, $synopsis);
-    $rss->addRSS();
+    $rss->newRSS();
 
 
     if (strpos($return, "?") !== FALSE) {

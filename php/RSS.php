@@ -142,7 +142,7 @@ class RSS {
      * @return string
      */
     public function rssLink() {
-        return "<link>" . "http://tbmd.com/movie.php?id=" . $this->id . "</link>";
+        return "http://tbmd.com/movie.php?id=" . $this->id;
     }
 
 
@@ -150,7 +150,7 @@ class RSS {
      * @return string
      */
     public function rssDescription() {
-        return "<description>" . substr($this->description, 0, 60) . "</description>";
+        return substr($this->description, 0, 60);
     }
 
     /**
@@ -168,7 +168,69 @@ class RSS {
     }
 
     /**
-     *
+     * XMLReader. to be removed.
+     * @return string
+     */
+    public function readRSS() {
+
+        $final = "../rss/rss.xml";
+        $x = new XMLReader();
+        $temp = new DOMDocument;
+        $x->open($final, "UTF-8");
+//        $x->moveToAttribute("<item>");
+//        $p = $x->readInnerXML();
+        $p = "";
+
+        while ($x->read() && $x->name !== 'item') {
+            while ($x->name === 'item') {
+                $node = simplexml_import_dom($temp->importNode($x->expand(), true));
+
+                $p = "magic";
+            }
+        }
+
+        return $p;
+    }
+
+    /**
+     * Create's rss file if
+     * it does not exist.
+     */
+    private function makeRSS() {
+        $tmp = "../rss/rss_tmpl.xml";
+        $final = "../rss/rss.xml";
+        if (!is_file($final)) {
+            copy($tmp, $final);
+        }
+
+    }
+
+    /**
+     * Creates a new RSS entry
+     * in the rss feed.
+     */
+    public function newRSS() {
+        $this->makeRSS();
+        $tmpRSS = file_get_contents("../rss/rss.xml");
+//        $tmp = "../rss/rss_tmpl.xml";
+        $final = "../rss/rss.xml";
+
+
+
+        $sXML = new SimpleXMLElement($tmpRSS);
+        $channel = $sXML->channel[0];
+        $item = $channel->addChild('item');
+        $item->addChild('title', $this->title);
+        $item->addChild('link', $this->rssLink());
+        $item->addChild('description',$this->rssDescription());
+        $item->addChild('guid', $this->rssLink());
+        $sXML->asXML($final);
+
+    }
+
+    /**
+     * function to create/update rss feed
+     * deprecated function. to be removed.
      */
     public function addRSS() {
         $new_rss = "../rss/new.xml";
@@ -179,6 +241,7 @@ class RSS {
 
         fwrite($new, $tmpRSS);
         fwrite($new, $body);
+        fwrite($new, $this->readRSS());
         fwrite($new, $this->rssClose());
         fclose($new);
         rename($new_rss, $final);
