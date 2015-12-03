@@ -30,13 +30,12 @@ if (isset($_POST['submit'])) {
 
     $view = new Movie(NULL, $director[0], $title, $releaseDate, $synopsis, NULL, $imageLink, $actors);
 
-    $connection->addMovie($view);
+    $id = $connection->addMovie($view);
 
     if (!$return) {
         $return = "../index.php";
     }
 
-    $id = $connection->addMovie($view);
 
     $rss = new RSS($id, $title, $id, $synopsis);
     $rss->newRSS();
