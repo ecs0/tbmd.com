@@ -39,21 +39,23 @@ function backup {
 
   #create a tmp dir
   mkdir -p tmp
+  mkdir -p tmpRSS
 
-  #copy image files to it, and the db backup
+  #copy image files and rss to it, and the db backup
   cp ../images/uploads/* tmp/
+  cp ../rss/rss_tmpl.xml tmpRSS/
 
   # dump the db
   mysqldump -u root -p tbmd > tmp/tbmd.sql
 
   # archive and zip everything
-  tar -zcvf tbmd.tar.gz tmp
+  tar -zcvf tbmd.tar.gz tmp tmpRSS
 
   # uncomment to automatically version the archive
   #git add tbmd.tar.gz 
 
   # clean up
-  rm -r tmp
+  rm -r tmp tmpRSS
 
   # all done
   echo "[DONE]"
@@ -90,11 +92,20 @@ function restore {
       chmod 777 ../images/uploads
     fi
 
-    # move unzipped files to their proper location
+    # check if the rss dir exists, create if it doesn't
+    if [ ! -d ../rss ];
+    then
+      mkdir ../rss
+      chmod 777 ../rss
+    fi
+
+    # move unzipped files to their proper locations
     mv tmp/* ../images/uploads
+    mv tmpRSS/* ../rss
 
     # clean up
     rm -r tmp
+    rm -r tmpRSS
     rm tbmd.sql
 
     # all done
