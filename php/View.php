@@ -85,10 +85,13 @@ class View {
     public function highestRatedMoviesAsBlock() {
         $connection = new Connection();
         $body = "";
+        $count = 0;
         foreach ($connection->getMoviesByReviewScore() as $movie) {
+            if (++$count > 5) {
+                break;
+            }
             if ($movie[0] instanceof Movie) {
                 $body .= $movie[0]->asBlockView();
-                //TODO add the rating ($movie[1])
             }
         }
         return "<div>$body</div>";
@@ -97,7 +100,11 @@ class View {
     public function recentReviewsAsBlock() {
         $connection = new Connection();
         $innerHtml = "";
+        $count = 0;
         foreach ($connection->getReviewsByDate() as $review) {
+            if (++$count > 5) {
+                break;
+            }
             if ($review instanceof Review) {
                 $innerHtml .= $review->asBlockView();
             }
