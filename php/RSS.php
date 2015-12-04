@@ -126,7 +126,7 @@ class RSS {
      * @return string
      */
     public function rssDescription() {
-        return substr($this->description, 0, 60);
+        return substr($this->description, 0, 60) . "...";
     }
 
     /**
